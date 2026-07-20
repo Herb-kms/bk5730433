@@ -1,0 +1,278 @@
+/* =============================================
+   index-showcase.css ? 湲곌린 ?쇱??댁?移대 紐⑸? 諛 ?몃吏?
+   ============================================= */
+
+.hero-services-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* 移대 媛濡 媛?대????*/
+    flex: 0 0 auto;
+    margin-top: 0px;
+    /* ?? ??ㅽ?留吏?쇰? 梨? */
+    margin-bottom: 34px;
+    /* 移대? ?? ?곕쎌? ?ъ댁 媛寃?*/
+    position: relative;
+    z-index: 1;
+
+    /* ???쇱?珥湲곌? */
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+}
+
+.grid-active {
+    display: grid;
+    grid-template-columns: repeat(3, 310px);
+    gap: 20px;
+    width: auto;
+    margin-left: auto;
+    /* 醫??留吏 ?ㅽ濡 媛濡 ?媛?대?諛곗? */
+    margin-right: auto;
+    align-items: end;
+}
+
+/* ?? ?? ?곗 移대 ?? */
+.copier-showcase-item {
+    background-color: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 22px;
+    padding: 70px 20px 22px 20px;
+    /* ?ㅻ ??댁 留異?padding-top ?諛 議곗 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: box-shadow 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    /* ?ㅻ? 紐⑥由??κ?湲곌? 移대 寃쎄? 諛?쇰? ? 踰?대?濡 ?由 */
+}
+
+/* 移대 ???諛곕 ?ㅻ */
+.showcase-header {
+    position: absolute;
+    top: -1px;
+    /* ?곗 ??由??? ??濡 留?대??醫? 吏? */
+    left: -1px;
+    right: -1px;
+    padding: 13px 10px;
+    /* ???怨 蹂닿린 醫? ?щ갚?쇰? 議곗 */
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #ffffff !important;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-top-left-radius: 22px;
+    /* 移대 ?멸낸? 怨〓?怨??踰??湲고 */
+    border-top-right-radius: 22px;
+}
+
+.showcase-header.color-header {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.showcase-header.mono-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.showcase-header.inkjet-header {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* ?몃? ?: ?濡 ?댁? ?⑤ŉ 洹몃┝? 媛? */
+.copier-showcase-item:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    transform: translateY(-6px);
+}
+
+.copier-showcase-item:nth-child(1):hover {
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15), 0 0 30px rgba(211, 47, 47, 0.1);
+}
+
+.copier-showcase-item:nth-child(2):hover {
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18), 0 0 30px rgba(30, 41, 59, 0.1);
+}
+
+.copier-showcase-item:nth-child(3):hover {
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15), 0 0 30px rgba(5, 150, 105, 0.1);
+}
+
+.showcase-img-wrap {
+    width: 100%;
+    height: 290px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+/* 湲곌린 ?룸같寃???? ?ㅽы몃쇱댄?(?ъ? 遺媛) */
+.showcase-img-wrap::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 60%);
+    z-index: -1;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.copier-showcase-item:hover .showcase-img-wrap::before {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 65%);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.showcase-img-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 25px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(5px);
+}
+
+.showcase-img-wrap img {
+    width: auto;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ??ъ ?由고곕 ?? 湲곌린?대濡 ?寃 */
+.copier-showcase-item:nth-child(3) .showcase-img-wrap img {
+    height: 65%;
+    max-height: 65%;
+}
+
+.text-flipper {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 22px;
+    overflow: hidden;
+}
+
+.flipper-item {
+    grid-area: 1 / 1;
+    animation: fadeAnim 7s infinite ease-in-out;
+    white-space: nowrap;
+}
+
+.item-1 {
+    animation-delay: 0s;
+}
+
+.item-2 {
+    animation-delay: -3.5s;
+}
+
+@keyframes fadeAnim {
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    50%,
+    95% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.overlay-click-btn {
+    color: #ffffff !important;
+    padding: 10px 28px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    min-width: 145px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.4s ease;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    margin-top: 18px;
+}
+
+/* 踰??怨? ?? */
+.color-btn {
+    background: #d32f2f;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.35);
+}
+
+.mono-btn {
+    background: #1e293b;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.inkjet-btn {
+    background: #059669;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.35);
+}
+
+/* ?몃? ? 踰?쇰 ?댁? 而ㅼ?硫?洹몃┝? 媛? */
+.copier-showcase-item:hover .overlay-click-btn {
+    transform: scale(1.06);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.copier-showcase-item:hover .color-btn {
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.55);
+}
+
+.copier-showcase-item:hover .mono-btn {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.copier-showcase-item:hover .inkjet-btn {
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.55);
+}
+
+.overlay-pulse {
+    color: #ffe100 !important;
+    font-weight: 900;
+    margin-left: 2px;
+    animation: pulseAnimation 1.5s infinite;
+}
+
+.copier-showcase-item:hover .overlay-pulse {
+    color: #ffe100 !important;
+}
+
+@keyframes pulseAnimation {
+    0% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}

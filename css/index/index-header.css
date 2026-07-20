@@ -1,0 +1,82 @@
+/* =============================================
+   index-header.css ? ???GNB 諛 濡洹몄?濡洹몄? ? 踰??   ============================================= */
+
+.hero-nav-bar-fluid {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    z-index: 1000 !important;
+    /* ?ㅻ?寃?댁??臾댁“嫄??? ?ㅻ濡 ?ㅼ */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 40px;
+    box-sizing: border-box;
+}
+
+.hero-nav-bar-fluid:hover {
+    z-index: 99999 !important;
+}
+
+.logo.hero-logo {
+    color: #ffffff !important;
+    font-size: 2.6rem;
+    font-weight: 900;
+    text-decoration: none;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.logo.hero-logo span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.admin-login-btn,
+.hero-auth .login-btn-top,
+.hero-auth .logout-btn-top,
+.hero-auth .myinfo-btn,
+.hero-auth .admin-btn {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 800;
+    padding: 9px 20px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(15, 23, 42, 0.45) !important;
+    /* ???щ?댄?諛?щ? 湲곕??쇰? 諛? 諛곌꼍??? 諛깆 湲? ?鍮? 蹂댁?*/
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.admin-login-btn:hover,
+.hero-auth .login-btn-top:hover,
+.hero-auth .logout-btn-top:hover,
+.hero-auth .myinfo-btn:hover,
+.hero-auth .admin-btn:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+.hero-auth {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hero-auth .user-welcome {
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}

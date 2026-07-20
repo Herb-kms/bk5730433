@@ -1,0 +1,30 @@
+﻿Created At: 2026-07-20T02:53:50Z
+Completed At: 2026-07-20T02:53:50Z
+File Path: `file:///c:/Users/pro/Desktop/%EB%B3%B5%EC%82%AC%EA%B8%B0%EB%A7%88%ED%8A%B8_%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%28%EB%8D%B0%EB%AA%A8%EB%B2%84%EC%A0%84%29/js/modules/products.js`
+Total Lines: 338
+Total Bytes: 15994
+Showing lines 30 to 50
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+30:                 <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.7);">
+31:                     <i class="fas fa-box-open" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
+32:                     <p style="font-size: 1.1rem; font-weight: 600;">?源??혵 ?혵?혞??鈺곕똻혷?혮혱筌왖 ?혡???떷??</p>
+33:                 </div>
+34:             `;
+35:             return;
+36:         }
+37: 
+38:         cardGrid.innerHTML = products.map(p => {
+39:             const priceText = p.price.toLocaleString() + (type === 'rental' ? ' ?혨 / ?혬' : ' ?혨');
+40:             const detailBtnText = '?혖?紐껊궖疫?;
+41:             
+42:             let brandLogoHtml = '';
+43:             if (p.brand === 'canon') {
+44:                 brandLogoHtml = `<img src="img/logo_canon.svg" alt="Canon" class="brand-logo-img brand-canon">`;
+45:             } else if (p.brand === 'minolta') {
+46:                 brandLogoHtml = `<img src="img/logo_minolta.svg" alt="Minolta" class="brand-logo-img brand-minolta">`;
+47:             } else if (p.brand === 'samsung') {
+48:                 brandLogoHtml = `<img src="img/logo_samsung.svg" alt="Samsung" class="brand-logo-img brand-samsung">`;
+49:             } else if (p.brand === 'hp') {
+50:                 brandLogoHtml = `<img src="img/logo_hp.svg" alt="HP" class="brand-logo-img brand-hp">`;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+

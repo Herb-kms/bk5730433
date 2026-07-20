@@ -1,0 +1,52 @@
+/* =============================================
+   admin-layout.css ? 愿由ъ 蹂몃Ц 諛 移대 怨듯???댁?
+   ============================================= */
+
+/* ?? 硫??肄?痢 ?? ?? */
+.admin-main { 
+    flex: 1; 
+    padding: 50px 60px; 
+    overflow-y: auto;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.admin-header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-header h1::after {
+    content: attr(data-count);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #3b82f6;
+    background: #eff6ff;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+/* ?? 愿由ъ 移대 ?? */
+.admin-card {
+    background: white;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+    border: 1px solid #f1f5f9;
+}
+
+.card-header-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+}

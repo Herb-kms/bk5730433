@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?êÎß§?úÌíà | Î≥µÏÇ¨Í∏∞Îßà??/title>
+    <meta name="description" content="Î≥µÏÇ¨Í∏∞Îßà??- ?¨Î¨¥?òÍ≤Ω??ÏµúÏ†Å?îÎêú Î≥µÏÇ¨Í∏??êÎß§ ?ÅÌíà???§ÏãúÍ∞??ÑÌÑ∞Î°?ÎßåÎÇòÎ≥¥ÏÑ∏??">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+
+<body>
+
+    <header class="hero-nav-bar-fluid subpage-header">
+        <a href="index.html" class="logo hero-logo">Î≥µÏÇ¨Í∏?span>ÎßàÌä∏</span></a>
+
+        <nav class="hero-nav">
+            <ul>
+                <li><a href="rental.html">?ÑÎ??úÌíà</a></li>
+                <li><a href="sales.html" class="nav-active">?êÎß§?úÌíà</a></li>
+                <li><a href="notice.html">Í≥µÏ??¨Ìï≠</a></li>
+                <li><a href="downloads.html">?êÎ£å??/a></li>
+                <li><a href="reviews.html">?§Ïπò ?ÑÍ∏∞</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-auth" id="authSection">
+            <a href="login.html" class="admin-login-btn">
+                <i class="fas fa-user-cog"></i> Í¥ÄÎ¶¨Ïûê Î°úÍ∑∏??            </a>
+        </div>
+    
+    </header>
+
+    <section class="sub-hero">
+        <div class="sub-hero-grid-bg"></div>
+        <div class="sub-hero-glow-layer"></div>
+        <div class="sub-hero-glow-layer-2"></div>
+        <div class="sub-hero-grid-mask"></div>
+        <div class="container" style="position: relative; z-index: 10;">
+            <h1>?êÎß§ ?úÌíà</h1>
+            <p>?¨Î¨¥???òÍ≤Ω??ÎßûÎäî ÎßûÏ∂§ ?§Í≥ÑÎ°?ÏµúÏ†Å???ÖÎ¨¥ ?ùÏÇ∞?±ÏùÑ ?ΩÏÜç?úÎ¶Ω?àÎã§.</p>
+        </div>
+    </section>
+
+    <section class="product-page">
+        <div class="container">
+
+            <div class="filter-panel-card">
+                <!-- Ïπ¥ÌÖåÍ≥†Î¶¨ ?ÑÌÑ∞ ?ºÏù∏ -->
+                <div class="filter-panel-row category-row">
+                    <span class="filter-row-label"><i class="fas fa-th-large"></i> ?úÌíà Íµ¨Î∂Ñ</span>
+                    <div class="category-tabs">
+                        <a href="#" class="active" data-cat="all">?ÑÏ≤¥</a>
+                        <a href="#" data-cat="color">Ïª¨Îü¨</a>
+                        <a href="#" data-cat="mono">?ëÎ∞±</a>
+                        <a href="#" data-cat="inkjet">?âÌÅ¨??/a>
+                        <a href="#" data-cat="laser">?àÏù¥?Ä</a>
+                    </div>
+                </div>
+
+                <!-- Î∏åÎûú???ÑÌÑ∞ ?ºÏù∏ -->
+                <div class="filter-panel-row brand-row">
+                    <span class="filter-row-label"><i class="fas fa-tags"></i> ?úÏ°∞ Î∏åÎûú??/span>
+                    <div class="brand-filters">
+                        <label class="filter-checkbox-label">
+                            <input type="checkbox" value="all" class="brand-check" checked>
+                            <span class="checkbox-btn">?ÑÏ≤¥</span>
+                        </label>
+                        <label class="filter-checkbox-label">
+                            <input type="checkbox" value="canon" class="brand-check">
+                            <span class="checkbox-btn">Ï∫êÎÖº</span>
+                        </label>
+                        <label class="filter-checkbox-label">
+                            <input type="checkbox" value="sindoh" class="brand-check">
+                            <span class="checkbox-btn">?†ÎèÑÎ¶¨ÏΩî</span>
+                        </label>
+                        <label class="filter-checkbox-label">
+                            <input type="checkbox" value="minolta" class="brand-check">
+                            <span class="checkbox-btn">ÎØ∏Î??Ä</span>
+                        </label>
+                        <label class="filter-checkbox-label">
+                            <input type="checkbox" value="samsung" class="brand-check">
+                            <span class="checkbox-btn">?ºÏÑ±</span>
+                        </label>
+                        <label class="filter-checkbox-label">
+                            <input type="checkbox" value="hp" class="brand-check">
+                            <span class="checkbox-btn">HP</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ?ïÎ†¨ Î∞?Í≤∞Í≥º ?îÏïΩ ?ºÏù∏ -->
+            <div class="controls-row-secondary">
+                <div class="products-count-badge">
+                    <i class="fas fa-cubes"></i> Ï¥?<span id="productsCount">0</span>Í∞úÏùò ?úÌíà???àÏäµ?àÎã§.
+                </div>
+                <div class="sort-select-wrap">
+                    <select id="sort-select" class="sort-select">
+                        <option value="recent">ÏµúÏã†??/option>
+                        <option value="price-low">??? Í∞ÄÍ≤©Ïàú</option>
+                        <option value="price-high">?íÏ? Í∞ÄÍ≤©Ïàú</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="card-grid" id="cardGrid"></div>
+
+            <!-- ?ôÏ†Å ?òÏù¥ÏßÄ?§Ïù¥???ÅÏó≠ Ï∂îÍ? -->
+            <div class="pagination-container" id="productPagination"></div>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal -->
+    <div id="productDetailModal" class="detail-modal">
+        <div class="detail-modal-content">
+            <span class="close-detail-modal" id="closeDetailModalBtn">&times;</span>
+            <div class="detail-top-section">
+                <div class="detail-img-area">
+                    <img id="modalImg" src="" alt="?úÌíà ?¥Î?ÏßÄ">
+                    <div class="detail-thumbnails">
+                        <span class="active">FRONT</span>
+                        <span>SIDE</span>
+                        <span>DETAIL</span>
+                    </div>
+                </div>
+                <div class="detail-info-area">
+                    <span id="modalBadge" class="detail-badge"></span>
+                    <h2 id="modalTitle" class="detail-title"></h2>
+                    <p id="modalDesc" class="detail-desc"></p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Í∏∞Î≥∏?¨Ïñë</th>
+                            <td>A3/A4 Î≥µÌï©Í∏??ºÏù∏??/td>
+                        </tr>
+                        <tr>
+                            <th>?∏ÏáÑ?çÎèÑ</th>
+                            <td id="specSpeed">-</td>
+                        </tr>
+                        <tr>
+                            <th>?¥ÏÉÅ??/th>
+                            <td id="specResolution">-</td>
+                        </tr>
+                        <tr>
+                            <th>Ï£ºÏöîÍ∏∞Îä•</th>
+                            <td id="specFeature">-</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="detail-bottom-section">
+                <h3 class="section-mini-title"><i class="fas fa-star"></i> ?úÌíà Ï£ºÏöî ?±Îä• Î∞??•Ï†ê</h3>
+                <div class="feature-banner-list">
+                    <div class="feature-banner-item">
+                        <div class="feature-icon-wrap"><i class="fas fa-bolt" id="featureIcon1"></i></div>
+                        <h4 id="featureTitle1">-</h4>
+                        <p id="featureDesc1">-</p>
+                    </div>
+                    <div class="feature-banner-item">
+                        <div class="feature-icon-wrap"><i class="fas fa-print" id="featureIcon2"></i></div>
+                        <h4 id="featureTitle2">-</h4>
+                        <p id="featureDesc2">-</p>
+                    </div>
+                    <div class="feature-banner-item">
+                        <div class="feature-icon-wrap"><i class="fas fa-leaf" id="featureIcon3"></i></div>
+                        <h4 id="featureTitle3">-</h4>
+                        <p id="featureDesc3">-</p>
+                    </div>
+                </div>
+                <div class="detail-action-buttons">
+                    <a id="modalNaverLink" href="" target="_blank" class="btn-detail-naver"><i
+                            class="fas fa-comment"></i> ?§Ïù¥Î≤??°ÌÜ° ?ÅÎã¥</a>
+                    <a id="modalKakaoLink" href="" target="_blank" class="btn-detail-kakao"><i
+                            class="fas fa-comment-dots"></i> Ïπ¥Ïπ¥?§ÌÜ° Ï¶âÏãú ?ÅÎã¥</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-quick-bar">
+        <div class="quick-menu-card">
+            <div class="quick-card-header">
+                <span>QUICK MENU</span>
+            </div>
+            <div class="quick-card-body">
+                <div class="quick-card-section">
+                    <span class="section-label"><i class="fas fa-phone-alt"></i> ?ÑÌôî?ÅÎã¥</span>
+                    <a href="tel:010-6593-0477" class="phone-number-link">010-6593-0477</a>
+                    <span class="phone-hours">?âÏùº/Ï£ºÎßê ?∞Ï§ëÎ¨¥Ìú¥</span>
+                </div>
+                <div class="quick-card-section">
+                    <span class="section-label"><i class="fas fa-fax"></i> ?©Ïä§Î≤àÌò∏</span>
+                    <span class="fax-number">031-574-3369</span>
+                </div>
+                <a href="https://open.kakao.com/o/sSzFO2O" target="_blank" class="quick-inquiry-btn">
+                    <i class="fas fa-comment-dots"></i> Í≤¨Ï†ÅÎ¨∏Ïùò
+                </a>
+                <button class="quick-card-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="?ÑÎ°ú Í∞ÄÍ∏?>
+                    <i class="fas fa-arrow-up"></i> TOP
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-inner">
+            <a href="index.html" class="logo footer-logo">Î≥µÏÇ¨Í∏?span>ÎßàÌä∏</span></a>
+            <p class="footer-info">Í≤ΩÍ∏∞ ?®ÏñëÏ£ºÏãú ÏßÑÍ±¥???¨Î¶âÎ°?413 1?? ?îÏ??∏OA?úÎìú &nbsp;|&nbsp; 031-573-0433 &nbsp;|&nbsp; bk0433@naver.com</p>
+            <p class="footer-copy">&copy; 2026 Î≥µÏÇ¨Í∏∞Îßà?? All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+
+
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

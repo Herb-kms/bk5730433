@@ -1,0 +1,13 @@
+/* ==========================================================================
+   STYLE RULES FOR COPIERMART WEB APPLICATION (Modular Entry File)
+   ========================================================================== */
+
+@import url('style/style-core.css');
+@import url('style/style-header.css');
+@import url('style/style-megamenu.css');
+@import url('style/style-hero.css');
+@import url('style/style-sections.css');
+@import url('style/style-modal.css');
+@import url('style/style-footer.css');
+@import url('style/style-quickbar.css');
+@import url('style/style-responsive.css');

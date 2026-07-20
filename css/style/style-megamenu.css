@@ -1,0 +1,145 @@
+/* ???????????????????????????????
+   2. 硫媛硫????댁? (??由ъ? 硫媛?濡?ㅼ??ㅽ??
+   ??????????????????????????????? */
+.has-submenu {
+    position: static;
+}
+
+.megamenu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    border-bottom: 2px solid var(--primary);
+    box-shadow: 0 10px 25px rgba(17, 24, 39, 0.08);
+    padding: 35px 0;
+    display: none;
+    z-index: 999;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s, transform 0.25s;
+    animation: megaFadeIn 0.25s ease-out forwards;
+}
+
+.has-submenu:hover .megamenu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.megamenu-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.megamenu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 320px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.megamenu-list li {
+    width: 100%;
+}
+
+.megamenu-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-color) !important;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.megamenu-list li a i {
+    font-size: 0.8rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.2s ease-in-out;
+}
+
+.megamenu-list li a:hover {
+    background-color: var(--bg-alt);
+    color: var(--primary) !important;
+    padding-left: 24px;
+}
+
+.megamenu-list li a:hover i {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--primary);
+}
+
+.megamenu-image {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex: 1;
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 24px 30px;
+    border: 1px solid #f3f4f6;
+}
+
+.megamenu-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.megamenu-text {
+    text-align: left;
+}
+
+.megamenu-text h4 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+}
+
+.megamenu-text p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+@keyframes megaFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--dark);
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-weight: 700;
+    gap: 8px;
+    align-items: center;
+}

@@ -1,0 +1,12 @@
+#Node.js -> node server.js 켜야함.
+# 설치
+npm install -g live-server
+# 실행 (프로젝트 폴더 안에서)
+live-server
+
+#Ngrok (서버 주소) -> 임시 주소인 ngrok을 껐다가 키면 주소가 매번 바뀜.
+& "C:\Program Files\nodejs\npx.cmd" ngrok config add-authtoken [여기에-복사한-토큰-붙여넣기]
+
+& "C:\Program Files\nodejs\npx.cmd" ngrok http 80
+
+둘다 crtl + c 누르면 꺼짐.

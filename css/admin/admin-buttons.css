@@ -1,0 +1,78 @@
+/* =============================================
+   admin-buttons.css ? 愿由ъ ???踰???ㅽ??   ============================================= */
+
+/* ?? 踰???? */
+.btn-premium-add {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+}
+
+.btn-premium-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.edit-btn, .delete-btn {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+}
+
+.edit-btn {
+    background: #f0fdf4;
+    color: #166534;
+    margin-right: 8px;
+}
+
+.edit-btn:hover {
+    background: #dcfce7;
+    color: #14532d;
+    transform: translateY(-1px);
+}
+
+.delete-btn {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+    color: #7f1d1d;
+    transform: translateY(-1px);
+}
+
+.logout-btn {
+    background: white;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    padding: 9px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+    background: #f8fafc;
+    color: #0f172a;
+    border-color: #cbd5e1;
+}

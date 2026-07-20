@@ -1,0 +1,101 @@
+/* =============================================
+   admin-table.css ? ?곗댄???대? 諛 諛곗? ?ㅽ??   ============================================= */
+
+/* ?? ?곗댄???대? ?? */
+.admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.admin-table th {
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 2px solid #cbd5e1;
+    text-transform: uppercase;
+}
+
+.admin-table th:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.admin-table th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.admin-table td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-size: 0.95rem;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.admin-table tr {
+    transition: all 0.25s ease;
+}
+
+.admin-table tr:hover td {
+    background: #f8fafc;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table img {
+    width: 50px; 
+    height: 50px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+}
+
+.admin-table tr:hover img {
+    transform: scale(1.15) rotate(2deg);
+}
+
+/* ?? 釉?? ?由щ몄 諛곗? ?? */
+.brand-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+.brand-badge.canon {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.brand-badge.minolta {
+    background-color: #f0fdf4;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+
+.brand-badge.samsung {
+    background-color: #eff6ff;
+    color: #1e40af;
+    border-color: #bfdbfe;
+}
+
+.brand-badge.shindo {
+    background-color: #fff7ed;
+    color: #c2410c;
+    border-color: #fed7aa;
+}

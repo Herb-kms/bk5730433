@@ -1,0 +1,1254 @@
+/**
+ * @file js/admin/admin.js
+ * @description 복사기마트 홈페이지 관리자 모드 백오피스 비동기 비즈니스 로직 제어 스크립트
+ * - 설치 후기, 공지사항, 자료실, 제품(CRUD) 목록 연동 및 로컬 드래프트 백업 탑재
+ */
+
+        let currentReviews = [];
+        let currentNotices = [];
+        let currentDownloads = [];
+        let currentProducts = [];
+        let currentUsers = [];
+        let currentTab = 'reviews';
+
+        // 전용 세션 체크 및 관리자 확인
+        const checkAdminSession = async () => {
+            try {
+                const res = await fetch('/api/session');
+                const data = await res.json();
+                if (!data.loggedIn || data.user.user_type !== 'admin') {
+                    alert('관리자 권한이 없습니다.');
+                    location.href = 'login.html';
+                } else {
+                    document.getElementById('adminName').innerText = `${data.user.username}님`;
+                }
+            } catch (err) {
+                console.error('세션 확인 실패:', err);
+                location.href = 'login.html';
+            }
+        };
+
+        // 탭 전환 기능
+        const switchTab = (tab) => {
+            currentTab = tab;
+            
+            // 사이드바 활성 스타일 토글
+            document.querySelectorAll('.admin-nav-item').forEach(item => {
+                if (item.getAttribute('data-tab') === tab) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // 타이틀 및 추가 버튼 변경
+            const tabTitle = document.getElementById('tabTitle');
+            const addBtn = document.getElementById('addBtn');
+
+            addBtn.style.display = 'inline-block';
+            if (tab === 'reviews') {
+                tabTitle.innerText = '설치후기 관리';
+                addBtn.innerHTML = '<i class="fas fa-plus"></i> 새 후기 등록';
+                addBtn.setAttribute('onclick', "openCreateModal()");
+            } else if (tab === 'notices') {
+                tabTitle.innerText = '공지사항 관리';
+                addBtn.innerHTML = '<i class="fas fa-plus"></i> 새 공지사항 등록';
+                addBtn.setAttribute('onclick', "openNoticeModal('create')");
+            } else if (tab === 'downloads') {
+                tabTitle.innerText = '자료실 관리';
+                addBtn.innerHTML = '<i class="fas fa-plus"></i> 새 자료 등록';
+                addBtn.setAttribute('onclick', "openDownloadModal('create')");
+            } else if (tab === 'products') {
+                tabTitle.innerText = '제품 관리';
+                addBtn.innerHTML = '<i class="fas fa-plus"></i> 새 제품 등록';
+                addBtn.setAttribute('onclick', "openProductModal('create')");
+            } else if (tab === 'users') {
+                tabTitle.innerText = '회원 정보 관리';
+                addBtn.style.display = 'none';
+            }
+
+            fetchTabValues();
+        };
+
+        const fetchTabValues = () => {
+            if (currentTab === 'reviews') {
+                fetchAdminReviews();
+            } else if (currentTab === 'notices') {
+                fetchAdminNotices();
+            } else if (currentTab === 'downloads') {
+                fetchAdminDownloads();
+            } else if (currentTab === 'products') {
+                fetchAdminProducts();
+            } else if (currentTab === 'users') {
+                fetchAdminUsers();
+            }
+        };
+
+        // 후기 fetch
+        const fetchAdminReviews = async () => {
+            const loading = document.getElementById('loadingMsg');
+            const noData = document.getElementById('noDataMsg');
+            const table = document.getElementById('adminTable');
+
+            loading.style.display = 'block';
+            noData.style.display = 'none';
+            table.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/reviews');
+                if (!response.ok) throw new Error('불러오기 오류');
+
+                const data = await response.json();
+                currentReviews = data;
+
+                document.getElementById('tabTitle').setAttribute('data-count', currentReviews.length);
+                renderTable();
+            } catch (err) {
+                console.error(err);
+                noData.innerText = '데이터를 불러오는데 실패했습니다.';
+                noData.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        };
+
+        // 공지사항 fetch
+        const fetchAdminNotices = async () => {
+            const loading = document.getElementById('loadingMsg');
+            const noData = document.getElementById('noDataMsg');
+            const table = document.getElementById('adminTable');
+
+            loading.style.display = 'block';
+            noData.style.display = 'none';
+            table.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/notices');
+                if (!response.ok) throw new Error('불러오기 오류');
+
+                const data = await response.json();
+                currentNotices = data;
+
+                document.getElementById('tabTitle').setAttribute('data-count', currentNotices.length);
+                renderTable();
+            } catch (err) {
+                console.error(err);
+                noData.innerText = '공지사항을 불러오는데 실패했습니다.';
+                noData.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        };
+
+        // 자료실 fetch
+        const fetchAdminDownloads = async () => {
+            const loading = document.getElementById('loadingMsg');
+            const noData = document.getElementById('noDataMsg');
+            const table = document.getElementById('adminTable');
+
+            loading.style.display = 'block';
+            noData.style.display = 'none';
+            table.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/downloads');
+                if (!response.ok) throw new Error('불러오기 오류');
+
+                const data = await response.json();
+                currentDownloads = data;
+
+                document.getElementById('tabTitle').setAttribute('data-count', currentDownloads.length);
+                renderTable();
+            } catch (err) {
+                console.error(err);
+                noData.innerText = '자료실 목록을 불러오는데 실패했습니다.';
+                noData.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        };
+
+        // 제품 fetch
+        const fetchAdminProducts = async () => {
+            const loading = document.getElementById('loadingMsg');
+            const noData = document.getElementById('noDataMsg');
+            const table = document.getElementById('adminTable');
+
+            loading.style.display = 'block';
+            noData.style.display = 'none';
+            table.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/products');
+                if (!response.ok) throw new Error('불러오기 오류');
+
+                const data = await response.json();
+                currentProducts = data;
+
+                document.getElementById('tabTitle').setAttribute('data-count', currentProducts.length);
+                renderTable();
+            } catch (err) {
+                console.error(err);
+                noData.innerText = '제품 목록을 불러오는데 실패했습니다.';
+                noData.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        };
+
+        // 날짜 포맷 통일 헬퍼 함수 (YYYY-MM-DD)
+        const formatDate = (dateStr) => {
+            if (!dateStr) return '-';
+            // 만약 이미 YYYY-MM-DD 형태 또는 YYYY.MM.DD 형태면 점을 하이픈으로 치환
+            const dateStrStr = dateStr.toString().trim();
+            if (dateStrStr.includes('.') || dateStrStr.includes('-')) {
+                return dateStrStr.replace(/\./g, '-');
+            }
+            // YYYYMMDD 형태인 경우 (예: 20260601)
+            const clean = dateStrStr.replace(/[^0-9]/g, '');
+            if (clean.length === 8) {
+                return `${clean.substring(0, 4)}-${clean.substring(4, 6)}-${clean.substring(6, 8)}`;
+            }
+            return dateStrStr;
+        };
+
+        // 테이블 동적 렌더러
+        const renderTable = () => {
+            const list = document.getElementById('adminReviewList');
+            const header = document.getElementById('tableHeader');
+            const noData = document.getElementById('noDataMsg');
+            const table = document.getElementById('adminTable');
+
+            let data = [];
+            if (currentTab === 'reviews') data = currentReviews;
+            else if (currentTab === 'notices') data = currentNotices;
+            else if (currentTab === 'downloads') data = currentDownloads;
+            else if (currentTab === 'products') data = currentProducts;
+            else if (currentTab === 'users') data = currentUsers;
+
+            if (!data || data.length === 0) {
+                table.style.display = 'none';
+                noData.style.display = 'block';
+                return;
+            }
+
+            table.style.display = 'table';
+            noData.style.display = 'none';
+
+            if (currentTab === 'reviews') {
+                header.innerHTML = `
+                    <th>이미지</th>
+                    <th>카테고리</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>날짜</th>
+                    <th>관리</th>
+                `;
+                list.innerHTML = data.map(r => {
+                    const brandNames = {
+                        canon: '캐논',
+                        minolta: '미놀타',
+                        samsung: '삼성',
+                        shindo: '신도'
+                    };
+                    const brandLabel = brandNames[r.category] || r.category;
+                    return `
+                        <tr>
+                            <td><img src="${r.image_url || 'hero.png'}" alt="thumb"></td>
+                            <td><span class="brand-badge ${r.category}">${brandLabel}</span></td>
+                            <td style="font-weight: 700; color: #1e293b;">${r.title}</td>
+                            <td style="color: #64748b;">${r.author}</td>
+                            <td style="color: #64748b; font-size: 0.9rem;">${formatDate(r.date)}</td>
+                            <td>
+                                <button class="edit-btn" onclick="openEditModal(${r.id})"><i class="fas fa-edit"></i> 수정</button>
+                                <button onclick="deleteData(${r.id})" class="delete-btn"><i class="fas fa-trash-alt"></i> 삭제</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            } else if (currentTab === 'notices') {
+                header.innerHTML = `
+                    <th>번호</th>
+                    <th>구분</th>
+                    <th>제목</th>
+                    <th>날짜</th>
+                    <th>관리</th>
+                `;
+                list.innerHTML = data.map((n, idx) => {
+                    const isPinned = n.is_pinned === 1;
+                    const numText = isPinned ? '<span class="brand-badge shindo">공지</span>' : (data.length - idx);
+                    
+                    const badgeClasses = {
+                        notice: 'brand-badge samsung',
+                        event: 'brand-badge minolta',
+                        info: 'brand-badge canon'
+                    };
+                    const badgeLabels = {
+                        notice: '중요',
+                        event: '이벤트',
+                        info: '안내'
+                    };
+                    const badgeClass = badgeClasses[n.type] || 'brand-badge canon';
+                    const badgeLabel = badgeLabels[n.type] || '안내';
+
+                    return `
+                        <tr>
+                            <td style="font-weight: 700; color: #64748b; font-size: 0.95rem;">${numText}</td>
+                            <td><span class="${badgeClass}">${badgeLabel}</span></td>
+                            <td style="font-weight: 700; color: #1e293b;">${n.title}</td>
+                            <td style="color: #64748b; font-size: 0.9rem;">${formatDate(n.date)}</td>
+                            <td>
+                                <button class="edit-btn" onclick="openNoticeModal('edit', ${n.id})"><i class="fas fa-edit"></i> 수정</button>
+                                <button onclick="deleteNotice(${n.id})" class="delete-btn"><i class="fas fa-trash-alt"></i> 삭제</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            } else if (currentTab === 'downloads') {
+                header.innerHTML = `
+                    <th>번호</th>
+                    <th>자료 제목</th>
+                    <th>상세 설명</th>
+                    <th>파일명</th>
+                    <th>등록일</th>
+                    <th>관리</th>
+                `;
+                list.innerHTML = data.map((d, idx) => {
+                    return `
+                        <tr>
+                            <td style="font-weight: 700; color: #64748b; font-size: 0.95rem;">${data.length - idx}</td>
+                            <td style="font-weight: 700; color: #1e293b;">${d.title}</td>
+                            <td style="color: #64748b; font-size: 0.9rem; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${d.description || '-'}</td>
+                            <td style="color: #3b82f6; font-size: 0.9rem; font-weight: 600;"><i class="fas fa-paperclip"></i> ${d.file_name}</td>
+                            <td style="color: #64748b; font-size: 0.9rem;">${formatDate(d.date)}</td>
+                            <td>
+                                <button class="edit-btn" onclick="openDownloadModal('edit', ${d.id})"><i class="fas fa-edit"></i> 수정</button>
+                                <button onclick="deleteDownload(${d.id})" class="delete-btn"><i class="fas fa-trash-alt"></i> 삭제</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            } else if (currentTab === 'products') {
+                header.innerHTML = `
+                    <th>이미지</th>
+                    <th>구분</th>
+                    <th>카테고리</th>
+                    <th>브랜드</th>
+                    <th>제품명</th>
+                    <th>가격</th>
+                    <th>등록일</th>
+                    <th>관리</th>
+                `;
+                list.innerHTML = data.map(p => {
+                    const typeLabels = { rental: '임대', sales: '판매' };
+                    const catLabels = { color: '컬러', mono: '흑백', inkjet: '잉크젯', laser: '레이저' };
+                    const brandLabels = { samsung: '삼성', canon: '캐논', sindoh: '신도리코', minolta: '미놀타', hp: 'HP' };
+                    
+                    const typeLabel = typeLabels[p.type] || p.type;
+                    const catLabel = catLabels[p.category] || p.category;
+                    const brandLabel = brandLabels[p.brand] || p.brand;
+                    const priceText = p.price.toLocaleString() + (p.type === 'rental' ? ' 원/월' : ' 원');
+
+                    return `
+                        <tr>
+                            <td><img src="${p.image_url || 'hero.png'}" alt="thumb" style="width: 50px; height: 50px; object-fit: contain;"></td>
+                            <td><span class="brand-badge ${p.type === 'rental' ? 'samsung' : 'minolta'}">${typeLabel}</span></td>
+                            <td><span class="brand-badge shindo">${catLabel}</span></td>
+                            <td><span class="brand-badge canon">${brandLabel}</span></td>
+                            <td style="font-weight: 700;"><a href="product-detail.html?id=${p.id}" target="_blank" style="color: #2563eb; text-decoration: none; border-bottom: 1px dashed #2563eb;">${p.name}</a></td>
+                            <td style="color: #1e293b; font-weight: 600;">${priceText}</td>
+                            <td style="color: #64748b; font-size: 0.9rem;">${formatDate(p.date)}</td>
+                            <td>
+                                <button class="edit-btn" onclick="openProductModal('edit', ${p.id})"><i class="fas fa-edit"></i> 수정</button>
+                                <button onclick="deleteProduct(${p.id})" class="delete-btn"><i class="fas fa-trash-alt"></i> 삭제</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            } else if (currentTab === 'users') {
+                header.innerHTML = `
+                    <th>번호</th>
+                    <th>회원구분</th>
+                    <th>성명</th>
+                    <th>아이디</th>
+                    <th>거래처/업체명</th>
+                    <th>가입일</th>
+                    <th>관리</th>
+                `;
+                list.innerHTML = data.map((u, idx) => {
+                    const gradeLabels = { admin: '관리자', business: '업체 회원', personal: '개인 회원' };
+                    const gradeBadgeClasses = { admin: 'canon', business: 'samsung', personal: 'minolta' };
+                    const gradeLabel = gradeLabels[u.user_type] || u.user_type;
+                    const badgeClass = gradeBadgeClasses[u.user_type] || 'canon';
+
+                    return `
+                        <tr>
+                            <td style="font-weight: 700; color: #64748b; font-size: 0.95rem;">${data.length - idx}</td>
+                            <td><span class="brand-badge ${badgeClass}">${gradeLabel}</span></td>
+                            <td style="font-weight: 700; color: #1e293b;">${u.real_name || '-'}</td>
+                            <td style="color: #475569; font-weight: 600;">${u.username}</td>
+                            <td style="color: #64748b;">${u.company_name || '-'}</td>
+                            <td style="color: #64748b; font-size: 0.9rem;">${formatDate(u.signup_date)}</td>
+                            <td>
+                                ${u.username === 'admin' ? 
+                                    '<span style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 4px 10px; background: #f1f5f9; border-radius: 6px;"><i class="fas fa-shield-alt"></i> 보호됨</span>' : 
+                                    `<button class="edit-btn" onclick="openUserEditModal(${u.id})"><i class="fas fa-edit"></i> 수정</button>
+                                     <button onclick="deleteUser(${u.id})" class="delete-btn"><i class="fas fa-trash-alt"></i> 삭제</button>`
+                                }
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+        };
+
+        // 설치후기 등록 모달 제어
+        const openCreateModal = () => {
+            document.getElementById('createForm').reset();
+            document.getElementById('createImagePreview').innerHTML = `<i class="fas fa-camera"></i><span>사진 파일 선택하기</span>`;
+            document.getElementById('createModal').classList.add('active');
+            if (window.drafts && window.drafts['createForm']) window.drafts['createForm'].check();
+        };
+
+        const closeCreateModal = () => {
+            document.getElementById('createModal').classList.remove('active');
+        };
+
+        // 설치후기 수정 모달 제어
+        const openEditModal = (id) => {
+            const review = currentReviews.find(r => r.id === id);
+            if (!review) return;
+
+            const form = document.getElementById('editForm');
+            form.id.value = review.id;
+            form.category.value = review.category;
+            form.title.value = review.title;
+            form.author.value = review.author;
+            form.content.value = review.content;
+
+            const preview = document.getElementById('editImagePreview');
+            if (review.image_url) {
+                preview.innerHTML = `<img src="${review.image_url}" alt="current">`;
+            } else {
+                preview.innerHTML = `<i class="fas fa-camera"></i><span>사진 변경할 경우 선택</span>`;
+            }
+
+            document.getElementById('editModal').classList.add('active');
+            if (window.drafts && window.drafts['editForm']) window.drafts['editForm'].check();
+        };
+
+        const closeEditModal = () => {
+            document.getElementById('editModal').classList.remove('active');
+            document.getElementById('editImageInput').value = '';
+        };
+
+        // 공지사항 모달 제어
+        const openNoticeModal = (mode, id = null) => {
+            if (mode === 'create') {
+                document.getElementById('createNoticeForm').reset();
+                document.getElementById('createNoticeModal').classList.add('active');
+                if (window.drafts && window.drafts['createNoticeForm']) window.drafts['createNoticeForm'].check();
+            } else {
+                const notice = currentNotices.find(n => n.id === id);
+                if (!notice) return;
+                const form = document.getElementById('editNoticeForm');
+                form.id.value = notice.id;
+                form.type.value = notice.type;
+                form.is_pinned.value = notice.is_pinned;
+                form.title.value = notice.title;
+                form.content.value = notice.content;
+                document.getElementById('editNoticeModal').classList.add('active');
+                if (window.drafts && window.drafts['editNoticeForm']) window.drafts['editNoticeForm'].check();
+            }
+        };
+
+        const closeNoticeModal = (mode) => {
+            const modalId = mode === 'create' ? 'createNoticeModal' : 'editNoticeModal';
+            document.getElementById(modalId).classList.remove('active');
+        };
+
+        // 자료실 모달 제어
+        const openDownloadModal = (mode, id = null) => {
+            if (mode === 'create') {
+                document.getElementById('createDownloadForm').reset();
+                document.getElementById('createDownloadModal').classList.add('active');
+                if (window.drafts && window.drafts['createDownloadForm']) window.drafts['createDownloadForm'].check();
+            } else {
+                const download = currentDownloads.find(d => d.id === id);
+                if (!download) return;
+                const form = document.getElementById('editDownloadForm');
+                form.id.value = download.id;
+                form.title.value = download.title;
+                form.description.value = download.description || '';
+                document.getElementById('editDownloadModal').classList.add('active');
+                if (window.drafts && window.drafts['editDownloadForm']) window.drafts['editDownloadForm'].check();
+            }
+        };
+
+        const closeDownloadModal = (mode) => {
+            const modalId = mode === 'create' ? 'createDownloadModal' : 'editDownloadModal';
+            document.getElementById(modalId).classList.remove('active');
+        };
+
+        // 이미지 파일 미리보기 설정
+        document.getElementById('createImageInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const preview = document.getElementById('createImagePreview');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => { preview.innerHTML = `<img src="${e.target.result}" alt="preview">`; };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('editImageInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const preview = document.getElementById('editImagePreview');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => { preview.innerHTML = `<img src="${e.target.result}" alt="preview">`; };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 폼 전송 이벤트 바인딩 (설치 후기)
+        document.getElementById('createForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            try {
+                const res = await fetch('/api/reviews', { method: 'POST', headers: { 'Accept': 'application/json' }, body: formData });
+                if (res.ok) {
+                    closeCreateModal();
+                    fetchAdminReviews();
+                    alert('성공적으로 등록되었습니다.');
+                } else {
+                    const err = await res.json();
+                    alert('등록 실패: ' + (err.error || '오류'));
+                }
+            } catch (err) { alert('서버 오류'); }
+        });
+
+        document.getElementById('editForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const id = formData.get('id');
+            try {
+                const res = await fetch(`/api/reviews/${id}`, { method: 'PUT', headers: { 'Accept': 'application/json' }, body: formData });
+                if (res.ok) {
+                    closeEditModal();
+                    fetchAdminReviews();
+                    alert('수정되었습니다.');
+                } else {
+                    const err = await res.json();
+                    alert('수정 실패: ' + (err.error || '오류'));
+                }
+            } catch (err) { alert('서버 오류'); }
+        });
+
+        // 공지사항 등록/수정 이벤트
+        document.getElementById('createNoticeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {
+                type: formData.get('type'),
+                is_pinned: parseInt(formData.get('is_pinned')),
+                title: formData.get('title'),
+                content: formData.get('content')
+            };
+            try {
+                const res = await fetch('/api/notices', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (res.ok) {
+                    closeNoticeModal('create');
+                    fetchAdminNotices();
+                    alert('공지사항이 등록되었습니다.');
+                } else {
+                    const err = await res.json();
+                    alert('등록 실패: ' + (err.error || '오류'));
+                }
+            } catch (err) { alert('서버 오류'); }
+        });
+
+        document.getElementById('editNoticeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const id = formData.get('id');
+            const data = {
+                type: formData.get('type'),
+                is_pinned: parseInt(formData.get('is_pinned')),
+                title: formData.get('title'),
+                content: formData.get('content')
+            };
+            try {
+                const res = await fetch(`/api/notices/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (res.ok) {
+                    closeNoticeModal('edit');
+                    fetchAdminNotices();
+                    alert('공지사항이 수정되었습니다.');
+                } else {
+                    const err = await res.json();
+                    alert('수정 실패: ' + (err.error || '오류'));
+                }
+            } catch (err) { alert('서버 오류'); }
+        });
+
+        // 자료실 등록/수정 이벤트
+        document.getElementById('createDownloadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            try {
+                const res = await fetch('/api/downloads', { method: 'POST', headers: { 'Accept': 'application/json' }, body: formData });
+                if (res.ok) {
+                    closeDownloadModal('create');
+                    fetchAdminDownloads();
+                    alert('자료가 정상적으로 등록되었습니다.');
+                } else {
+                    const err = await res.json();
+                    alert('등록 실패: ' + (err.error || '오류'));
+                }
+            } catch (err) { alert('서버 오류'); }
+        });
+
+        document.getElementById('editDownloadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const id = formData.get('id');
+            try {
+                const res = await fetch(`/api/downloads/${id}`, { method: 'PUT', headers: { 'Accept': 'application/json' }, body: formData });
+                if (res.ok) {
+                    closeDownloadModal('edit');
+                    fetchAdminDownloads();
+                    alert('자료 정보가 수정되었습니다.');
+                } else {
+                    const err = await res.json();
+                    alert('수정 실패: ' + (err.error || '오류'));
+                }
+            } catch (err) { alert('서버 오류'); }
+        });
+
+        // 삭제 처리 함수들
+        const deleteData = async (id) => {
+            if (!confirm('정말 삭제하시겠습니까?')) return;
+            try {
+                const res = await fetch(`/api/reviews/${id}`, { method: 'DELETE', headers: { 'Accept': 'application/json' } });
+                if (res.ok) fetchAdminReviews();
+                else alert('삭제 실패');
+            } catch (err) { console.error(err); }
+        };
+
+        const deleteNotice = async (id) => {
+            if (!confirm('공지사항을 삭제하시겠습니까?')) return;
+            try {
+                const res = await fetch(`/api/notices/${id}`, { method: 'DELETE', headers: { 'Accept': 'application/json' } });
+                if (res.ok) fetchAdminNotices();
+                else alert('삭제 실패');
+            } catch (err) { console.error(err); }
+        };
+
+        const deleteDownload = async (id) => {
+            if (!confirm('자료실 항목을 삭제하시겠습니까? (서버에 업로드된 실제 파일도 영구적으로 삭제됩니다)')) return;
+            try {
+                const res = await fetch(`/api/downloads/${id}`, { method: 'DELETE', headers: { 'Accept': 'application/json' } });
+                if (res.ok) fetchAdminDownloads();
+                else alert('삭제 실패');
+            } catch (err) { console.error(err); }
+        };
+
+        // 프리뷰 탭 스위칭 바인더
+        const initPreviewTabs = (modalEl) => {
+            const btns = modalEl.querySelectorAll('.preview-tab-btn');
+            const panes = modalEl.querySelectorAll('.preview-pane');
+            btns.forEach(btn => {
+                btn.onclick = () => {
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const target = btn.getAttribute('data-target');
+                    panes.forEach(pane => {
+                        if (pane.id === target) {
+                            pane.style.display = 'block';
+                        } else {
+                            pane.style.display = 'none';
+                        }
+                    });
+                };
+            });
+            
+            // 탭 초기화 (첫 번째 탭 자동클릭)
+            const firstTab = modalEl.querySelector('.preview-tab-btn');
+            if (firstTab) firstTab.click();
+        };
+
+        // 제품 등록/수정 모달 제어
+        const openProductModal = (mode, id = null) => {
+            const modalEl = document.getElementById(mode === 'create' ? 'createProductModal' : 'editProductModal');
+            initPreviewTabs(modalEl);
+            if (mode === 'create') {
+                document.getElementById('createProductForm').reset();
+                document.getElementById('createProductImagePreview').innerHTML = `<i class="fas fa-camera"></i><span>사진 파일 선택하기</span>`;
+                document.getElementById('createProductModal').classList.add('active');
+                if (window.drafts && window.drafts['createProductForm']) window.drafts['createProductForm'].check();
+                
+                // 등록 라이브 프리뷰 초기화 및 연동
+                document.getElementById('createPreviewImg').src = '/img/standing_color_copier.PNG';
+                const createMiniImg = document.getElementById('createMiniImg');
+                if (createMiniImg) createMiniImg.src = '/img/standing_color_copier.PNG';
+                
+                const update = initProductLivePreview('createProductForm', 'create');
+                update();
+            } else {
+                const product = currentProducts.find(p => p.id === id);
+                if (!product) return;
+                const form = document.getElementById('editProductForm');
+                form.id.value = product.id;
+                form.type.value = product.type;
+                form.category.value = product.category;
+                form.brand.value = product.brand;
+                form.name.value = product.name;
+                form.price.value = product.price;
+                form.badge.value = product.badge || '';
+                form.description.value = product.description || '';
+                form.specs.value = product.specs || '';
+                form.naver_talk.value = product.naver_talk || '';
+                form.kakao_talk.value = product.kakao_talk || '';
+                
+                const preview = document.getElementById('editProductImagePreview');
+                if (product.image_url) {
+                    preview.innerHTML = `<img src="${product.image_url}" alt="thumb">`;
+                } else {
+                    preview.innerHTML = `<i class="fas fa-camera"></i><span>사진 변경할 경우 선택</span>`;
+                }
+
+                // 2번/3번 사진 미리보기 초기화
+                const preview2 = document.getElementById('editProductImagePreview2');
+                const preview3 = document.getElementById('editProductImagePreview3');
+                if (preview2) {
+                    if (product.image_url_2) {
+                        preview2.innerHTML = `<img src="${product.image_url_2}" alt="thumb2">`;
+                    } else {
+                        preview2.innerHTML = `<i class="fas fa-camera"></i><span>2번 사진 변경하기</span>`;
+                    }
+                }
+                if (preview3) {
+                    if (product.image_url_3) {
+                        preview3.innerHTML = `<img src="${product.image_url_3}" alt="thumb3">`;
+                    } else {
+                        preview3.innerHTML = `<i class="fas fa-camera"></i><span>3번 사진 변경하기</span>`;
+                    }
+                }
+                
+                // 수정 라이브 프리뷰 초기화 및 연동
+                document.getElementById('editPreviewImg').src = product.image_url || '/img/standing_color_copier.PNG';
+                const editMiniImg = document.getElementById('editMiniImg');
+                if (editMiniImg) editMiniImg.src = product.image_url || '/img/standing_color_copier.PNG';
+                // 2번/3번 사진도 프리뷰2에 반영
+                const editMiniImg2 = document.getElementById('editMiniImg2');
+                const editMiniImg3 = document.getElementById('editMiniImg3');
+                if (editMiniImg2) editMiniImg2.src = product.image_url_2 || product.image_url || '/img/standing_color_copier.PNG';
+                if (editMiniImg3) editMiniImg3.src = product.image_url_3 || product.image_url_2 || product.image_url || '/img/standing_color_copier.PNG';
+                
+                const update = initProductLivePreview('editProductForm', 'edit');
+                update();
+
+                document.getElementById('editProductModal').classList.add('active');
+                if (window.drafts && window.drafts['editProductForm']) window.drafts['editProductForm'].check();
+            }
+        };
+
+        const closeProductModal = (mode) => {
+            const modalId = mode === 'create' ? 'createProductModal' : 'editProductModal';
+            document.getElementById(modalId).classList.remove('active');
+            if (mode === 'edit') {
+                document.getElementById('editProductImageInput').value = '';
+                document.getElementById('editProductImageInput2').value = '';
+                document.getElementById('editProductImageInput3').value = '';
+            } else {
+                document.getElementById('createProductImageInput').value = '';
+                document.getElementById('createProductImageInput2').value = '';
+                document.getElementById('createProductImageInput3').value = '';
+            }
+        };
+
+        // 제품 이미지 파일 미리보기 설정
+        document.getElementById('createProductImageInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const preview = document.getElementById('createProductImagePreview');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    preview.innerHTML = `<img src="${ev.target.result}" alt="preview">`;
+                    // 프리뷰1 이미지도 업데이트
+                    document.getElementById('createPreviewImg').src = ev.target.result;
+                    const mini = document.getElementById('createMiniImg');
+                    if (mini) mini.src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('createProductImageInput2').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const preview = document.getElementById('createProductImagePreview2');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    preview.innerHTML = `<img src="${ev.target.result}" alt="preview2">`;
+                    const mini2 = document.getElementById('createMiniImg2');
+                    if (mini2) mini2.src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('createProductImageInput3').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const preview = document.getElementById('createProductImagePreview3');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    preview.innerHTML = `<img src="${ev.target.result}" alt="preview3">`;
+                    const mini3 = document.getElementById('createMiniImg3');
+                    if (mini3) mini3.src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('editProductImageInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const preview = document.getElementById('editProductImagePreview');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    preview.innerHTML = `<img src="${ev.target.result}" alt="preview">`;
+                    // 프리뷰1 이미지도 업데이트
+                    document.getElementById('editPreviewImg').src = ev.target.result;
+                    const mini = document.getElementById('editMiniImg');
+                    if (mini) mini.src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('editProductImageInput2').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const preview = document.getElementById('editProductImagePreview2');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    preview.innerHTML = `<img src="${ev.target.result}" alt="preview2">`;
+                    const mini2 = document.getElementById('editMiniImg2');
+                    if (mini2) mini2.src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('editProductImageInput3').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const preview = document.getElementById('editProductImagePreview3');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    preview.innerHTML = `<img src="${ev.target.result}" alt="preview3">`;
+                    const mini3 = document.getElementById('editMiniImg3');
+                    if (mini3) mini3.src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 제품 등록/수정 폼 제출
+        document.getElementById('createProductForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            try {
+                const res = await fetch('/api/products', { method: 'POST', body: formData });
+                if (res.ok) {
+                    closeProductModal('create');
+                    fetchAdminProducts();
+                    alert('제품이 등록되었습니다.');
+                } else {
+                    const err = await res.json();
+                    alert('등록 실패: ' + (err.error || '오류'));
+                }
+            } catch (err) { alert('서버 오류'); }
+        });
+
+        document.getElementById('editProductForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const id = formData.get('id');
+            try {
+                const res = await fetch(`/api/products/${id}`, { method: 'PUT', body: formData });
+                if (res.ok) {
+                    closeProductModal('edit');
+                    fetchAdminProducts();
+                    alert('제품 정보가 수정되었습니다.');
+                } else {
+                    const err = await res.json();
+                    alert('수정 실패: ' + (err.error || '오류'));
+                }
+            } catch (err) { alert('서버 오류'); }
+        });
+
+        // 제품 삭제
+        const deleteProduct = async (id) => {
+            if (!confirm('정말 이 제품을 삭제하시겠습니까?')) return;
+            try {
+                const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+                if (res.ok) {
+                    fetchAdminProducts();
+                    alert('제품이 삭제되었습니다.');
+                } else {
+                    alert('삭제 실패');
+                }
+            } catch (err) { console.error(err); }
+        };
+
+        const handleLogout = async () => {
+            if (confirm('로그아웃 하시겠습니까?')) {
+                const res = await fetch('/api/logout', { method: 'POST' });
+                if (res.ok) location.href = 'index.html';
+            }
+        };
+
+        // 폼 작성 임시저장 (LocalStorage Auto-Save Engine)
+        const initFormAutoSave = (formId) => {
+            const form = document.getElementById(formId);
+            if (!form) return;
+
+            const storageKey = `admin_draft_${formId}`;
+
+            // 1. 입력 감지하여 실시간 저장
+            form.addEventListener('input', () => {
+                const formData = new FormData(form);
+                const data = {};
+                for (let [key, val] of formData.entries()) {
+                    if (val instanceof File) continue; // 파일은 저장 제외
+                    data[key] = val;
+                }
+                localStorage.setItem(storageKey, JSON.stringify(data));
+            });
+
+            // 2. 임시저장 복원 안내 배너 생성 및 표출
+            const checkAndShowRestoreBanner = () => {
+                const saved = localStorage.getItem(storageKey);
+                if (!saved) return;
+                if (form.querySelector('.restore-banner')) return;
+
+                const banner = document.createElement('div');
+                banner.className = 'restore-banner';
+                banner.style.cssText = `
+                    background: #f0fdf4;
+                    border: 1px solid #bbf7d0;
+                    color: #166534;
+                    padding: 12px 16px;
+                    border-radius: 10px;
+                    margin-bottom: 18px;
+                    font-size: 0.9rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-weight: 600;
+                    box-shadow: 0 4px 10px rgba(34, 197, 94, 0.05);
+                `;
+                banner.innerHTML = `
+                    <span>📝 작성 중이던 임시 저장본이 있습니다.</span>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" class="restore-load-btn" style="background:#22c55e; color:white; border:none; padding:5px 12px; border-radius:6px; cursor:pointer; font-size:0.8rem; font-weight:700;">불러오기</button>
+                        <button type="button" class="restore-discard-btn" style="background:#f1f5f9; color:#475569; border:none; padding:5px 12px; border-radius:6px; cursor:pointer; font-size:0.8rem; font-weight:700;">지우기</button>
+                    </div>
+                `;
+
+                form.insertBefore(banner, form.firstChild);
+
+                banner.querySelector('.restore-load-btn').addEventListener('click', () => {
+                    try {
+                        const data = JSON.parse(saved);
+                        Object.keys(data).forEach(key => {
+                            const field = form.elements[key];
+                            if (field) field.value = data[key];
+                        });
+                        alert('임시 저장된 내용이 복원되었습니다.');
+                        banner.remove();
+                    } catch (e) {
+                        console.error('드래프트 복원 실패', e);
+                    }
+                });
+
+                banner.querySelector('.restore-discard-btn').addEventListener('click', () => {
+                    localStorage.removeItem(storageKey);
+                    banner.remove();
+                });
+            };
+
+            // 폼 성공 제출 시 저장 내역 삭제
+            form.addEventListener('submit', () => {
+                localStorage.removeItem(storageKey);
+                const banner = form.querySelector('.restore-banner');
+                if (banner) banner.remove();
+            });
+
+            return {
+                check: checkAndShowRestoreBanner,
+                clear: () => {
+                    localStorage.removeItem(storageKey);
+                    const banner = form.querySelector('.restore-banner');
+                    if (banner) banner.remove();
+                }
+            };
+        };
+
+        // 각 폼별 임시저장 바인더 등록
+        window.drafts = {};
+        const formsToTrack = [
+            'createForm', 'editForm', 'createNoticeForm', 'editNoticeForm', 
+            'createDownloadForm', 'editDownloadForm', 'createProductForm', 'editProductForm'
+        ];
+        formsToTrack.forEach(id => {
+            window.drafts[id] = initFormAutoSave(id);
+        });
+
+        // 제품 정보 실시간 프리뷰 갱신 엔진 (Live Card & Detail Preview Engine)
+        const initProductLivePreview = (formId, prefix) => {
+            const form = document.getElementById(formId);
+            if (!form) return () => {};
+
+            const previewImg = document.getElementById(`${prefix}PreviewImg`);
+            const previewLogo = document.getElementById(`${prefix}PreviewLogo`);
+            const previewName = document.getElementById(`${prefix}PreviewName`);
+            const previewPrice = document.getElementById(`${prefix}PreviewPrice`);
+
+            const updatePreview = () => {
+                const name = form.elements['name'].value || '제품명';
+                const priceVal = parseInt(form.elements['price'].value, 10) || 0;
+                const type = form.elements['type'].value;
+                const brand = form.elements['brand'].value;
+                const badge = form.elements['badge'].value || `${brand.toUpperCase()} 복합기`;
+                const desc = form.elements['description'].value || '기기 상세 설명';
+                const specs = form.elements['specs'].value || '25ppm,1200dpi,지원 기능';
+
+                const specList = specs.split(',');
+                const speed = specList[0] || '-';
+                const resolution = specList[1] || '-';
+                const features = specList[2] || '-';
+
+                // 1. 카드 프리뷰 업데이트
+                if (previewName) previewName.innerText = name;
+                const formattedPrice = priceVal.toLocaleString() + (type === 'rental' ? ' 원 / 월' : ' 원');
+                if (previewPrice) previewPrice.innerText = formattedPrice;
+
+                if (previewLogo) {
+                    let logoHtml = '';
+                    if (brand === 'canon') {
+                        logoHtml = `<img src="img/logo_canon.svg" alt="Canon" class="brand-logo-img brand-canon">`;
+                    } else if (brand === 'minolta') {
+                        logoHtml = `<img src="img/logo_minolta.svg" alt="Minolta" class="brand-logo-img brand-minolta">`;
+                    } else if (brand === 'samsung') {
+                        logoHtml = `<img src="img/logo_samsung.svg" alt="Samsung" class="brand-logo-img brand-samsung">`;
+                    } else if (brand === 'sindoh') {
+                        logoHtml = `<img src="img/logo_sindoh.svg" alt="Sindoh" class="brand-logo-img brand-sindoh">`;
+                    } else if (brand === 'hp') {
+                        logoHtml = `<img src="img/logo_hp.svg" alt="HP" class="brand-logo-img brand-hp">`;
+                    } else {
+                        logoHtml = `<span class="brand-text-logo" style="text-transform:uppercase;">${brand}</span>`;
+                    }
+                    previewLogo.innerHTML = logoHtml;
+                }
+
+                // 2. 상세페이지 미니 프리뷰 업데이트
+                const miniPrefix = prefix === 'create' ? 'createMini' : 'editMini';
+                const mBreadcrumbType = document.getElementById(`${miniPrefix}BreadcrumbType`);
+                const mBreadcrumbName = document.getElementById(`${miniPrefix}BreadcrumbName`);
+                const mBadge = document.getElementById(`${miniPrefix}Badge`);
+                const mName = document.getElementById(`${miniPrefix}Name`);
+                const mDesc = document.getElementById(`${miniPrefix}Desc`);
+                const mSimType = document.getElementById(`${miniPrefix}SimType`);
+                const mPriceLabel = document.getElementById(`${miniPrefix}PriceLabel`);
+                const mPrice = document.getElementById(`${miniPrefix}Price`);
+                const mSpecSpeed = document.getElementById(`${miniPrefix}SpecSpeed`);
+                const mSpecResolution = document.getElementById(`${miniPrefix}SpecResolution`);
+                const mSpecFeature = document.getElementById(`${miniPrefix}SpecFeature`);
+
+                if (mBreadcrumbType) mBreadcrumbType.innerText = type === 'rental' ? '임대제품' : '판매제품';
+                if (mBreadcrumbName) mBreadcrumbName.innerText = name;
+                if (mBadge) mBadge.innerText = badge;
+                if (mName) mName.innerText = name;
+                if (mDesc) mDesc.innerText = desc;
+                if (mSimType) mSimType.innerText = type === 'rental' ? '임대 상품' : '판매 상품';
+                if (mPriceLabel) mPriceLabel.innerText = type === 'rental' ? '예상 월 렌탈료' : '최종 구매 가격';
+                if (mPrice) mPrice.innerText = priceVal.toLocaleString() + ' 원' + (type === 'rental' ? ' / 월' : '');
+                if (mSpecSpeed) mSpecSpeed.innerText = speed;
+                if (mSpecResolution) mSpecResolution.innerText = resolution;
+                if (mSpecFeature) mSpecFeature.innerText = features;
+            };
+
+            form.addEventListener('input', updatePreview);
+            form.addEventListener('change', updatePreview);
+
+            const fileInput = form.querySelector('input[type="file"]');
+            if (fileInput) {
+                fileInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            if (previewImg) previewImg.src = e.target.result;
+                            const miniPrefix = prefix === 'create' ? 'createMini' : 'editMini';
+                            const mImg = document.getElementById(`${miniPrefix}Img`);
+                            if (mImg) mImg.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            return updatePreview;
+        };
+
+        // 회원 목록 fetch
+        const fetchAdminUsers = async () => {
+            const loading = document.getElementById('loadingMsg');
+            const noData = document.getElementById('noDataMsg');
+            const table = document.getElementById('adminTable');
+
+            loading.style.display = 'block';
+            noData.style.display = 'none';
+            table.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/users');
+                if (!response.ok) throw new Error('불러오기 오류');
+
+                const data = await response.json();
+                currentUsers = data;
+
+                document.getElementById('tabTitle').setAttribute('data-count', currentUsers.length);
+                renderTable();
+            } catch (err) {
+                console.error(err);
+                noData.innerText = '회원 목록을 불러오는데 실패했습니다.';
+                noData.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        };
+
+        // 회원 정보 수정 모달 제어
+        const openUserEditModal = (id) => {
+            const user = currentUsers.find(u => u.id === id);
+            if (!user) return;
+
+            const modal = document.getElementById('editUserModal');
+            const form = document.getElementById('editUserForm');
+
+            form.id.value = user.id;
+            form.username.value = user.username;
+            form.password.value = ''; // 비밀번호는 항상 비워둠
+            form.real_name.value = user.real_name || '';
+            form.company_name.value = user.company_name || '';
+            form.user_type.value = user.user_type;
+
+            modal.style.display = 'flex';
+        };
+
+        const closeUserModal = () => {
+            document.getElementById('editUserModal').style.display = 'none';
+        };
+
+        // 회원 삭제
+        const deleteUser = async (id) => {
+            if (!confirm('정말로 이 회원을 삭제하시겠습니까? 삭제 후에는 복구할 수 없습니다.')) return;
+            try {
+                const res = await fetch(`/api/users/${id}`, { method: 'DELETE', headers: { 'Accept': 'application/json' } });
+                if (res.ok) {
+                    alert('회원이 삭제되었습니다.');
+                    fetchAdminUsers();
+                } else {
+                    const data = await res.json();
+                    alert(data.error || '삭제 실패');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('네트워크 오류');
+            }
+        };
+
+        // 회원 수정 폼 submit 핸들러 등록
+        const editUserForm = document.getElementById('editUserForm');
+        if (editUserForm) {
+            editUserForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const userId = editUserForm.id.value;
+                const username = editUserForm.username.value;
+                const password = editUserForm.password.value;
+                const real_name = editUserForm.real_name.value;
+                const company_name = editUserForm.company_name.value;
+                const user_type = editUserForm.user_type.value;
+
+                const bodyData = { username, real_name, company_name, user_type };
+                if (password && password.trim() !== '') {
+                    bodyData.password = password;
+                }
+
+                try {
+                    const res = await fetch(`/api/users/${userId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(bodyData)
+                    });
+
+                    const data = await res.json();
+                    if (res.ok) {
+                        alert('회원 정보가 성공적으로 수정되었습니다.');
+                        closeUserModal();
+                        fetchAdminUsers();
+                    } else {
+                        alert(data.error || '수정 실패');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('서버 전송 중 에러가 발생했습니다.');
+                }
+            });
+        }
+
+        checkAdminSession();
+        fetchAdminReviews();
+
+        // ── 프리뷰2 사진 전환 함수 (글로벌 스코프) ─────────────────
+        function switchCreateThumb(idx) {
+            ['createMiniImg', 'createMiniImg2', 'createMiniImg3'].forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = (i + 1 === idx) ? 'block' : 'none';
+            });
+            document.querySelectorAll('.create-thumb-btn').forEach(btn => {
+                const isActive = parseInt(btn.dataset.idx) === idx;
+                btn.style.border = isActive ? '1px solid #3b82f6' : '1px solid #e2e8f0';
+                btn.style.color = isActive ? '#3b82f6' : '#64748b';
+                btn.style.background = isActive ? '#eff6ff' : '#ffffff';
+            });
+        }
+
+        function switchEditThumb(idx) {
+            ['editMiniImg', 'editMiniImg2', 'editMiniImg3'].forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = (i + 1 === idx) ? 'block' : 'none';
+            });
+            document.querySelectorAll('.edit-thumb-btn').forEach(btn => {
+                const isActive = parseInt(btn.dataset.idx) === idx;
+                btn.style.border = isActive ? '1px solid #3b82f6' : '1px solid #e2e8f0';
+                btn.style.color = isActive ? '#3b82f6' : '#64748b';
+                btn.style.background = isActive ? '#eff6ff' : '#ffffff';
+            });
+        }

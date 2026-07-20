@@ -1,0 +1,128 @@
+/* =============================================
+   index-footer.css ? ?명? 諛깃렇?쇱대 ?ㅻ???臾대?癒쇳?諛 誘몃??荑쇰━ 諛?? ?듯?   ============================================= */
+
+/* ?명??? */
+footer {
+    background: #050811;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 15;
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+/* ?? 諛깃렇?쇱대 湲곕낯 ?ㅻ???臾대?癒쇳??ㅽ?? ?? */
+@keyframes rotateWave1 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(6%, 4%) rotate(180deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+
+@keyframes rotateWave2 {
+    0% {
+        transform: translate(3%, -2%) rotate(360deg);
+    }
+
+    50% {
+        transform: translate(-2%, 5%) rotate(180deg);
+    }
+
+    100% {
+        transform: translate(3%, -2%) rotate(0deg);
+    }
+}
+
+@keyframes rotateWave3 {
+    0% {
+        transform: translate(-2%, -3%) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(4%, 2%) rotate(-180deg);
+    }
+
+    100% {
+        transform: translate(-2%, -3%) rotate(0deg);
+    }
+}
+
+/* 諛?? */
+@media (max-width: 1200px) {
+    .grid-active {
+        width: 100%;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero-slider {
+        height: auto;
+        min-height: auto;
+    }
+
+    .hero-nav-bar-fluid {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 15px;
+    }
+
+    .hero-container-flex {
+        height: auto;
+        justify-content: flex-start;
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+
+    .hero-nav ul {
+        gap: 15px 25px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-content {
+        text-align: center;
+        max-width: 100%;
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .hero-content h1 {
+        font-size: 2.6rem;
+    }
+
+    .hero-contact {
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .hero-contact .contact-number {
+        font-size: 2rem;
+    }
+
+    .hero-services-area {
+        justify-content: center;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    .grid-active {
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 20px;
+    }
+}

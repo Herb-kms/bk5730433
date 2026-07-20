@@ -1,0 +1,436 @@
+/* ???????????????????????????????
+   3. 移댄怨由?? (怨듯?援ъ“)
+   ? active ??? 媛 ??댁? CSS?? 媛蹂 ??
+   ??????????????????????????????? */
+.filter-panel-card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+    padding: 18px 24px;
+    margin: 0 auto 16px auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.filter-panel-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.filter-panel-row.category-row {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.filter-row-label {
+    font-size: 0.86rem;
+    font-weight: 800;
+    color: #334155;
+    min-width: 90px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.3px;
+}
+
+.filter-row-label i {
+    color: #2563eb;
+    font-size: 0.95rem;
+}
+
+.category-tabs {
+    display: flex;
+    gap: 6px;
+    background: #f1f5f9;
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.category-tabs a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    color: #475569;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    border-radius: 7px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none !important;
+    background: transparent;
+}
+
+.category-tabs a:hover {
+    color: #0f172a;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.category-tabs a.active {
+    font-weight: 800 !important;
+}
+
+/* 媛蹂 ?≫곕? ?④낵 */
+.category-tabs a[data-cat="all"].active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.2);
+}
+
+.category-tabs a[data-cat="color"].active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+    box-shadow: 0 3px 8px rgba(236, 72, 153, 0.2);
+}
+
+.category-tabs a[data-cat="mono"].active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #4b5563 0%, #1f2937 100%);
+    box-shadow: 0 3px 8px rgba(31, 41, 55, 0.2);
+}
+
+.category-tabs a[data-cat="inkjet"].active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    box-shadow: 0 3px 8px rgba(20, 184, 166, 0.2);
+}
+
+.category-tabs a[data-cat="laser"].active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    box-shadow: 0 3px 8px rgba(249, 115, 22, 0.2);
+}
+
+.category-tabs a.active i {
+    color: inherit !important;
+    transform: scale(1.15);
+}
+
+/* ???諛 ?? 媛? ?몄빻?由?濡??*/
+.controls-row-secondary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto 24px auto;
+    max-width: 1200px;
+    padding: 0 10px;
+}
+
+.products-count-badge {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #475569;
+    background: #ffffff;
+    padding: 5px 14px;
+    border-radius: 30px;
+    border: 1px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.products-count-badge span {
+    color: #2563eb;
+    font-weight: 800;
+}
+
+/* 紐⑤???酉고ы?諛?? (max-width: 768px) */
+@media (max-width: 768px) {
+    .filter-panel-card {
+        padding: 18px 20px;
+    }
+    
+    .filter-panel-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .filter-panel-row.category-row {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+    }
+    
+    .filter-row-label {
+        min-width: auto;
+    }
+    
+    .category-tabs {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .category-tabs a {
+        flex-grow: 1;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .brand-filters {
+        width: 100%;
+        gap: 6px;
+    }
+    
+    .brand-filters .filter-checkbox-label {
+        flex-grow: 1;
+    }
+    
+    .checkbox-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .controls-row-secondary {
+        flex-direction: column;
+        gap: 14px;
+        align-items: stretch;
+    }
+    
+    .products-count-badge {
+        justify-content: center;
+    }
+    
+    .sort-select-wrap {
+        width: 100%;
+    }
+    
+    .sort-select {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/* ???????????????????????????????
+   4. ???쨌 ???而⑦몃· ??
+   ??????????????????????????????? */
+.controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.brand-filter-wrap {
+    flex-grow: 1;
+}
+
+.brand-label-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #64748b;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.3px;
+}
+
+.brand-label-title i {
+    font-size: 0.78rem;
+    color: #3b82f6;
+}
+
+.brand-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-checkbox-label {
+    cursor: pointer;
+}
+
+.filter-checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    color: #475569;
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.02);
+    user-select: none;
+}
+
+/* 釉??蹂 媛蹂 ?몃? ?④낵 */
+.filter-checkbox-label:hover input[value="samsung"]+.checkbox-btn {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.filter-checkbox-label:hover input[value="canon"]+.checkbox-btn {
+    border-color: #ef4444;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.filter-checkbox-label:hover input[value="sindoh"]+.checkbox-btn {
+    border-color: #f97316;
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.filter-checkbox-label:hover input[value="minolta"]+.checkbox-btn {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    color: #166534;
+}
+
+.filter-checkbox-label:hover input[value="hp"]+.checkbox-btn {
+    border-color: #0ea5e9;
+    background: #f0f9ff;
+    color: #0369a1;
+}
+
+.filter-checkbox-label:hover input[value="all"]+.checkbox-btn {
+    border-color: #94a3b8;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+/* 釉Œ?œ?œ蹂„ 媛œ蹂„ ?œ?깊™”(泥댄 ? ?ㅽƒ€??*/
+.filter-checkbox-label input[value="all"]:checked+.checkbox-btn {
+    background: #f1f5f9;
+    border-color: #475569;
+    color: #0f172a;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.filter-checkbox-label input[value="all"]:checked+.checkbox-btn::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: #0f172a;
+}
+
+.filter-checkbox-label input[value="samsung"]:checked+.checkbox-btn {
+    background: #eff6ff;
+    border-color: #3b82f6;
+    color: #1d4ed8;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.filter-checkbox-label input[value="samsung"]:checked+.checkbox-btn::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: #1d4ed8;
+}
+
+.filter-checkbox-label input[value="canon"]:checked+.checkbox-btn {
+    background: #fef2f2;
+    border-color: #ef4444;
+    color: #b91c1c;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+.filter-checkbox-label input[value="canon"]:checked+.checkbox-btn::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: #b91c1c;
+}
+
+.filter-checkbox-label input[value="sindoh"]:checked+.checkbox-btn {
+    background: #fff7ed;
+    border-color: #f97316;
+    color: #c2410c;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
+}
+
+.filter-checkbox-label input[value="sindoh"]:checked+.checkbox-btn::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: #c2410c;
+}
+
+.filter-checkbox-label input[value="minolta"]:checked+.checkbox-btn {
+    background: #f0fdf4;
+    border-color: #22c55e;
+    color: #166534;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);
+}
+
+.filter-checkbox-label input[value="minolta"]:checked+.checkbox-btn::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: #166534;
+}
+
+.filter-checkbox-label input[value="hp"]:checked+.checkbox-btn {
+    background: #f0f9ff;
+    border-color: #0ea5e9;
+    color: #0369a1;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+}
+
+.filter-checkbox-label input[value="hp"]:checked+.checkbox-btn::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: #0369a1;
+}
+
+/* 5. 정렬 셀렉트 스타일 */
+.sort-select-wrap {
+    position: relative;
+}
+
+.sort-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 36px 10px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #374151;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;
+}
+
+.sort-select:hover {
+    border-color: #9ca3af;
+}
+
+.sort-select-wrap::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: #4b5563;
+    pointer-events: none;
+}

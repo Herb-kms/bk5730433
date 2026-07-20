@@ -1,0 +1,78 @@
+/* ???????????????????????????????
+   5. 紐⑤?諛 ??李???
+   ??????????????????????????????? */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+}
+
+.modal-content {
+    background: var(--white);
+    width: 90%;
+    max-width: 500px;
+    margin: 80px auto;
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    box-shadow: var(--shadow-premium);
+    animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: 0.2s;
+}
+
+.close-modal:hover {
+    color: var(--dark);
+}
+
+.modal h2 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 25px;
+}
+
+.modal .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.modal label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--dark);
+}
+
+.modal input,
+.modal select,
+.modal textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1.5px solid #cbd5e1;
+    font-size: 0.95rem;
+    outline: none;
+    width: 100%;
+}
+
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus {
+    border-color: var(--primary);
+}

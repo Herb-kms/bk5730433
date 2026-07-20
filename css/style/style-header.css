@@ -1,0 +1,253 @@
+/* ???????????????????????????????
+   1. ?ㅻ ?대?寃?댁 ?ㅽ??   ??????????????????????????????? */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+/* === ??由ъ? ?ㅽ??3??GNB === */
+.flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    gap: 0;
+    position: relative;
+}
+
+/* 醫痢? 硫??紐⑸? */
+.gnb-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* 以?: 濡怨 */
+.gnb-center {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+}
+
+/* ?곗륫: ??대???+ 濡洹몄?*/
+.gnb-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.logo {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -1px;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+/* 移댁뭅???ㅼ대? ???踰??*/
+.talk-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    border: 1.5px solid transparent;
+}
+
+.talk-btn-kakao {
+    background: #FEE500;
+    color: #3C1E1E;
+    border-color: #FEE500;
+}
+
+.talk-btn-kakao:hover {
+    background: #f0da00;
+    border-color: #f0da00;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(254, 229, 0, 0.4);
+}
+
+.talk-btn-naver {
+    background: #03C75A;
+    color: #ffffff;
+    border-color: #03C75A;
+}
+
+.talk-btn-naver:hover {
+    background: #02b350;
+    border-color: #02b350;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(3, 199, 90, 0.35);
+}
+
+.naver-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+#mainNav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+#mainNav a {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+    padding: 22px 0;
+    position: relative;
+    letter-spacing: -0.3px;
+}
+
+#mainNav a::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.25s ease-in-out;
+}
+
+#mainNav a:hover {
+    color: var(--primary);
+}
+
+#mainNav a:hover::after {
+    width: 100%;
+}
+
+/* ???諛 ?ㅽ??*/
+.top-bar {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-size: 0.8rem;
+    font-weight: 600;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 25px;
+}
+
+.top-bar i {
+    color: var(--primary);
+    margin-right: 5px;
+}
+
+.login-btn-top {
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+    transition: 0.3s;
+    background: white;
+}
+
+.login-btn-top:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+#authSection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-welcome {
+    font-size: 0.8rem;
+    color: #4b5563;
+}
+
+.logout-btn-top,
+.myinfo-btn,
+.admin-btn {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.logout-btn-top {
+    background: #fef2f2;
+    color: #ef4444;
+    border-color: #fee2e2;
+}
+
+.logout-btn-top:hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+}
+
+.myinfo-btn {
+    background: #f3f4f6;
+    color: #374151;
+    border-color: #e5e7eb;
+}
+
+.myinfo-btn:hover {
+    background: #e5e7eb;
+}
+
+.admin-btn {
+    background: #eff6ff;
+    color: #1e40af;
+    border-color: #dbeafe;
+}
+
+.admin-btn:hover {
+    background: #1e40af;
+    color: white;
+    border-color: #1e40af;
+}
+
+.admin-btn:hover {
+    background: #2563eb;
+    color: white;
+}

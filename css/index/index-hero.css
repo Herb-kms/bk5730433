@@ -1,0 +1,56 @@
+/* =============================================
+   index-hero.css ? 硫????대? ?щ쇱대 諛곌꼍 ?由
+   ============================================= */
+
+.hero-slider {
+    position: relative;
+    height: 100vh;
+    min-height: 850px;
+    background: linear-gradient(-45deg, #0066ff, #18191e 35%, #00d6ff, #18191e 65%, #0066ff);
+    background-size: 400% 400%;
+    animation: heroBgFlow 12s ease infinite;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* hero-bg: 諛곌꼍 ?대몄? 鍮??깊 */
+.hero-bg {
+    display: none;
+}
+
+/* 諛곌꼍 ?대몄? ?嫄곕? 洹몃쇰곗댁 ?ㅻ????鍮??깊 */
+.hero-overlay {
+    display: none;
+}
+
+@keyframes heroBgFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

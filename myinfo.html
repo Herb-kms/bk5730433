@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>???�보 | 복사기마??/title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/myinfo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-light">
+    <!-- ?�더 -->
+    <header class="hero-nav-bar-fluid subpage-header">
+        <a href="index.html" class="logo hero-logo">복사�?span>마트</span></a>
+
+        <nav class="hero-nav">
+            <ul>
+                <li><a href="rental.html">?��??�품</a></li>
+                <li><a href="sales.html">?�매?�품</a></li>
+                <li><a href="notice.html">공�??�항</a></li>
+                <li><a href="downloads.html">?�료??/a></li>
+                <li><a href="reviews.html">?�치 ?�기</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-auth" id="authSection">
+            <a href="login.html" class="admin-login-btn">
+                <i class="fas fa-user-cog"></i> 관리자 로그??            </a>
+        </div>
+    
+    </header>
+
+    <main class="myinfo-wrapper">
+        <div class="container">
+            <div class="myinfo-layout">
+                <!-- Sidebar -->
+                <aside class="profile-sidebar">
+                    <div class="avatar-container">
+                        <i class="fas fa-user"></i>
+                        <div class="user-badge"><i class="fas fa-check" style="font-size: 0.5rem; color: white;"></i></div>
+                    </div>
+                    <h2 id="displayUsername">?�용?�님</h2>
+                    <span class="user-tag" id="displayUserType">개인 ?�원</span>
+
+                    <nav class="sidebar-nav">
+                        <a href="#" class="sidebar-nav-item active"><i class="fas fa-user-cog"></i> ?�원 ?�보 ?�정</a>
+                        <a href="index.html#contact" class="sidebar-nav-item"><i class="fas fa-headset"></i> 고객 지??/a>
+                        <div class="logout-section">
+                            <button id="logoutBtnSide" class="btn-logout-luxury">
+                                <i class="fas fa-sign-out-alt"></i> 로그?�웃
+                            </button>
+                        </div>
+                    </nav>
+                </aside>
+
+                <!-- Content -->
+                <div class="myinfo-content">
+                    <!-- Basic Info Card -->
+                    <section class="content-card">
+                        <h3><i class="fas fa-user-tag"></i> 계정 기본 ?�보</h3>
+
+                        <div class="info-row">
+                            <div class="info-label">?�용???�이??/div>
+                            <div class="info-value">
+                                <span id="infoUsername">-</span>
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">(변�?불�?)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-label">?�름 / ?�당??/div>
+                            <div class="info-value">
+                                <span id="infoRealName">-</span>
+                                <button class="btn-edit-small" id="changeNameBtn">?�정</button>
+                            </div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-label">거래�?/ ?�체�?/div>
+                            <div class="info-value">
+                                <span id="infoCompanyName">-</span>
+                                <button class="btn-edit-small" id="changeCompanyBtn">?�정</button>
+                            </div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-label">?�원 ?�급</div>
+                            <div class="info-value">
+                                <span id="infoUserType">-</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Security Card -->
+                    <section class="content-card">
+                        <h3><i class="fas fa-shield-alt"></i> 보안 �??�증</h3>
+
+                        <div class="info-row">
+                            <div class="info-label">비�?번호</div>
+                            <div class="info-value">
+                                <span>?�••••••�?/span>
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">(비�?번호 변경�? 관리자?�게 문의?�세??</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ?�로????메뉴 -->
+    <div class="floating-quick-bar">
+        <div class="quick-menu-card">
+            <div class="quick-card-header">
+                <span>QUICK MENU</span>
+            </div>
+            <div class="quick-card-body">
+                <div class="quick-card-section">
+                    <span class="section-label"><i class="fas fa-phone-alt"></i> ?�화?�담</span>
+                    <a href="tel:010-6593-0477" class="phone-number-link">010-6593-0477</a>
+                    <span class="phone-hours">?�일/주말 ?�중무휴</span>
+                </div>
+                <div class="quick-card-section">
+                    <span class="section-label"><i class="fas fa-fax"></i> ?�스번호</span>
+                    <span class="fax-number">031-574-3369</span>
+                </div>
+                <a href="https://open.kakao.com/o/sSzFO2O" target="_blank" class="quick-inquiry-btn">
+                    <i class="fas fa-comment-dots"></i> 견적문의
+                </a>
+                <button class="quick-card-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="?�로 가�?>
+                    <i class="fas fa-arrow-up"></i> TOP
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ?�터 -->
+    <footer>
+        <div class="container footer-inner">
+            <a href="index.html" class="logo footer-logo">복사�?span>마트</span></a>
+            <p class="footer-info">경기???�천??&nbsp;|&nbsp; 031-573-0433 &nbsp;|&nbsp; bk0433@naver.com</p>
+            <p class="footer-copy">&copy; 2026 복사기마?? All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="js/app.js"></script>
+    <script src="js/myinfo.js"></script>
+</body>
+
+</html>

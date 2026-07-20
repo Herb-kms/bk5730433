@@ -1,0 +1,79 @@
+/* ???????????????????????????????
+   8. ?ㅼ媛 寃ъ 怨?곌린
+   ??????????????????????????????? */
+.calculator-container {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    margin-top: 10px;
+}
+
+.calc-select-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.calc-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.calc-group label {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #4b5563;
+}
+
+.calc-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #374151;
+    outline: none;
+    background-color: #fafafa;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.calc-select:focus {
+    border-color: #1e40af;
+}
+
+.calc-result-box {
+    background: #eff6ff;
+    border-radius: 12px;
+    padding: 22px 20px;
+    text-align: center;
+}
+
+.calc-price-label {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #1e40af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.calc-price-display {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #1e40af;
+    margin-bottom: 8px;
+}
+
+.calc-detail-display {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #4b5563;
+    line-height: 1.5;
+}

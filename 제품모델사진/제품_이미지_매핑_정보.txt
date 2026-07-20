@@ -1,0 +1,146 @@
+========================================================================
+       복사기마트 모델별 3각도 이미지 매핑 및 브랜드 디렉토리 분류 정보
+========================================================================
+
+본 파일은 복사기마트 홈페이지에 등록된 각 제품 모델별로 상세페이지에 노출되는 
+3각도(정면:앞, 측면:옆면, 상세:상세) 이미지 리소스가 제품모델사진 폴더 내의 어떤 실물 사진 파일과 
+매칭되어 웹 서비스 경로(img/products/[brand_folder]/)로 배포되는지 정리한 문서입니다.
+
+------------------------------------------------------------------------
+1. 캐논 (canon) 브랜드 모델군
+------------------------------------------------------------------------
+
+■ C3822 (A3 컬러)
+   - 정면(Front) : 캐논_C3826_앞.jpg -> img/products/canon/캐논_C3822_앞.png
+   - 측면(Side)  : 캐논_C3822_옆면.jpg -> img/products/canon/캐논_C3822_옆면.png
+   - 상세(Detail): C3822.PNG -> img/products/canon/캐논_C3822_상세.png
+
+■ C3826 (A3 컬러)
+   - 정면(Front) : 캐논_C3826_앞.jpg -> img/products/canon/캐논_C3826_앞.png
+   - 측면(Side)  : 캐논_C3826_옆면.jpg -> img/products/canon/캐논_C3826_옆면.png
+   - 상세(Detail): C3822.PNG -> img/products/canon/캐논_C3826_상세.png
+
+■ C3322 (A3 컬러)
+   - 정면(Front) : 캐논_c3322_앞.jpg -> img/products/canon/캐논_C3322_앞.png
+   - 측면(Side)  : 캐논_C3822_옆면.jpg -> img/products/canon/캐논_C3322_옆면.png
+   - 상세(Detail): C3822.PNG -> img/products/canon/캐논_C3322_상세.png
+
+■ C3926 (A3 컬러)
+   - 정면(Front) : 캐논_C3926_앞.jpg -> img/products/canon/캐논_C3926_앞.png
+   - 측면(Side)  : 캐논_C3926_옆면.jpg -> img/products/canon/캐논_C3926_옆면.png
+   - 상세(Detail): C3926.PNG -> img/products/canon/캐논_C3926_상세.png
+
+■ MF-274 (A4 레이저)
+   - 정면(Front) : 캐논_MF-274_앞.jpg -> img/products/canon/캐논_MF-274_앞.png
+   - 측면(Side)  : 캐논_MF-274_옆면.jpg -> img/products/canon/캐논_MF-274_옆면.png
+   - 상세(Detail): 캐논_MF-274_상세.jpg -> img/products/canon/캐논_MF-274_상세.png
+
+■ MF-462 (A4 레이저)
+   - 정면(Front) : 캐논_MF-462_앞 .jpg -> img/products/canon/캐논_MF-462_앞.png
+   - 측면(Side)  : 캐논_MF-462_옆면.jpg -> img/products/canon/캐논_MF-462_옆면.png
+   - 상세(Detail): 캐논_MF-462_상세.jpg -> img/products/canon/캐논_MF-462_상세.png
+
+
+------------------------------------------------------------------------
+2. 삼성 (samsung) 브랜드 모델군
+------------------------------------------------------------------------
+
+■ X6250 (A3 컬러)
+   - 정면(Front) : SM-X6250.PNG -> img/products/samsung/삼성_X6250_앞.png
+   - 측면(Side)  : SM-X6250-side.PNG -> img/products/samsung/삼성_X6250_옆면.png
+   - 상세(Detail): SM-X6250-detail.PNG -> img/products/samsung/삼성_X6250_상세.png
+
+■ X7400 (A3 컬러)
+   - 정면(Front) : SM-X7400.PNG -> img/products/samsung/삼성_X7400_앞.png
+   - 측면(Side)  : SM-X6250-side.PNG -> img/products/samsung/삼성_X7400_옆면.png
+   - 상세(Detail): SM-X6250-detail.PNG -> img/products/samsung/삼성_X7400_상세.png
+
+■ X4255 (A3 컬러)
+   - 정면(Front) : X4255.PNG -> img/products/samsung/삼성_X4255_앞.png
+   - 측면(Side)  : SM-X6250-side.PNG -> img/products/samsung/삼성_X4255_옆면.png
+   - 상세(Detail): SM-X6250-detail.PNG -> img/products/samsung/삼성_X4255_상세.png
+
+■ K4300 (A3 흑백)
+   - 정면(Front) : 삼성_K4300_앞.jpg -> img/products/samsung/삼성_K4300_앞.png
+   - 측면(Side)  : 삼성_K4300_옆면.jpg -> img/products/samsung/삼성_K4300_옆면.png
+   - 상세(Detail): 삼성_k4300_상세.png -> img/products/samsung/삼성_K4300_상세.png
+
+■ M4070 (A4 레이저)
+   - 정면(Front) : 삼성_m4070_앞.jpg -> img/products/samsung/삼성_M4070_앞.png
+   - 측면(Side)  : 삼성_m4070_옆면.jpg -> img/products/samsung/삼성_M4070_옆면.png
+   - 상세(Detail): MF462.PNG -> img/products/samsung/삼성_M4070_상세.png
+
+■ M2680 (A4 레이저)
+   - 정면(Front) : 삼성_m2680_앞.png -> img/products/samsung/삼성_M2680_앞.png
+   - 측면(Side)  : 삼성_m2680_옆면.png -> img/products/samsung/삼성_M2680_옆면.png
+   - 상세(Detail): MF462.PNG -> img/products/samsung/삼성_M2680_상세.png
+
+
+------------------------------------------------------------------------
+3. 코니카 미놀타 & 신도리코 브랜드 모델군 (minolta, sindoh)
+------------------------------------------------------------------------
+
+■ C225 (A3 컬러 - minolta)
+   - 정면(Front) : C225.PNG -> img/products/minolta/미놀타_C225_앞.png
+   - 측면(Side)  : D450-side.PNG -> img/products/minolta/미놀타_C225_옆면.png
+   - 상세(Detail): D450-detail.PNG -> img/products/minolta/미놀타_C225_상세.png
+
+■ C224 (A3 컬러 - minolta)
+   - 정면(Front) : C224.PNG -> img/products/minolta/미놀타_C224_앞.png
+   - 측면(Side)  : D450-side.PNG -> img/products/minolta/미놀타_C224_옆면.png
+   - 상세(Detail): D450-detail.PNG -> img/products/minolta/미놀타_C224_상세.png
+
+■ D450 (A3 컬러 - sindoh)
+   - 정면(Front) : 신도_D450_앞.PNG -> img/products/sindoh/신도_D450_앞.png
+   - 측면(Side)  : 신도_D450_옆면.PNG -> img/products/sindoh/신도_D450_옆면.png
+   - 상세(Detail): D450-detail.PNG -> img/products/sindoh/신도_D450_상세.png
+
+■ D470 (A3 컬러 - sindoh)
+   - 정면(Front) : 신도_D470_앞.png -> img/products/sindoh/신도_D470_앞.png
+   - 측면(Side)  : 신도_D470_옆면.PNG -> img/products/sindoh/신도_D470_옆면.png
+   - 상세(Detail): D450-detail.PNG -> img/products/sindoh/신도_D470_상세.png
+
+■ BZ-128 (A3 흑백 - minolta)
+   - 정면(Front) : BZ128.PNG -> img/products/minolta/미놀타_BZ-128_앞.png
+   - 측면(Side)  : D450-side.PNG -> img/products/minolta/미놀타_BZ-128_옆면.png
+   - 상세(Detail): D450-detail.PNG -> img/products/minolta/미놀타_BZ-128_상세.png
+
+
+------------------------------------------------------------------------
+4. HP (hp) 브랜드 모델군
+------------------------------------------------------------------------
+
+■ 8610 (A4 잉크젯)
+   - 정면(Front) : HP_8610_앞.png -> img/products/hp/hp_8610_앞.png
+   - 측면(Side)  : HP_8610_옆면.PNG -> img/products/hp/hp_8610_옆면.png
+   - 상세(Detail): 9010.PNG -> img/products/hp/hp_8610_상세.png
+
+■ 8620 (A4 잉크젯)
+   - 정면(Front) : HP_8620_앞.png -> img/products/hp/hp_8620_앞.png
+   - 측면(Side)  : HP_8620_옆면.jpg -> img/products/hp/hp_8620_옆면.png
+   - 상세(Detail): 9010.PNG -> img/products/hp/hp_8620_상세.png
+
+■ 9010 (A4 잉크젯)
+   - 정면(Front) : HP_9010_앞.png -> img/products/hp/hp_9010_앞.png
+   - 측면(Side)  : HP_9010_옆면.png -> img/products/hp/hp_9010_옆면.png
+   - 상세(Detail): 9010.PNG -> img/products/hp/hp_9010_상세.png
+
+■ 7740 (A3 잉크젯)
+   - 정면(Front) : HP_7740_앞.png -> img/products/hp/hp_7740_앞.png
+   - 측면(Side)  : HP_7740_옆면.png -> img/products/hp/hp_7740_옆면.png
+   - 상세(Detail): 9010.PNG -> img/products/hp/hp_7740_상세.png
+
+
+------------------------------------------------------------------------
+5. 기타제품 및 브랜드 모델군 (etc)
+------------------------------------------------------------------------
+
+■ KS-1230 (A4 세단기)
+   - 정면(Front) : 현대_KS1230.PNG -> img/products/etc/현대오피스_KS-1230_앞.png
+   - 측면(Side)  : MF274.PNG -> img/products/etc/현대오피스_KS-1230_옆면.png
+   - 상세(Detail): MF462.PNG -> img/products/etc/현대오피스_KS-1230_상세.png
+
+========================================================================
+주소: 경기 남양주시 진건읍 사릉로 413 1호, 디지털OA랜드
+연락처: 031-573-0433
+========================================================================

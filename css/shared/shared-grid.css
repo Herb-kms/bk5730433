@@ -1,0 +1,223 @@
+/* ???????????????????????????????
+   6. ?? 移대 洹몃━?
+   ??????????????????????????????? */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.prod-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.prod-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.card-img-wrap {
+    height: 200px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card-img-wrap img {
+    width: 95%;
+    height: 95%;
+    object-fit: contain;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.prod-card:hover .card-img-wrap img {
+    transform: scale(1.06);
+}
+
+.img-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #94a3b8;
+    background: #f8fafc;
+    box-sizing: border-box;
+}
+
+.img-placeholder i {
+    font-size: 2.5rem;
+    color: #cbd5e1;
+}
+
+.img-placeholder span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #94a3b8;
+}
+
+.card-body {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-top: 1px solid #f3f4f6;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card-brand-logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+    height: 32px;
+    width: 100%;
+}
+
+.brand-logo-img {
+    max-width: 120px;
+    object-fit: contain;
+    opacity: 1;
+    transition: transform 0.2s ease;
+}
+
+.brand-logo-img.brand-canon {
+    height: 18px;
+    width: auto;
+}
+
+.brand-logo-img.brand-minolta {
+    height: 50px;
+    max-width: 180px;
+    width: auto;
+}
+
+.brand-logo-img.brand-samsung {
+    height: 16px;
+    width: auto;
+}
+
+.brand-logo-img.brand-sindoh {
+    height: 20px;
+    width: auto;
+}
+
+.brand-logo-img.brand-hp {
+    height: 40px;
+    width: auto;
+}
+
+.prod-card:hover .brand-logo-img {
+    transform: scale(1.04);
+}
+
+.card-model-code {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.card-name {
+    font-size: 0.96rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.4;
+    height: 42px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.card-price-row {
+    margin-top: 8px;
+    position: relative;
+    height: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.origin-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: #111827;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.card-price-row i {
+    font-size: 0.95rem;
+    color: #4b5563;
+}
+
+.hover-text {
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #ffffff;
+    background: #374151;
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.hover-text i {
+    color: #ffffff !important;
+}
+
+.hover-text .highlight-click {
+    color: #ef4444;
+    font-size: 1.0rem;
+    font-weight: 900;
+}
+
+.prod-card:hover .origin-price {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.prod-card:hover .hover-text {
+    opacity: 1;
+    transform: translateY(0);
+}

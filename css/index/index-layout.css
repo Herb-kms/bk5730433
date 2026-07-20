@@ -1,0 +1,128 @@
+/* =============================================
+   index-layout.css ? 硫??肄?痢 ??댁? 諛 ?ㅼ媛 ?곕쎌?
+   ============================================= */
+
+.hero-container-flex {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 70px);
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    padding-top: 110px;
+    /* ?ㅻ 諛 ??? 異⑸?? 媛寃⑹ 二쇱?援щ???濡 ?щ갚 ?ъ“? */
+    padding-bottom: 20px;
+    max-width: 100% !important;
+    padding-left: 5%;
+    padding-right: 5%;
+    align-items: center;
+    /* 媛濡 媛?대????*/
+    justify-content: flex-start;
+    /* ??? ??濡 ??ы???ㅻ ??? ?踰쏀 ?ㅻ濡 議곗 */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    max-width: 900px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* ??ㅽ?媛濡 媛?대????*/
+    text-align: center;
+    /* ??ㅽ??泥?媛?대????*/
+    padding-top: 0px;
+    /* 留??? ?ㅻ濡 ????⑤??嫄?*/
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 40px;
+    /* ?? 湲곌린 移대? 議고濡??媛寃?*/
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    /* ???쇱?珥湲곌? */
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+
+.hero-content h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #1d4ed8 !important;
+    /* 議곌? ? 吏? ????쇰? 蹂寃쏀??諛? ?? 諛곌꼍??? 留ㅼ??紐?寃 ?몄? */
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 14px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.35;
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 2px 5px rgba(0, 0, 0, 0.95);
+}
+
+.hero-content h1 span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: none !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 2px 5px rgba(0, 0, 0, 0.95);
+}
+
+.hero-content p {
+    font-size: 1.15rem;
+    color: #ffffff !important;
+    line-height: 1.75;
+    margin-bottom: 0;
+    font-weight: 600;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95), 0 2px 4px rgba(0, 0, 0, 0.95);
+}
+
+.hero-contact {
+    margin-top: 0px;
+    /* ?? 移대? 留吏?쇰? ??대誘濡 0px ?ㅼ */
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    /* ?곕쎌? 媛濡 媛?대????*/
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+
+    /* ???쇱?珥湲곌? 諛 ?ㅽщ· 紐⑥ ?몃吏? */
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+
+.hero-contact .contact-label {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.hero-contact .contact-number {
+    font-size: 2.4rem;
+    color: #ffffff !important;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 0.02em;
+}
+
+.hero-contact .contact-number i {
+    font-size: 1.85rem;
+    color: #ffffff !important;
+    display: inline-block;
+    transform: scaleX(-1);
+    /* ??湲???댁? 諛⑺?醫??諛? (?ㅻⅨ履??濡 ?ν?濡 ??) */
+}

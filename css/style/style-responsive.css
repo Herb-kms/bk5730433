@@ -1,0 +1,97 @@
+/* ???????????????????????????????
+   8. style.css ???諛?? 誘몃??荑쇰━
+   ??????????????????????????????? */
+@media (max-width: 991px) {
+
+    .grid-active,
+    .service-grid,
+    .review-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .flex-contact {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        top: 0;
+    }
+
+    .top-bar {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    #mainNav {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        box-shadow: var(--shadow-lg);
+        padding: 30px;
+        display: none;
+        border-top: 1px solid #f1f5f9;
+    }
+
+    #mainNav.active {
+        display: block;
+    }
+
+    #mainNav ul {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .submenu {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        padding: 10px 0 0 20px;
+        display: flex;
+        opacity: 1;
+        border: none;
+    }
+
+    .grid-active,
+    .service-grid,
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .gnb-left,
+    .gnb-right {
+        display: none;
+    }
+
+    .gnb-center {
+        padding: 0;
+    }
+
+    .talk-btn {
+        display: none;
+    }
+}

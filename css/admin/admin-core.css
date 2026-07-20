@@ -1,0 +1,91 @@
+/* =============================================
+   admin-core.css ? 愿由ъ 湲곕낯 ?고? 由ъ, ?ъ대諛 ??댁?
+   ============================================= */
+
+/* ?? 援ш? ?고??곕 (Outfit & Noto Sans KR) ?? */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ?? ?泥???댁? (?ъ대諛 + 硫?? ?? */
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc; /* 遺??ъ???댄?洹몃??諛깃렇?쇱대 */
+}
+
+/* ?? ?쇱そ ?ъ대諛 ?? */
+.admin-sidebar {
+    width: 280px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* ?由щ몄 ?ㅽ?釉猷?洹몃??명?*/
+    color: white;
+    padding: 40px 24px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 25px rgba(15, 23, 42, 0.05);
+}
+
+.admin-sidebar .logo {
+    margin-bottom: 50px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+}
+
+.admin-sidebar .logo span {
+    color: #3b82f6; /* 蹂듭ш린留??濡怨 ?洹몃泥 釉猷?*/
+}
+
+.admin-sidebar .logo small {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.admin-nav-item {
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-nav-item i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.admin-nav-item.active,
+.admin-nav-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.admin-nav-item.active i,
+.admin-nav-item:hover i {
+    transform: scale(1.1);
+}
+
+.admin-nav-item.active {
+    background: #3b82f6; /* ??깊 硫???洹몃泥 釉猷?梨?곌린 */
+    color: white;
+}
