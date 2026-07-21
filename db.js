@@ -420,7 +420,27 @@ if (DB_TYPE.toLowerCase() === 'mysql') {
                         const item = inMemoryProducts.find(p => p.id === id);
                         return [[item || null].filter(Boolean), null];
                     }
-                    return [inMemoryProducts, null];
+                    
+                    let filtered = [...inMemoryProducts];
+                    if (upperSql.includes('WHERE TYPE =') || upperSql.includes('WHERE TYPE = ?') || upperSql.includes('WHERE TYPE=?')) {
+                        const typeVal = params[0];
+                        if (typeVal) {
+                            filtered = filtered.filter(p => p.type === typeVal);
+                        }
+                        if (params.length > 1 && (upperSql.includes('AND CATEGORY =') || upperSql.includes('AND CATEGORY=?'))) {
+                            const catVal = params[1];
+                            if (catVal) {
+                                filtered = filtered.filter(p => p.category === catVal);
+                            }
+                        }
+                    } else if (upperSql.includes('WHERE CATEGORY =')) {
+                        const catVal = params[0];
+                        if (catVal) {
+                            filtered = filtered.filter(p => p.category === catVal);
+                        }
+                    }
+
+                    return [filtered, null];
                 }
                 return [[], null];
             },
