@@ -687,6 +687,12 @@ function bindTabsAndImages(p) {
         `제품설명이미지/${modelLower}(조건표).jpg`,
         `제품설명이미지/${modelUpper}(조건표).png`,
         `제품설명이미지/${modelUpper}(조건표).jpg`,
+        `제품설명이미지/${modelName}.png`,
+        `제품설명이미지/${modelName}.jpg`,
+        `제품설명이미지/${modelLower}.png`,
+        `제품설명이미지/${modelLower}.jpg`,
+        `제품설명이미지/${modelUpper}.png`,
+        `제품설명이미지/${modelUpper}.jpg`,
         '/uploads/c3322_condition.png',
         '제품설명이미지/c3322(조건표).png'
     ].filter(Boolean);
