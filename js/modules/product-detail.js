@@ -45,7 +45,7 @@ function renderProductDetails(p) {
     document.getElementById('detailTitle').textContent = p.name;
     const detailDesc = document.getElementById('detailDesc');
     if (detailDesc) detailDesc.innerHTML = p.description || '사무 효율성을 한 단계 더 끌어올리는 복사기마트 추천 기종입니다.';
-    
+
     const subHeroTitle = document.getElementById('subHeroTitle');
     const subHeroDesc = document.getElementById('subHeroDesc');
     if (subHeroTitle) subHeroTitle.textContent = p.type === 'rental' ? '임대 제품 상세' : '판매 제품 상세';
@@ -57,16 +57,15 @@ function renderProductDetails(p) {
         mainImgNode.style.transform = `scale(${(p.image_zoom_1 !== undefined && p.image_zoom_1 !== null) ? p.image_zoom_1 / 100 : 1.3})`;
         mainImgNode.style.padding = `${(p.image_padding_1 !== undefined && p.image_padding_1 !== null) ? p.image_padding_1 : 10}px`;
         mainImgNode.style.objectFit = 'contain';
-        mainImgNode.onerror = function() {
-            this.src = PLACEHOLDER_IMAGE;
-            this.onerror = null;
+        mainImgNode.onerror = function () {
+            this.src = '/img/standing_color_copier.PNG';
         };
     }
 
     // 브레드크럼 동기화
     const breadcrumbType = document.getElementById('breadcrumbType');
     const breadcrumbName = document.getElementById('breadcrumbName');
-    
+
     if (p.type === 'rental') {
         breadcrumbType.textContent = '임대제품';
         breadcrumbType.href = 'rental.html';
@@ -105,7 +104,7 @@ function renderProductDetails(p) {
 function setupQuotationSimulator(p) {
     const rentalOptionsArea = document.getElementById('rentalOptionsArea');
     if (!rentalOptionsArea) return; // Exit early if simulator is not in the DOM
- 
+
     const salesOptionsArea = document.getElementById('salesOptionsArea');
     const simTypeLabel = document.getElementById('simTypeLabel');
     const priceLabelText = document.getElementById('priceLabelText');
@@ -144,8 +143,8 @@ function setupQuotationSimulator(p) {
             // 간편 상담창 템플릿 문의내용 실시간 갱신
             const termText = contractSelect.options[contractSelect.selectedIndex].text;
             const planText = planSelect.options[planSelect.selectedIndex].text;
-            
-            document.getElementById('inquiryContent').value = 
+
+            document.getElementById('inquiryContent').value =
                 `안녕하세요. [${p.name}] 복사기 임대 조건 문의 드립니다.\n` +
                 `- 선택 약정: ${termText}\n` +
                 `- 선택 요금제: ${planText}\n` +
@@ -165,11 +164,11 @@ function setupQuotationSimulator(p) {
         simTypeLabel.style.background = '#10b981'; // 초록색 구매 배지
         priceLabelText.textContent = '최종 구매 가격';
         priceUnitText.textContent = '원(부가세 포함)';
-        
+
         document.getElementById('salesPriceVal').textContent = `${basePrice.toLocaleString()} 원`;
         calculatedPrice.textContent = basePrice.toLocaleString();
 
-        document.getElementById('inquiryContent').value = 
+        document.getElementById('inquiryContent').value =
             `안녕하세요. [${p.name}] 제품 일시불 구매 견적 상담 신청합니다.\n` +
             `- 정가 금액: ${basePrice.toLocaleString()} 원\n` +
             `세부 견적서 및 경기 남양주 지역 무료 배송/정밀 설치 일정을 확인하고 싶습니다.`;
@@ -185,9 +184,9 @@ function setupSpecifications(p) {
     if (p.specs) {
         let parsedJson = null;
         if (typeof p.specs === 'string' && p.specs.trim().startsWith('{')) {
-            try { parsedJson = JSON.parse(p.specs); } catch(e) {}
+            try { parsedJson = JSON.parse(p.specs); } catch (e) { }
         }
-        
+
         if (parsedJson) {
             speed = parsedJson.speed || speed;
             resolution = parsedJson.resolution || resolution;
@@ -264,11 +263,11 @@ function setupThumbnailGallery(p) {
 
         // Image 비동기 로더 객체 활용한 존재 유무 검증
         const tempImg = new Image();
-        tempImg.onload = function() {
+        tempImg.onload = function () {
             // 존재할 시 노출 보장
             btn.style.display = 'inline-block';
         };
-        tempImg.onerror = function() {
+        tempImg.onerror = function () {
             // 부재 시 깔끔하게 미노출
             btn.style.display = 'none';
         };
@@ -298,7 +297,7 @@ function setupThumbnailGallery(p) {
 
             mainImg.style.opacity = '1';
 
-            mainImg.onerror = function() {
+            mainImg.onerror = function () {
                 this.src = p.image_url;
                 this.onerror = null;
             };
@@ -355,7 +354,7 @@ function setupInquiryForm(p) {
             if (res.ok) {
                 alert('상담 접수가 완료되었습니다! 담당자 확인 후 신속하게 상담 전화를 드리겠습니다.');
                 form.reset();
-                
+
                 // 구매/임대 타입별 초기 템플릿 복구
                 if (p.type === 'rental') {
                     const contractSelect = document.getElementById('contractTerm');
@@ -364,7 +363,7 @@ function setupInquiryForm(p) {
                     planSelect.value = "eco";
                     contractSelect.dispatchEvent(new Event('change'));
                 } else {
-                    document.getElementById('inquiryContent').value = 
+                    document.getElementById('inquiryContent').value =
                         `안녕하세요. [${p.name}] 제품 일시불 구매 견적 상담 신청합니다.\n` +
                         `- 정가 금액: ${p.price.toLocaleString()} 원\n` +
                         `세부 견적서 및 경기 남양주 지역 무료 배송/정밀 설치 일정을 확인하고 싶습니다.`;
@@ -396,7 +395,7 @@ const initPreviewTabs = (modalEl) => {
             });
         };
     });
-    
+
     // 탭 초기화 (첫 번째 탭 자동클릭)
     const firstTab = modalEl.querySelector('.preview-tab-btn');
     if (firstTab) firstTab.click();
@@ -523,7 +522,7 @@ function openAdminEditModal(p) {
             } else {
                 preview.innerHTML = `<i class="fas fa-camera" style="font-size:1.2rem;margin-bottom:4px;"></i><span style="font-size:0.75rem;">${placeholder}</span>`;
             }
-            
+
             input.onchange = (e) => {
                 const file = e.target.files[0];
                 if (file) {
@@ -644,7 +643,7 @@ function bindTabsAndImages(p) {
     // 2. 대형 상세 설명 이미지 매핑 (제품설명이미지 폴더 자동 감지 + '이미지 준비 중' 플레이스홀더 지원)
     const descImgContainer = document.getElementById('detailDescImgContainer');
     const descImg = document.getElementById('detailDescImg');
-    
+
     const detailCandidates = [
         p.detail_image_url,
         `제품설명이미지/${modelName}(제품설명).jpg`,
@@ -666,7 +665,7 @@ function bindTabsAndImages(p) {
             }
         };
 
-        descImg.onerror = function() {
+        descImg.onerror = function () {
             loadNextDetailImage();
         };
 
@@ -713,7 +712,7 @@ function bindTabsAndImages(p) {
             }
         };
 
-        condImg.onerror = function() {
+        condImg.onerror = function () {
             loadNextConditionImage();
         };
 
