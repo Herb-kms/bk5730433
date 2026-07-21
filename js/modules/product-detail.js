@@ -177,41 +177,70 @@ function setupQuotationSimulator(p) {
 
 // 스펙 상세 테이블 및 핵심 특장점 배너 빌더
 function setupSpecifications(p) {
-    let speed = '25ppm';
-    let resolution = '1200 x 1200 dpi';
-    let features = '프린트, 복사, 컬러 스캔 기본 지원';
+    const rentalWrap = document.getElementById('rentalConditionTableWrap');
+    const salesWrap = document.getElementById('salesSpecTableWrap');
 
-    if (p.specs) {
-        let parsedJson = null;
-        if (typeof p.specs === 'string' && p.specs.trim().startsWith('{')) {
-            try { parsedJson = JSON.parse(p.specs); } catch (e) { }
+    if (p.type === 'rental') {
+        // 임대 제품: 월임대료 조건표 노출
+        if (rentalWrap) rentalWrap.style.display = 'block';
+        if (salesWrap) salesWrap.style.display = 'none';
+
+        const monthlyPriceEl = document.getElementById('rentalMonthlyPrice');
+        if (monthlyPriceEl && p.price) {
+            monthlyPriceEl.textContent = `${Number(p.price).toLocaleString()}원`;
         }
 
-        if (parsedJson) {
-            speed = parsedJson.speed || speed;
-            resolution = parsedJson.resolution || resolution;
-            features = parsedJson.feature || parsedJson.features || features;
-        } else if (typeof p.specs === 'string') {
-            const specList = p.specs.split(',').map(s => s.trim()).filter(Boolean);
-            specList.forEach(item => {
-                if (/ppm|매/i.test(item)) speed = item;
-                else if (/dpi|x|해상도/i.test(item)) resolution = item;
-                else features = features ? `${features}, ${item}` : item;
-            });
-            if (specList.length > 0 && speed === '25ppm' && !/ppm/i.test(specList[0])) {
-                speed = specList[0];
+        // 제품간략설명: description에서 순수 텍스트 추출 또는 기본값
+        const summaryEl = document.getElementById('rentalProductSummary');
+        if (summaryEl && p.description) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = p.description;
+            const plainText = tempDiv.textContent.trim();
+            if (plainText && plainText.length < 60) {
+                summaryEl.textContent = plainText;
+            }
+            // 설명이 너무 길거나 없으면 기본값(HTML에 이미 설정)을 유지
+        }
+
+    } else {
+        // 판매 제품: 기기 사양 스펙 테이블 노출
+        if (rentalWrap) rentalWrap.style.display = 'none';
+        if (salesWrap) salesWrap.style.display = 'block';
+
+        let speed = '25ppm';
+        let resolution = '1200 x 1200 dpi';
+        let features = '프린트, 복사, 컬러 스캔 기본 지원';
+
+        if (p.specs) {
+            let parsedJson = null;
+            if (typeof p.specs === 'string' && p.specs.trim().startsWith('{')) {
+                try { parsedJson = JSON.parse(p.specs); } catch (e) { }
+            }
+
+            if (parsedJson) {
+                speed = parsedJson.speed || speed;
+                resolution = parsedJson.resolution || resolution;
+                features = parsedJson.feature || parsedJson.features || features;
+            } else if (typeof p.specs === 'string') {
+                const specList = p.specs.split(',').map(s => s.trim()).filter(Boolean);
+                specList.forEach(item => {
+                    if (/ppm|매/i.test(item)) speed = item;
+                    else if (/dpi|x|해상도/i.test(item)) resolution = item;
+                    else features = features ? `${features}, ${item}` : item;
+                });
+                if (specList.length > 0 && speed === '25ppm' && !/ppm/i.test(specList[0])) {
+                    speed = specList[0];
+                }
             }
         }
+
+        const speedEl = document.getElementById('detailSpecSpeed');
+        const resEl = document.getElementById('detailSpecResolution');
+        const featEl = document.getElementById('detailSpecFeature');
+        if (speedEl) speedEl.textContent = speed;
+        if (resEl) resEl.textContent = resolution;
+        if (featEl) featEl.textContent = features;
     }
-
-    // 스펙 테이블 바인딩
-    const speedEl = document.getElementById('detailSpecSpeed');
-    const resEl = document.getElementById('detailSpecResolution');
-    const featEl = document.getElementById('detailSpecFeature');
-
-    if (speedEl) speedEl.textContent = speed;
-    if (resEl) resEl.textContent = resolution;
-    if (featEl) featEl.textContent = features;
 
     // 핵심 기능 3단 설명 카드는 HTML에 공통 고정되어 유지됩니다.
 }
