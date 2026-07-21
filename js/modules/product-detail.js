@@ -58,7 +58,8 @@ function renderProductDetails(p) {
         mainImgNode.style.padding = `${(p.image_padding_1 !== undefined && p.image_padding_1 !== null) ? p.image_padding_1 : 10}px`;
         mainImgNode.style.objectFit = 'contain';
         mainImgNode.onerror = function() {
-            this.src = '/img/standing_color_copier.PNG';
+            this.src = PLACEHOLDER_IMAGE;
+            this.onerror = null;
         };
     }
 
@@ -628,6 +629,9 @@ function showErrorPage(message) {
     }
 }
 
+const PLACEHOLDER_IMAGE = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500' fill='none'><rect width='800' height='500' fill='%23f8fafc' rx='16'/><rect x='2' y='2' width='796' height='496' fill='none' stroke='%23cbd5e1' stroke-width='2' stroke-dasharray='8 8' rx='14'/><g transform='translate(400, 220)' text-anchor='middle'><circle cx='0' cy='-20' r='40' fill='%23eff6ff'/><path d='M-18 -26 L18 -26 L18 6 L-18 6 Z M-10 -18 A4 4 0 1 0 -10 -10 A4 4 0 1 0 -10 -18 M-14 2 L-6 -6 L0 0 L6 -8 L14 2' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><text x='0' y='55' font-family='sans-serif' font-size='20' font-weight='800' fill='%23334155'>이미지 준비 중입니다</text><text x='0' y='82' font-family='sans-serif' font-size='14' font-weight='600' fill='%2394a3b8'>빠른 시일 내에 고화질 이미지로 업데이트하겠습니다.</text></g></svg>";
+const CONDITION_PLACEHOLDER_IMAGE = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450' fill='none'><rect width='800' height='450' fill='%23fffbeb' rx='16'/><rect x='2' y='2' width='796' height='446' fill='none' stroke='%23fde68a' stroke-width='2' stroke-dasharray='8 8' rx='14'/><g transform='translate(400, 195)' text-anchor='middle'><circle cx='0' cy='-20' r='40' fill='%23fef3c7'/><path d='M-15 -32 H15 C18 -32 20 -30 20 -27 V-13 C20 -10 18 -8 15 -8 H-15 C-18 -8 -20 -10 -20 -13 V-27 C-20 -30 -18 -32 -15 -32 Z M-12 -22 H12 M-12 -16 H4' stroke='%23d97706' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><text x='0' y='55' font-family='sans-serif' font-size='20' font-weight='800' fill='%2378350f'>조건표 이미지 준비 중입니다</text><text x='0' y='82' font-family='sans-serif' font-size='14' font-weight='600' fill='%23b45309'>상세 렌탈/구매 조건은 고객센터(010-6593-0477)로 문의해 주세요.</text></g></svg>";
+
 function bindTabsAndImages(p) {
     // 1. 상세 소개 리치 텍스트 데이터 노출
     const richTextContainer = document.getElementById('detailDescRichText');
@@ -637,18 +641,16 @@ function bindTabsAndImages(p) {
 
     const modelName = (p.name || '').toLowerCase().trim();
 
-    // 2. 대형 상세 설명 이미지 매핑 (제품설명이미지 폴더 자동 감지 + 폴백 지원)
+    // 2. 대형 상세 설명 이미지 매핑 (제품설명이미지 폴더 자동 감지 + '이미지 준비 중' 플레이스홀더 지원)
     const descImgContainer = document.getElementById('detailDescImgContainer');
     const descImg = document.getElementById('detailDescImg');
     
-    // 사용자가 '제품설명이미지/' 폴더에 추가할 수 있는 자동 파이프라인 후보 생성
     const detailCandidates = [
         p.detail_image_url,
         `제품설명이미지/${modelName}(제품설명).jpg`,
         `제품설명이미지/${modelName}(제품설명).png`,
         `제품설명이미지/${modelName}.jpg`,
-        `제품설명이미지/${modelName}.png`,
-        '제품설명이미지/c3322(제품설명).jpg'
+        `제품설명이미지/${modelName}.png`
     ].filter(Boolean);
 
     if (descImg && descImgContainer) {
@@ -658,7 +660,9 @@ function bindTabsAndImages(p) {
                 const srcUrl = detailCandidates[candidateIndex++];
                 descImg.src = srcUrl.includes('?') ? srcUrl : `${srcUrl}?t=${Date.now()}`;
             } else {
-                descImgContainer.style.display = 'none';
+                // 후보 이미지가 모두 없을 때 '이미지 준비 중입니다' 플레이스홀더 표시
+                descImg.src = PLACEHOLDER_IMAGE;
+                descImg.onerror = null;
             }
         };
 
@@ -670,7 +674,7 @@ function bindTabsAndImages(p) {
         loadNextDetailImage();
     }
 
-    // 3. 임대/구매 조건표 이미지 매핑 (제품설명이미지 폴더 내 제품별 조건표 자동 감지)
+    // 3. 임대/구매 조건표 이미지 매핑 (기종 전용 조건표 미존재 시 '조건표 준비 중' 플레이스홀더 표시)
     const alwaysVisibleConditionCard = document.getElementById('alwaysVisibleConditionCard');
     const condImg = document.getElementById('detailCondImg');
     const conditionShortcutWrap = document.getElementById('conditionShortcutWrap');
@@ -693,9 +697,7 @@ function bindTabsAndImages(p) {
         `제품설명이미지/${modelLower}.png`,
         `제품설명이미지/${modelLower}.jpg`,
         `제품설명이미지/${modelUpper}.png`,
-        `제품설명이미지/${modelUpper}.jpg`,
-        '/uploads/c3322_condition.png',
-        '제품설명이미지/c3322(조건표).png'
+        `제품설명이미지/${modelUpper}.jpg`
     ].filter(Boolean);
 
     if (condImg && alwaysVisibleConditionCard) {
@@ -705,7 +707,9 @@ function bindTabsAndImages(p) {
                 const srcUrl = conditionCandidates[condIndex++];
                 condImg.src = srcUrl.includes('?') ? srcUrl : `${srcUrl}?t=${Date.now()}`;
             } else {
-                alwaysVisibleConditionCard.style.display = 'none';
+                // 해당 기종 전용 조건표가 없는 경우 '조건표 이미지 준비 중' 플레이스홀더 표시
+                condImg.src = CONDITION_PLACEHOLDER_IMAGE;
+                condImg.onerror = null;
             }
         };
 
