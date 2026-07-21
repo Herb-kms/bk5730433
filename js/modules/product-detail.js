@@ -42,7 +42,14 @@ function renderProductDetails(p) {
 
     // 1. 기본 UI 텍스트 및 속성 매핑
     document.title = `${p.name} | 복사기마트`;
-    document.getElementById('detailTitle').textContent = p.name;
+    const detailBadge = document.getElementById('detailBadge');
+    if (detailBadge) {
+        const brandUpper = (p.brand || '').toUpperCase();
+        const catMap = { color: '컬러 복합기', mono: '흑백 복합기', inkjet: '잉크젯 복합기', laser: '레이저 복합기' };
+        const catText = catMap[p.category] || p.category || '복합기';
+        detailBadge.textContent = p.badge || `${brandUpper} · ${catText}`;
+    }
+
     const detailDesc = document.getElementById('detailDesc');
     if (detailDesc) detailDesc.innerHTML = p.description || '사무 효율성을 한 단계 더 끌어올리는 복사기마트 추천 기종입니다.';
 
