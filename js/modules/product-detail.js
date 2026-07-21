@@ -41,7 +41,9 @@ function renderProductDetails(p) {
     const originalImgSrc = p.image_url_1 || p.image_url || '/img/color-copier.png';
 
     // 1. 기본 UI 텍스트 및 속성 매핑
-    document.title = `${p.name} | 복사기마트`;
+    const detailTitle = document.getElementById('detailTitle');
+    if (detailTitle) detailTitle.textContent = p.name;
+
     const detailBadge = document.getElementById('detailBadge');
     if (detailBadge) {
         const brandUpper = (p.brand || '').toUpperCase();
