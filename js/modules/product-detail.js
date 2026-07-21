@@ -676,10 +676,17 @@ function bindTabsAndImages(p) {
     const condTitleEl = document.getElementById('conditionCardTitle');
     if (condTitleEl) condTitleEl.textContent = p.type === 'sales' ? '구매 조건표' : '임대 조건표';
 
+    const modelLower = modelName.toLowerCase();
+    const modelUpper = modelName.toUpperCase();
+
     const conditionCandidates = [
         p.condition_image_url,
         `제품설명이미지/${modelName}(조건표).png`,
         `제품설명이미지/${modelName}(조건표).jpg`,
+        `제품설명이미지/${modelLower}(조건표).png`,
+        `제품설명이미지/${modelLower}(조건표).jpg`,
+        `제품설명이미지/${modelUpper}(조건표).png`,
+        `제품설명이미지/${modelUpper}(조건표).jpg`,
         '/uploads/c3322_condition.png',
         '제품설명이미지/c3322(조건표).png'
     ].filter(Boolean);
