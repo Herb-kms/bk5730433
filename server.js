@@ -77,9 +77,15 @@ app.get('/admin', authRouter.isAuthenticated, (req, res) => {
 });
 app.get('/products', (req, res) => res.redirect('/rental.html'));
 app.get('/reviews', (req, res) => res.sendFile(path.join(__dirname, 'reviews.html')));
-app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'login.html')));
-app.get('/signup', (req, res) => res.redirect('/login'));
+const fs = require('fs');
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get('/:page.html', (req, res, next) => {
+    const filePath = path.join(__dirname, `${req.params.page}.html`);
+    if (fs.existsSync(filePath)) {
+        return res.sendFile(filePath);
+    }
+    next();
+});
 
 // 구형 경로 호환성 유지 (404 방지 리다이렉션 필터)
 app.get('/color.html', (req, res) => res.redirect('/rental.html?category=color'));
