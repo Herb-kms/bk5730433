@@ -189,18 +189,7 @@ function setupSpecifications(p) {
         if (monthlyPriceEl && p.price) {
             monthlyPriceEl.textContent = `${Number(p.price).toLocaleString()}원`;
         }
-
-        // 제품간략설명: description에서 순수 텍스트 추출 또는 기본값
-        const summaryEl = document.getElementById('rentalProductSummary');
-        if (summaryEl && p.description) {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = p.description;
-            const plainText = tempDiv.textContent.trim();
-            if (plainText && plainText.length < 60) {
-                summaryEl.textContent = plainText;
-            }
-            // 설명이 너무 길거나 없으면 기본값(HTML에 이미 설정)을 유지
-        }
+        // 제품간략설명은 HTML 기본값(복사, 프린터, 스캔, 양면, 팩스)을 유지합니다.
 
     } else {
         // 판매 제품: 기기 사양 스펙 테이블 노출

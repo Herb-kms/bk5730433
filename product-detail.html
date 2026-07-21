@@ -89,11 +89,13 @@
 
                     <!-- 임대/판매 요금 조건 테이블 (우측 고정 노출) -->
                     <div id="rentalConditionTableWrap" style="display:none; margin-top: 15px;">
-                        <h3 class="specs-section-title" style="margin-top: 0;"><i class="fas fa-file-invoice-dollar" style="color:#2563eb;"></i> 임대 요금 안내</h3>
-                        <div class="spec-table-container">
+                        <h3 class="specs-section-title" style="margin-top: 0; font-size: 1.05rem; display:flex; align-items:center; gap:8px; background: linear-gradient(135deg, #1e40af, #2563eb); color: #fff; padding: 12px 16px; border-radius: 10px 10px 0 0; margin-bottom: 0;">
+                            <i class="fas fa-file-invoice-dollar"></i> 임대 요금 안내
+                        </h3>
+                        <div class="spec-table-container" style="border-radius: 0 0 10px 10px; border-top: none;">
                             <table class="spec-table rental-info-table" style="border-collapse: collapse; width: 100%;">
                                 <tbody>
-                                    <tr>
+                                    <tr class="rental-price-row">
                                         <td class="rental-label">월임대료</td>
                                         <td class="rental-value" id="rentalMonthlyPrice">-</td>
                                     </tr>
@@ -115,13 +117,13 @@
                                     </tr>
                                     <tr>
                                         <td class="rental-label">제품간략설명</td>
-                                        <td class="rental-value" id="rentalProductSummary">복사+프린터+스캔+양면+팩스(옵션)</td>
+                                        <td class="rental-value" id="rentalProductSummary">복사, 프린터, 스캔, 양면, 팩스</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p style="margin-top: 14px; font-size: 0.82rem; color: #64748b; line-height: 1.7; font-weight: 600;">
-                            저희 복사기마트는 정품토너 및 정품 부품만을 사용합니다!!
+                        <p style="margin-top: 12px; font-size: 0.83rem; color: #1d4ed8; line-height: 1.7; font-weight: 700; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px 14px;">
+                            <i class="fas fa-check-circle" style="margin-right: 5px;"></i>저희 복사기마트는 <strong>정품토너 및 정품 부품만</strong>을 사용합니다!!
                         </p>
                     </div>
                     <!-- 판매 제품용 스펙 테이블 -->
