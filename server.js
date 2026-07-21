@@ -102,10 +102,15 @@ app.use((req, res) => {
     `);
 });
 
-// 서버 실행
-app.listen(PORT, () => {
-    console.log(`================================================`);
-    console.log(`🚀 서버 가동: http://localhost:${PORT}`);
-    console.log(`🔐 관리자: admin / admin1234`);
-    console.log(`================================================`);
-});
+// Vercel 서버리스 모듈 내보내기
+module.exports = app;
+
+// 로컬 개발 환경에서만 서버 실행
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`================================================`);
+        console.log(`🚀 서버 가동: http://localhost:${PORT}`);
+        console.log(`🔐 관리자: admin / admin1234`);
+        console.log(`================================================`);
+    });
+}
