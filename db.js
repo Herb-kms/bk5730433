@@ -328,67 +328,128 @@ if (DB_TYPE.toLowerCase() === 'mysql') {
     dbExport = mysqlPool;
 } else {
     console.log('[Database] 활성화된 DB 엔진: SQLite3 (하이브리드 어댑터)');
-    const sqlite3 = require('sqlite3').verbose();
-    const path = require('path');
-    const dbPath = path.join(__dirname, 'database.db');
-    const sqliteDb = new sqlite3.Database(dbPath);
+    let sqliteDb = null;
+    let isInMemoryFallback = false;
 
-    initializeSQLite(sqliteDb);
+    try {
+        const sqlite3 = require('sqlite3').verbose();
+        const path = require('path');
+        const fs = require('fs');
 
-    // MySQL2/Promise 풀의 query 인터페이스로 래핑
-    dbExport = {
-        /**
-         * SQLite 실행부를 mysql의 [rows, fields] 규격으로 래핑합니다.
-         */
-        query(sql, params = []) {
-            return new Promise((resolve, reject) => {
-                // SQLite 전용 파라미터 호환성 보정 (바인딩 횟수가 일치하지 않을 때 대비 방어 코드)
-                const cleanParams = params.map(val => val === undefined ? null : val);
-                const upperSql = sql.trim().toUpperCase();
-
-                if (upperSql.startsWith('SELECT') || upperSql.startsWith('PRAGMA')) {
-                    sqliteDb.all(sql, cleanParams, (err, rows) => {
-                        if (err) return reject(err);
-                        resolve([rows, null]);
-                    });
-                } else {
-                    sqliteDb.run(sql, cleanParams, function (err) {
-                        if (err) {
-                            // SQLite UNIQUE 제약 실패 에러를 MySQL UNIQUE 제약 에러 문구로 살짝 래핑
-                            if (err.message.includes('UNIQUE constraint failed')) {
-                                err.code = 'ER_DUP_ENTRY';
-                            }
-                            return reject(err);
-                        }
-                        // MySQL insertId/affectedRows 호환 리턴
-                        resolve([{ insertId: this.lastID, affectedRows: this.changes }, null]);
-                    });
+        let dbPath = path.join(__dirname, 'database.db');
+        // Vercel 읽기 전용 환경 대비
+        if (process.env.VERCEL) {
+            dbPath = '/tmp/database.db';
+            if (fs.existsSync(path.join(__dirname, 'database.db'))) {
+                try {
+                    fs.copyFileSync(path.join(__dirname, 'database.db'), dbPath);
+                } catch (cErr) {
+                    console.warn('[Database] Vercel /tmp 복사 실패, :memory: 모드로 전환합니다:', cErr.message);
+                    dbPath = ':memory:';
                 }
-            });
-        },
-
-        /**
-         * 커넥션 획득 인터페이스 시뮬레이션
-         */
-        async getConnection() {
-            return {
-                query: this.query.bind(this),
-                release() {}
-            };
-        },
-
-        /**
-         * SQLite 연결 풀 닫기 시뮬레이션
-         */
-        end() {
-            return new Promise((resolve, reject) => {
-                sqliteDb.close((err) => {
-                    if (err) return reject(err);
-                    resolve();
-                });
-            });
+            } else {
+                dbPath = ':memory:';
+            }
         }
-    };
+
+        sqliteDb = new sqlite3.Database(dbPath, (err) => {
+            if (err) {
+                console.warn('[Database] 파일 DB 오픈 실패, :memory: 모드로 재시도합니다:', err.message);
+                sqliteDb = new sqlite3.Database(':memory:');
+            }
+        });
+        initializeSQLite(sqliteDb);
+    } catch (e) {
+        console.warn('[Database] SQLite3 네이티브 모듈 로드 실패, JS 인메모리 어댑터로 전환합니다:', e.message);
+        isInMemoryFallback = true;
+    }
+
+    if (isInMemoryFallback) {
+        const seedProductsRaw = getSeedProducts();
+        const inMemoryProducts = seedProductsRaw.map((p, idx) => ({
+            id: idx + 1,
+            type: p[0], category: p[1], brand: p[2], name: p[3], price: p[4],
+            image_url: p[5], image_url_2: p[6], image_url_3: p[7],
+            badge: p[8], description: p[9], specs: p[10], naver_talk: p[11], kakao_talk: p[12], date: p[13],
+            image_zoom_card: 130, image_padding_card: 10,
+            image_zoom_1: 130, image_padding_1: 10,
+            image_zoom_2: 130, image_padding_2: 10,
+            image_zoom_3: 130, image_padding_3: 10
+        }));
+
+        dbExport = {
+            async query(sql, params = []) {
+                const upperSql = sql.trim().toUpperCase();
+                if (upperSql.includes('FROM PRODUCTS')) {
+                    if (upperSql.includes('WHERE ID =')) {
+                        const id = Number(params[0]);
+                        const item = inMemoryProducts.find(p => p.id === id);
+                        return [[item || null].filter(Boolean), null];
+                    }
+                    return [inMemoryProducts, null];
+                }
+                return [[], null];
+            },
+            async getConnection() { return { query: this.query.bind(this), release() {} }; },
+            async end() {}
+        };
+    } else {
+        // MySQL2/Promise 풀의 query 인터페이스로 래핑
+        dbExport = {
+            /**
+             * SQLite 실행부를 mysql의 [rows, fields] 규격으로 래핑합니다.
+             */
+            query(sql, params = []) {
+                return new Promise((resolve, reject) => {
+                    // SQLite 전용 파라미터 호환성 보정 (바인딩 횟수가 일치하지 않을 때 대비 방어 코드)
+                    const cleanParams = params.map(val => val === undefined ? null : val);
+                    const upperSql = sql.trim().toUpperCase();
+
+                    if (upperSql.startsWith('SELECT') || upperSql.startsWith('PRAGMA')) {
+                        sqliteDb.all(sql, cleanParams, (err, rows) => {
+                            if (err) return reject(err);
+                            resolve([rows, null]);
+                        });
+                    } else {
+                        sqliteDb.run(sql, cleanParams, function (err) {
+                            if (err) {
+                                // SQLite UNIQUE 제약 실패 에러를 MySQL UNIQUE 제약 에러 문구로 살짝 래핑
+                                if (err.message.includes('UNIQUE constraint failed')) {
+                                    err.code = 'ER_DUP_ENTRY';
+                                }
+                                return reject(err);
+                            }
+                            // MySQL insertId/affectedRows 호환 리턴
+                            resolve([{ insertId: this.lastID, affectedRows: this.changes }, null]);
+                        });
+                    }
+                });
+            },
+
+            /**
+             * 커넥션 획득 인터페이스 시뮬레이션
+             */
+            async getConnection() {
+                return {
+                    query: this.query.bind(this),
+                    release() {}
+                };
+            },
+
+            /**
+             * SQLite 연결 풀 닫기 시뮬레이션
+             */
+            end() {
+                return new Promise((resolve, reject) => {
+                    if (!sqliteDb) return resolve();
+                    sqliteDb.close((err) => {
+                        if (err) return reject(err);
+                        resolve();
+                    });
+                });
+            }
+        };
+    }
 }
 
 // 제품 초기 적재용 데이터 공통 함수
