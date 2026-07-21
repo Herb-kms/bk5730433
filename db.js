@@ -415,29 +415,38 @@ if (DB_TYPE.toLowerCase() === 'mysql') {
             async query(sql, params = []) {
                 const upperSql = sql.trim().toUpperCase();
                 if (upperSql.includes('FROM PRODUCTS')) {
-                    if (upperSql.includes('WHERE ID =')) {
-                        const id = Number(params[0]);
+                    if (upperSql.includes('WHERE ID =') || upperSql.includes('WHERE ID=')) {
+                        const idMatch = upperSql.match(/WHERE ID\s*=\s*['"]?(\d+)['"]?/);
+                        const id = params[0] !== undefined ? Number(params[0]) : (idMatch ? Number(idMatch[1]) : null);
                         const item = inMemoryProducts.find(p => p.id === id);
                         return [[item || null].filter(Boolean), null];
                     }
                     
                     let filtered = [...inMemoryProducts];
-                    if (upperSql.includes('WHERE TYPE =') || upperSql.includes('WHERE TYPE = ?') || upperSql.includes('WHERE TYPE=?')) {
-                        const typeVal = params[0];
-                        if (typeVal) {
-                            filtered = filtered.filter(p => p.type === typeVal);
-                        }
-                        if (params.length > 1 && (upperSql.includes('AND CATEGORY =') || upperSql.includes('AND CATEGORY=?'))) {
-                            const catVal = params[1];
-                            if (catVal) {
-                                filtered = filtered.filter(p => p.category === catVal);
-                            }
-                        }
-                    } else if (upperSql.includes('WHERE CATEGORY =')) {
-                        const catVal = params[0];
-                        if (catVal) {
-                            filtered = filtered.filter(p => p.category === catVal);
-                        }
+
+                    // 1. type 필터링 (파라미터 바인딩 또는 SQL 리터럴 파싱 대응)
+                    let typeVal = params.length > 0 && typeof params[0] === 'string' && (params[0] === 'rental' || params[0] === 'sales') ? params[0] : null;
+                    if (!typeVal) {
+                        const typeMatch = upperSql.match(/TYPE\s*=\s*['"]?([A-Z0-9_]+)['"]?/i);
+                        if (typeMatch) typeVal = typeMatch[1].toLowerCase();
+                    }
+                    if (typeVal) {
+                        filtered = filtered.filter(p => String(p.type).toLowerCase() === String(typeVal).toLowerCase());
+                    }
+
+                    // 2. category 필터링
+                    let catVal = null;
+                    if (params.length > 1) {
+                        catVal = params[1];
+                    } else if (params.length === 1 && typeVal !== params[0]) {
+                        catVal = params[0];
+                    }
+                    if (!catVal) {
+                        const catMatch = upperSql.match(/CATEGORY\s*=\s*['"]?([A-Z0-9_]+)['"]?/i);
+                        if (catMatch) catVal = catMatch[1].toLowerCase();
+                    }
+                    if (catVal && catVal !== 'all') {
+                        filtered = filtered.filter(p => String(p.category).toLowerCase() === String(catVal).toLowerCase());
                     }
 
                     return [filtered, null];
