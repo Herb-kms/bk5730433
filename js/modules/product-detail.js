@@ -655,7 +655,8 @@ function bindTabsAndImages(p) {
         let candidateIndex = 0;
         const loadNextDetailImage = () => {
             if (candidateIndex < detailCandidates.length) {
-                descImg.src = detailCandidates[candidateIndex++];
+                const srcUrl = detailCandidates[candidateIndex++];
+                descImg.src = srcUrl.includes('?') ? srcUrl : `${srcUrl}?t=${Date.now()}`;
             } else {
                 descImgContainer.style.display = 'none';
             }
@@ -701,7 +702,8 @@ function bindTabsAndImages(p) {
         let condIndex = 0;
         const loadNextConditionImage = () => {
             if (condIndex < conditionCandidates.length) {
-                condImg.src = conditionCandidates[condIndex++];
+                const srcUrl = conditionCandidates[condIndex++];
+                condImg.src = srcUrl.includes('?') ? srcUrl : `${srcUrl}?t=${Date.now()}`;
             } else {
                 alwaysVisibleConditionCard.style.display = 'none';
             }
