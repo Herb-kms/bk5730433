@@ -9,16 +9,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             const res = await fetch('/api/session');
             const session = await res.json();
-            
+
             if (!session.loggedIn) {
                 alert('로그인이 필요한 페이지입니다.');
                 location.href = 'login.html';
                 return;
             }
-            
+
             const u = session.user;
             const grade = u.user_type === 'admin' ? '관리자 계정' : (u.user_type === 'business' ? '업체 회원' : '개인 회원');
-            
+
             const displayUsername = document.getElementById('displayUsername');
             const displayUserType = document.getElementById('displayUserType');
             const infoUsername = document.getElementById('infoUsername');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (displayUsername) displayUsername.innerText = u.real_name || u.username;
             if (displayUserType) displayUserType.innerText = grade;
-            
+
             if (infoUsername) infoUsername.innerText = u.username;
             if (infoRealName) infoRealName.innerText = u.real_name || '-';
             if (infoCompanyName) infoCompanyName.innerText = u.company_name || '-';
@@ -98,3 +98,5 @@ document.addEventListener('DOMContentLoaded', async () => {
                 alert('서버 연결 오류');
             }
         });
+    }
+});

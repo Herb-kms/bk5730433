@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>?�매?�품 | 복사기마??/title>
-    <meta name="description" content="복사기마??- ?�무?�경??최적?�된 복사�??�매 ?�품???�시�??�터�?만나보세??">
+    <title>판매제품 | 복사기마트</title>
+    <meta name="description" content="복사기마트 - 최고의 복합기/프린터 판매 제품 목록입니다.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/shared.css">
@@ -14,21 +14,22 @@
 <body>
 
     <header class="hero-nav-bar-fluid subpage-header">
-        <a href="index.html" class="logo hero-logo">복사�?span>마트</span></a>
+        <a href="index.html" class="logo hero-logo">복사기<span>마트</span></a>
 
         <nav class="hero-nav">
             <ul>
-                <li><a href="rental.html">?��??�품</a></li>
-                <li><a href="sales.html" class="nav-active">?�매?�품</a></li>
-                <li><a href="notice.html">공�??�항</a></li>
-                <li><a href="downloads.html">?�료??/a></li>
-                <li><a href="reviews.html">?�치 ?�기</a></li>
+                <li><a href="rental.html">임대제품</a></li>
+                <li><a href="sales.html" class="nav-active">판매제품</a></li>
+                <li><a href="notice.html">공지사항</a></li>
+                <li><a href="downloads.html">자료실</a></li>
+                <li><a href="reviews.html">설치 후기</a></li>
             </ul>
         </nav>
 
         <div class="hero-auth" id="authSection">
             <a href="login.html" class="admin-login-btn">
-                <i class="fas fa-user-cog"></i> 관리자 로그??            </a>
+                <i class="fas fa-user-cog"></i> 관리자 로그인
+            </a>
         </div>
     
     </header>
@@ -39,8 +40,8 @@
         <div class="sub-hero-glow-layer-2"></div>
         <div class="sub-hero-grid-mask"></div>
         <div class="container" style="position: relative; z-index: 10;">
-            <h1>?�매 ?�품</h1>
-            <p>?�무???�경??맞는 맞춤 ?�계�?최적???�무 ?�산?�을 ?�속?�립?�다.</p>
+            <h1>판매 제품</h1>
+            <p>합리적인 가격의 프리미엄 복합기 및 프린터 구매 솔루션입니다.</p>
         </div>
     </section>
 
@@ -48,25 +49,26 @@
         <div class="container">
 
             <div class="filter-panel-card">
-                <!-- 카테고리 ?�터 ?�인 -->
-                <div class="filter-panel-row category-row">
-                    <span class="filter-row-label"><i class="fas fa-th-large"></i> ?�품 구분</span>
-                    <div class="category-tabs">
-                        <a href="#" class="active" data-cat="all">?�체</a>
+
+                <!-- 카테고리 필터 행 -->
+                <div class="filter-panel-row">
+                    <span class="filter-row-label"><i class="fas fa-th-large"></i> 카테고리</span>
+                    <div class="category-tabs-fluid" id="categoryTabs">
+                        <a href="#" class="active" data-cat="all">전체</a>
                         <a href="#" data-cat="color">컬러</a>
-                        <a href="#" data-cat="mono">?�백</a>
-                        <a href="#" data-cat="inkjet">?�크??/a>
-                        <a href="#" data-cat="laser">?�이?�</a>
+                        <a href="#" data-cat="mono">흑백</a>
+                        <a href="#" data-cat="inkjet">잉크젯</a>
+                        <a href="#" data-cat="laser">레이저</a>
                     </div>
                 </div>
 
-                <!-- 브랜???�터 ?�인 -->
+                <!-- 제조 브랜드 필터 행 -->
                 <div class="filter-panel-row brand-row">
-                    <span class="filter-row-label"><i class="fas fa-tags"></i> ?�조 브랜??/span>
+                    <span class="filter-row-label"><i class="fas fa-tags"></i> 제조 브랜드</span>
                     <div class="brand-filters">
                         <label class="filter-checkbox-label">
                             <input type="checkbox" value="all" class="brand-check" checked>
-                            <span class="checkbox-btn">?�체</span>
+                            <span class="checkbox-btn">전체</span>
                         </label>
                         <label class="filter-checkbox-label">
                             <input type="checkbox" value="canon" class="brand-check">
@@ -74,15 +76,15 @@
                         </label>
                         <label class="filter-checkbox-label">
                             <input type="checkbox" value="sindoh" class="brand-check">
-                            <span class="checkbox-btn">?�도리코</span>
+                            <span class="checkbox-btn">신도리코</span>
                         </label>
                         <label class="filter-checkbox-label">
                             <input type="checkbox" value="minolta" class="brand-check">
-                            <span class="checkbox-btn">미�??�</span>
+                            <span class="checkbox-btn">미놀타</span>
                         </label>
                         <label class="filter-checkbox-label">
                             <input type="checkbox" value="samsung" class="brand-check">
-                            <span class="checkbox-btn">?�성</span>
+                            <span class="checkbox-btn">삼성</span>
                         </label>
                         <label class="filter-checkbox-label">
                             <input type="checkbox" value="hp" class="brand-check">
@@ -92,16 +94,16 @@
                 </div>
             </div>
 
-            <!-- ?�렬 �?결과 ?�약 ?�인 -->
+            <!-- 정렬 및 결과 요약 행 -->
             <div class="controls-row-secondary">
                 <div class="products-count-badge">
-                    <i class="fas fa-cubes"></i> �?<span id="productsCount">0</span>개의 ?�품???�습?�다.
+                    <i class="fas fa-cubes"></i> 총 <span id="productsCount">0</span>개의 제품이 있습니다.
                 </div>
                 <div class="sort-select-wrap">
                     <select id="sort-select" class="sort-select">
-                        <option value="recent">최신??/option>
-                        <option value="price-low">??? 가격순</option>
-                        <option value="price-high">?��? 가격순</option>
+                        <option value="recent">최신순</option>
+                        <option value="price-low">낮은 가격순</option>
+                        <option value="price-high">높은 가격순</option>
                     </select>
                 </div>
             </div>
@@ -109,7 +111,7 @@
 
             <div class="card-grid" id="cardGrid"></div>
 
-            <!-- ?�적 ?�이지?�이???�역 추�? -->
+            <!-- 동적 페이지네이션 영역 추가 -->
             <div class="pagination-container" id="productPagination"></div>
         </div>
     </section>
@@ -120,7 +122,7 @@
             <span class="close-detail-modal" id="closeDetailModalBtn">&times;</span>
             <div class="detail-top-section">
                 <div class="detail-img-area">
-                    <img id="modalImg" src="" alt="?�품 ?��?지">
+                    <img id="modalImg" src="" alt="제품 이미지">
                     <div class="detail-thumbnails">
                         <span class="active">FRONT</span>
                         <span>SIDE</span>
@@ -133,15 +135,15 @@
                     <p id="modalDesc" class="detail-desc"></p>
                     <table class="spec-table">
                         <tr>
-                            <th>기본?�양</th>
-                            <td>A3/A4 복합�??�인??/td>
+                            <th>기본사양</th>
+                            <td>A3/A4 복합기/프린터</td>
                         </tr>
                         <tr>
-                            <th>?�쇄?�도</th>
+                            <th>인쇄속도</th>
                             <td id="specSpeed">-</td>
                         </tr>
                         <tr>
-                            <th>?�상??/th>
+                            <th>해상도</th>
                             <td id="specResolution">-</td>
                         </tr>
                         <tr>
@@ -155,7 +157,7 @@
 
 
             <div class="detail-bottom-section">
-                <h3 class="section-mini-title"><i class="fas fa-star"></i> ?�품 주요 ?�능 �??�점</h3>
+                <h3 class="section-mini-title"><i class="fas fa-star"></i> 제품 주요 기능 및 특장점</h3>
                 <div class="feature-banner-list">
                     <div class="feature-banner-item">
                         <div class="feature-icon-wrap"><i class="fas fa-bolt" id="featureIcon1"></i></div>
@@ -175,9 +177,9 @@
                 </div>
                 <div class="detail-action-buttons">
                     <a id="modalNaverLink" href="" target="_blank" class="btn-detail-naver"><i
-                            class="fas fa-comment"></i> ?�이�??�톡 ?�담</a>
+                            class="fas fa-comment"></i> 네이버톡톡 상담</a>
                     <a id="modalKakaoLink" href="" target="_blank" class="btn-detail-kakao"><i
-                            class="fas fa-comment-dots"></i> 카카?�톡 즉시 ?�담</a>
+                            class="fas fa-comment-dots"></i> 카카오톡 즉시 상담</a>
                 </div>
             </div>
         </div>
@@ -190,18 +192,18 @@
             </div>
             <div class="quick-card-body">
                 <div class="quick-card-section">
-                    <span class="section-label"><i class="fas fa-phone-alt"></i> ?�화?�담</span>
+                    <span class="section-label"><i class="fas fa-phone-alt"></i> 전화상담</span>
                     <a href="tel:010-6593-0477" class="phone-number-link">010-6593-0477</a>
-                    <span class="phone-hours">?�일/주말 ?�중무휴</span>
+                    <span class="phone-hours">평일/주말 연중무휴</span>
                 </div>
                 <div class="quick-card-section">
-                    <span class="section-label"><i class="fas fa-fax"></i> ?�스번호</span>
+                    <span class="section-label"><i class="fas fa-fax"></i> 팩스번호</span>
                     <span class="fax-number">031-574-3369</span>
                 </div>
                 <a href="https://open.kakao.com/o/sSzFO2O" target="_blank" class="quick-inquiry-btn">
                     <i class="fas fa-comment-dots"></i> 견적문의
                 </a>
-                <button class="quick-card-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="?�로 가�?>
+                <button class="quick-card-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="맨 위로 가기">
                     <i class="fas fa-arrow-up"></i> TOP
                 </button>
             </div>
@@ -210,16 +212,13 @@
 
     <footer>
         <div class="container footer-inner">
-            <a href="index.html" class="logo footer-logo">복사�?span>마트</span></a>
-            <p class="footer-info">경기 ?�양주시 진건???�릉�?413 1?? ?��??�OA?�드 &nbsp;|&nbsp; 031-573-0433 &nbsp;|&nbsp; bk0433@naver.com</p>
-            <p class="footer-copy">&copy; 2026 복사기마?? All Rights Reserved.</p>
+            <a href="index.html" class="logo footer-logo">복사기<span>마트</span></a>
+            <p class="footer-info">경기 남양주시 진건읍 사릉로 413 1층 현대OA월드 &nbsp;|&nbsp; 031-573-0433 &nbsp;|&nbsp; bk0433@naver.com</p>
+            <p class="footer-copy">&copy; 2026 복사기마트 All Rights Reserved.</p>
         </div>
     </footer>
 
-
-
-
-    <script type="module" src="js/app.js"></script>
+<script type="module" src="js/app.js"></script>
 </body>
 
 </html>

@@ -762,3 +762,59 @@ a.prod-card {
     background: linear-gradient(135deg, #fbbf24, #d97706);
 }
 
+/* ========================================================
+   Product Detail 2-Tab Switcher & Large Condition Card
+   ======================================================== */
+.detail-nav-tabs {
+    display: flex;
+    background: #f1f5f9;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid #e2e8f0;
+    border-bottom: 2px solid #2563eb;
+    overflow: hidden;
+}
+
+.detail-tab-btn {
+    flex: 1;
+    padding: 18px 24px;
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    outline: none;
+}
+
+.detail-tab-btn:hover {
+    color: #1e293b;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.detail-tab-btn.active {
+    color: #2563eb;
+    background: #ffffff;
+    border-bottom: 3px solid #2563eb;
+    box-shadow: 0 -4px 12px rgba(37, 99, 235, 0.05);
+}
+
+.detail-tab-panel {
+    animation: tabFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tabFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

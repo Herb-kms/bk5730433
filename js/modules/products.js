@@ -87,10 +87,12 @@ export async function loadAndRenderProducts(type) {
 
     } catch (err) {
         console.error('제품 로드 중 에러 발생:', err);
+        console.error('에러 스택:', err.stack);
         cardGrid.innerHTML = `
             <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #ef4444;">
                 <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 15px;"></i>
                 <p style="font-size: 1.1rem; font-weight: 600;">제품 목록을 불러오는 중 오류가 발생했습니다.</p>
+                <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 10px;">${err.message}</p>
             </div>
         `;
     }

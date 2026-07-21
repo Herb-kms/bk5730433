@@ -43,17 +43,24 @@ function renderProductDetails(p) {
     // 1. 기본 UI 텍스트 및 속성 매핑
     document.title = `${p.name} | 복사기마트`;
     document.getElementById('detailTitle').textContent = p.name;
-    document.getElementById('detailBadge').textContent = p.badge || `${p.brand.toUpperCase()} · ${p.category === 'color' ? '컬러' : '흑백'} 복합기`;
-    document.getElementById('detailDesc').innerHTML = p.description || '사무 효율성을 한 단계 더 끌어올리는 복사기마트 추천 기종입니다.';
+    const detailDesc = document.getElementById('detailDesc');
+    if (detailDesc) detailDesc.innerHTML = p.description || '사무 효율성을 한 단계 더 끌어올리는 복사기마트 추천 기종입니다.';
     
-    const mainImgNode = document.getElementById('detailMainImg');
-    mainImgNode.src = originalImgSrc;
-    mainImgNode.style.transform = `scale(${(p.image_zoom_1 !== undefined && p.image_zoom_1 !== null) ? p.image_zoom_1 / 100 : 1.3})`;
-    mainImgNode.style.padding = `${(p.image_padding_1 !== undefined && p.image_padding_1 !== null) ? p.image_padding_1 : 10}px`;
-    mainImgNode.style.objectFit = 'contain';
-    mainImgNode.onerror = function() {
-        this.src = '/img/standing_color_copier.PNG';
-    };
+    const subHeroTitle = document.getElementById('subHeroTitle');
+    const subHeroDesc = document.getElementById('subHeroDesc');
+    if (subHeroTitle) subHeroTitle.textContent = p.type === 'rental' ? '임대 제품 상세' : '판매 제품 상세';
+    if (subHeroDesc) subHeroDesc.textContent = `${p.name} - 최고급 사양 및 실시간 견적 안내`;
+
+    const mainImgNode = document.getElementById('detailMainImg') || document.getElementById('detailImg');
+    if (mainImgNode) {
+        mainImgNode.src = originalImgSrc;
+        mainImgNode.style.transform = `scale(${(p.image_zoom_1 !== undefined && p.image_zoom_1 !== null) ? p.image_zoom_1 / 100 : 1.3})`;
+        mainImgNode.style.padding = `${(p.image_padding_1 !== undefined && p.image_padding_1 !== null) ? p.image_padding_1 : 10}px`;
+        mainImgNode.style.objectFit = 'contain';
+        mainImgNode.onerror = function() {
+            this.src = '/img/standing_color_copier.PNG';
+        };
+    }
 
     // 브레드크럼 동기화
     const breadcrumbType = document.getElementById('breadcrumbType');
@@ -170,36 +177,43 @@ function setupQuotationSimulator(p) {
 
 // 스펙 상세 테이블 및 핵심 특장점 배너 빌더
 function setupSpecifications(p) {
-    const specList = (p.specs || '').split(',');
-    const speed = specList[0] || '25ppm';
-    const resolution = specList[1] || '1200dpi';
-    const features = specList[2] || 'A3 출력, 스캔, 복사 기본 지원';
+    let speed = '25ppm';
+    let resolution = '1200 x 1200 dpi';
+    let features = '프린트, 복사, 컬러 스캔 기본 지원';
+
+    if (p.specs) {
+        let parsedJson = null;
+        if (typeof p.specs === 'string' && p.specs.trim().startsWith('{')) {
+            try { parsedJson = JSON.parse(p.specs); } catch(e) {}
+        }
+        
+        if (parsedJson) {
+            speed = parsedJson.speed || speed;
+            resolution = parsedJson.resolution || resolution;
+            features = parsedJson.feature || parsedJson.features || features;
+        } else if (typeof p.specs === 'string') {
+            const specList = p.specs.split(',').map(s => s.trim()).filter(Boolean);
+            specList.forEach(item => {
+                if (/ppm|매/i.test(item)) speed = item;
+                else if (/dpi|x|해상도/i.test(item)) resolution = item;
+                else features = features ? `${features}, ${item}` : item;
+            });
+            if (specList.length > 0 && speed === '25ppm' && !/ppm/i.test(specList[0])) {
+                speed = specList[0];
+            }
+        }
+    }
 
     // 스펙 테이블 바인딩
-    document.getElementById('detailSpecSpeed').textContent = speed;
-    document.getElementById('detailSpecResolution').textContent = resolution;
-    document.getElementById('detailSpecFeature').textContent = features;
+    const speedEl = document.getElementById('detailSpecSpeed');
+    const resEl = document.getElementById('detailSpecResolution');
+    const featEl = document.getElementById('detailSpecFeature');
 
-    // 핵심 기능 3단 설명 카드 빌더
-    const feature1Title = document.getElementById('detailFeatureTitle1');
-    const feature1Desc = document.getElementById('detailFeatureDesc1');
-    const feature2Title = document.getElementById('detailFeatureTitle2');
-    const feature2Desc = document.getElementById('detailFeatureDesc2');
-    const feature3Title = document.getElementById('detailFeatureTitle3');
-    const feature3Desc = document.getElementById('detailFeatureDesc3');
+    if (speedEl) speedEl.textContent = speed;
+    if (resEl) resEl.textContent = resolution;
+    if (featEl) featEl.textContent = features;
 
-    // 1번 카드: 인쇄속도(ppm) 기반
-    const speedNum = parseInt(speed, 10) || 25;
-    feature1Title.textContent = `분당 ${speed} 고속 출력`;
-    feature1Desc.textContent = `분당 최대 ${speedNum}매의 막힘없는 고속 출력 엔진으로 대용량 비즈니스 문서도 신속하고 안정적으로 해결해 드립니다.`;
-
-    // 2번 카드: 해상도(dpi) 기반
-    feature2Title.textContent = `${resolution} 초고화질 구현`;
-    feature2Desc.textContent = `${resolution}급의 독자적 화질 보정 기술을 통해 일반 보고서는 물론, 복잡한 설계도면이나 비즈니스 차트의 얇은 선까지 선명하게 인쇄합니다.`;
-
-    // 3번 카드: 기능 기반
-    feature3Title.textContent = `다용도 스마트 워크`;
-    feature3Desc.textContent = `${features.split(' ')[0]} 및 유무선 네트워크 프린팅 기술을 결합하여 케이블 연결 없이도 스마트폰과 오피스 PC에서 자유롭게 다기능 출력을 지원합니다.`;
+    // 핵심 기능 3단 설명 카드는 HTML에 공통 고정되어 유지됩니다.
 }
 
 // 이미지 썸네일 갤러리 컨트롤러
@@ -620,48 +634,98 @@ function bindTabsAndImages(p) {
     if (richTextContainer) {
         richTextContainer.innerHTML = p.description || '<p style="color: #64748b; text-align: center; padding: 40px; font-weight: 600;">등록된 상세 소개글이 없습니다.</p>';
     }
- 
-    // 2. 대형 상세 설명 이미지 매핑
+
+    const modelName = (p.name || '').toLowerCase().trim();
+
+    // 2. 대형 상세 설명 이미지 매핑 (제품설명이미지 폴더 자동 감지 + 폴백 지원)
     const descImgContainer = document.getElementById('detailDescImgContainer');
     const descImg = document.getElementById('detailDescImg');
-    if (p.detail_image_url) {
-        descImg.src = p.detail_image_url;
+    
+    // 사용자가 '제품설명이미지/' 폴더에 추가할 수 있는 자동 파이프라인 후보 생성
+    const detailCandidates = [
+        p.detail_image_url,
+        `제품설명이미지/${modelName}(제품설명).jpg`,
+        `제품설명이미지/${modelName}(제품설명).png`,
+        `제품설명이미지/${modelName}.jpg`,
+        `제품설명이미지/${modelName}.png`,
+        '제품설명이미지/c3322(제품설명).jpg'
+    ].filter(Boolean);
+
+    if (descImg && descImgContainer) {
+        let candidateIndex = 0;
+        const loadNextDetailImage = () => {
+            if (candidateIndex < detailCandidates.length) {
+                descImg.src = detailCandidates[candidateIndex++];
+            } else {
+                descImgContainer.style.display = 'none';
+            }
+        };
+
+        descImg.onerror = function() {
+            loadNextDetailImage();
+        };
+
         descImgContainer.style.display = 'block';
-    } else {
-        descImgContainer.style.display = 'none';
+        loadNextDetailImage();
     }
- 
-    // 3. 임대/구매 조건표 이미지 매핑 (항상 노출되는 카드로 제어)
+
+    // 3. 임대/구매 조건표 이미지 매핑 (제품설명이미지 폴더 내 제품별 조건표 자동 감지)
     const alwaysVisibleConditionCard = document.getElementById('alwaysVisibleConditionCard');
     const condImg = document.getElementById('detailCondImg');
     const conditionShortcutWrap = document.getElementById('conditionShortcutWrap');
- 
-    if (p.condition_image_url) {
-        condImg.src = p.condition_image_url;
-        if (alwaysVisibleConditionCard) alwaysVisibleConditionCard.style.display = 'block';
+    const condTitleEl = document.getElementById('conditionCardTitle');
+    if (condTitleEl) condTitleEl.textContent = p.type === 'sales' ? '구매 조건표' : '임대 조건표';
+
+    const conditionCandidates = [
+        p.condition_image_url,
+        `제품설명이미지/${modelName}(조건표).png`,
+        `제품설명이미지/${modelName}(조건표).jpg`,
+        '/uploads/c3322_condition.png',
+        '제품설명이미지/c3322(조건표).png'
+    ].filter(Boolean);
+
+    if (condImg && alwaysVisibleConditionCard) {
+        let condIndex = 0;
+        const loadNextConditionImage = () => {
+            if (condIndex < conditionCandidates.length) {
+                condImg.src = conditionCandidates[condIndex++];
+            } else {
+                alwaysVisibleConditionCard.style.display = 'none';
+            }
+        };
+
+        condImg.onerror = function() {
+            loadNextConditionImage();
+        };
+
+        alwaysVisibleConditionCard.style.display = 'block';
         if (conditionShortcutWrap) conditionShortcutWrap.style.display = 'block';
-    } else {
-        if (alwaysVisibleConditionCard) alwaysVisibleConditionCard.style.display = 'none';
-        if (conditionShortcutWrap) conditionShortcutWrap.style.display = 'none';
+        loadNextConditionImage();
     }
- 
-    // 4. 탭 클릭 및 스크롤 이벤트 바인딩
+
+    // 4. 2단 탭 클릭 및 화면 전환 이벤트 바인딩
     const tabButtons = document.querySelectorAll('.detail-tab-btn');
     const tabPanels = document.querySelectorAll('.detail-tab-panel');
- 
+
     tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            const targetTab = btn.getAttribute('data-tab');
- 
+            const targetTab = btn.getAttribute('data-target') || btn.getAttribute('data-tab');
+
             tabButtons.forEach(t => t.classList.remove('active'));
-            tabPanels.forEach(p => p.classList.remove('active'));
- 
+            tabPanels.forEach(panel => {
+                panel.classList.remove('active');
+                panel.style.display = 'none';
+            });
+
             btn.classList.add('active');
             const activePanel = document.getElementById(targetTab);
-            if (activePanel) activePanel.classList.add('active');
+            if (activePanel) {
+                activePanel.classList.add('active');
+                activePanel.style.display = 'block';
+            }
         });
     });
- 
+
     const goToConditionBtn = document.getElementById('goToConditionBtn');
     if (goToConditionBtn) {
         goToConditionBtn.addEventListener('click', () => {

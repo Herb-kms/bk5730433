@@ -22,11 +22,44 @@ header.hero-nav-bar-fluid {
 }
 
 header.hero-nav-bar-fluid.mega-active {
-    background-color: #f5f6f8 !important;
-    background: #f5f6f8 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
     box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08) !important;
     border-bottom: 1px solid #e2e8f0 !important;
     z-index: 99999 !important;
+}
+
+header.hero-nav-bar-fluid.mega-active .logo.hero-logo {
+    color: #0f172a !important;
+    text-shadow: none !important;
+}
+
+header.hero-nav-bar-fluid.mega-active .logo.hero-logo span {
+    color: #2563eb !important;
+    -webkit-text-fill-color: #2563eb !important;
+    text-shadow: none !important;
+}
+
+header.hero-nav-bar-fluid.mega-active .hero-nav ul li a {
+    color: #1e293b !important;
+    text-shadow: none !important;
+}
+
+header.hero-nav-bar-fluid.mega-active .hero-nav ul li a:hover,
+header.hero-nav-bar-fluid.mega-active .hero-nav ul li a.nav-active {
+    color: #2563eb !important;
+}
+
+header.hero-nav-bar-fluid.mega-active .admin-login-btn,
+header.hero-nav-bar-fluid.mega-active .hero-auth .login-btn-top,
+header.hero-nav-bar-fluid.mega-active .hero-auth .logout-btn-top,
+header.hero-nav-bar-fluid.mega-active .hero-auth .myinfo-btn,
+header.hero-nav-bar-fluid.mega-active .hero-auth .admin-btn {
+    color: #1e293b !important;
+    border-color: #cbd5e1 !important;
+    background: #f8fafc !important;
+    text-shadow: none !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
 }
 
 header.hero-nav-bar-fluid::after {
@@ -91,11 +124,11 @@ header.hero-nav-bar-fluid:hover .dropdown-menu {
 }
 
 .hero-nav ul li:nth-child(1) .dropdown-menu::before {
-    content: '????' !important;
+    content: '임대제품' !important;
 }
 
 .hero-nav ul li:nth-child(3) .dropdown-menu::before {
-    content: '怨듭??ы' !important;
+    content: '공지사항' !important;
 }
 
 .dropdown-menu {

@@ -98,3 +98,20 @@ export function initMegaMenu() {
 
     function hideMegaMenu() {
         activeTimeout = setTimeout(() => {
+            megaMenu.classList.remove('show');
+            header.classList.remove('mega-active');
+            targetLinks.forEach(link => link.classList.remove('megamenu-parent-active'));
+        }, 100); // 미세한 지연으로 부드러운 전환 효과
+    }
+
+    targetLinks.forEach(link => {
+        link.addEventListener('mouseenter', showMegaMenu);
+        link.addEventListener('mouseleave', hideMegaMenu);
+    });
+
+    // 메가메뉴 영역 안에서 마우스가 떠날 때도 숨김 처리 (안전장치)
+    megaMenu.addEventListener('mouseenter', () => {
+        if (activeTimeout) clearTimeout(activeTimeout);
+    });
+    megaMenu.addEventListener('mouseleave', hideMegaMenu);
+}
