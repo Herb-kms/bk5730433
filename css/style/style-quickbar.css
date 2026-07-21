@@ -235,39 +235,6 @@
     .floating-quick-bar {
         right: 12px;
     }
-    .quick-menu-card:not(.is-expanded) {
-        width: 64px !important;
-        border-radius: 32px !important;
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
-    }
-    .quick-menu-card:not(.is-expanded) .quick-card-header {
-        padding: 12px 6px;
-        flex-direction: column;
-        gap: 4px;
-        border-radius: 32px;
-    }
-    .quick-menu-card:not(.is-expanded) .quick-card-header .header-title-text {
-        font-size: 0.65rem;
-        letter-spacing: 0;
-    }
-    .quick-menu-card:not(.is-expanded) .quick-card-body {
-        display: none !important;
-    }
-    /* 호버 시 부드럽게 전체 팝오버 확장 */
-    .quick-menu-card:not(.is-expanded):hover {
-        width: 170px !important;
-        border-radius: 12px !important;
-    }
-    .quick-menu-card:not(.is-expanded):hover .quick-card-header {
-        padding: 10px 12px;
-        flex-direction: row;
-    }
-    .quick-menu-card:not(.is-expanded):hover .quick-card-header .header-title-text {
-        font-size: 0.9rem;
-    }
-    .quick-menu-card:not(.is-expanded):hover .quick-card-body {
-        display: flex !important;
-    }
 }
 
 @media (max-width: 768px) {

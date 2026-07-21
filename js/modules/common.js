@@ -81,20 +81,21 @@ export function initCommonInteractions() {
         updateQuickBarPosition();
         setTimeout(updateQuickBarPosition, 100);
 
-        // 접기/펼치기 토글 이벤트 글로벌 등록
+        // 접기/펼치기 토글 이벤트 글로벌 등록 (기본: 열림 상태)
         window.toggleQuickMenu = function(e) {
             if (e && e.stopPropagation) e.stopPropagation();
             const card = document.querySelector('.quick-menu-card');
-            const toggleIcon = document.querySelector('.quick-toggle-btn i');
+            const toggleBtn = document.querySelector('.quick-toggle-btn');
+            const toggleIcon = toggleBtn ? toggleBtn.querySelector('i') : null;
             if (!card) return;
 
             const isCollapsed = card.classList.toggle('is-collapsed');
             if (isCollapsed) {
-                card.classList.remove('is-expanded');
                 if (toggleIcon) toggleIcon.className = 'fas fa-plus';
+                if (toggleBtn) toggleBtn.setAttribute('title', '펼치기');
             } else {
-                card.classList.add('is-expanded');
                 if (toggleIcon) toggleIcon.className = 'fas fa-minus';
+                if (toggleBtn) toggleBtn.setAttribute('title', '접기');
             }
         };
 
