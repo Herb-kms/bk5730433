@@ -324,6 +324,28 @@ function initializeSQLite(sqliteDb) {
                     );
                     defaultProducts.forEach(p => stmt.run(p));
                     stmt.finalize();
+                } else {
+                    // sales 제품 누락 여부 체크 및 동적 보완 주입
+                    sqliteDb.get("SELECT COUNT(*) as salesCount FROM products WHERE type = 'sales'", (sErr, sRow) => {
+                        if (sRow && sRow.salesCount === 0) {
+                            console.log('[마이그레이션] sales 제품 누락 감지 - 판매 전용 3종을 보완 주입합니다.');
+                            const seedProducts = getSeedProducts();
+                            const salesOnly = seedProducts.filter(p => p[0] === 'sales');
+                            const stmt = sqliteDb.prepare(
+                                `INSERT INTO products (
+                                    type, category, brand, name, price, 
+                                    image_url, image_url_2, image_url_3, 
+                                    badge, description, specs, naver_talk, kakao_talk, date, 
+                                    image_zoom_card, image_padding_card, 
+                                    image_zoom_1, image_padding_1, 
+                                    image_zoom_2, image_padding_2, 
+                                    image_zoom_3, image_padding_3
+                                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 130, 10, 130, 10, 130, 10, 130, 10)`
+                            );
+                            salesOnly.forEach(p => stmt.run(p));
+                            stmt.finalize();
+                        }
+                    });
                 }
             });
         });

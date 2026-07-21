@@ -83,26 +83,25 @@ export function initCommonInteractions() {
 
         // 접기/펼치기 토글 이벤트 글로벌 등록 (기본: 열림 상태)
         window.toggleQuickMenu = function(e) {
+            if (e && e.preventDefault) e.preventDefault();
             if (e && e.stopPropagation) e.stopPropagation();
+
             const card = document.querySelector('.quick-menu-card');
-            const toggleBtn = document.querySelector('.quick-toggle-btn');
-            const toggleIcon = toggleBtn ? toggleBtn.querySelector('i') : null;
             if (!card) return;
 
             const isCollapsed = card.classList.toggle('is-collapsed');
-            if (isCollapsed) {
-                if (toggleIcon) toggleIcon.className = 'fas fa-plus';
-                if (toggleBtn) toggleBtn.setAttribute('title', '펼치기');
-            } else {
-                if (toggleIcon) toggleIcon.className = 'fas fa-minus';
-                if (toggleBtn) toggleBtn.setAttribute('title', '접기');
-            }
+            const toggleBtns = document.querySelectorAll('.quick-toggle-btn');
+            
+            toggleBtns.forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (isCollapsed) {
+                    if (icon) icon.className = 'fas fa-plus';
+                    btn.setAttribute('title', '펼치기');
+                } else {
+                    if (icon) icon.className = 'fas fa-minus';
+                    btn.setAttribute('title', '접기');
+                }
+            });
         };
-
-        const toggleBtn = document.querySelector('.quick-toggle-btn');
-        if (toggleBtn && !toggleBtn.dataset.bound) {
-            toggleBtn.dataset.bound = 'true';
-            toggleBtn.addEventListener('click', window.toggleQuickMenu);
-        }
     }
 }
