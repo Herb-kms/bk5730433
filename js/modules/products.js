@@ -112,7 +112,7 @@ export function initProductPageEvents() {
     if (!productPage) return;
 
     const cardsArray = Array.from(cardGrid.querySelectorAll('.prod-card'));
-    const categoryTabs = document.querySelectorAll('.category-tabs a');
+    const categoryTabs = document.querySelectorAll('.category-tabs a, .category-tabs-fluid a, #categoryTabs a');
     const brandChecks = document.querySelectorAll('.brand-check');
     const sortSelect = document.getElementById('sort-select');
     const paginationContainer = document.getElementById('productPagination');

@@ -40,16 +40,24 @@
     font-size: 0.95rem;
 }
 
-.category-tabs {
+.category-tabs,
+.category-tabs-fluid {
     display: flex;
     gap: 6px;
     background: #f1f5f9;
     padding: 4px;
     border-radius: 10px;
     border: 1px solid #e2e8f0;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.category-tabs::-webkit-scrollbar,
+.category-tabs-fluid::-webkit-scrollbar {
+    display: none;
 }
 
-.category-tabs a {
+.category-tabs a,
+.category-tabs-fluid a {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -62,54 +70,63 @@
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     border: none !important;
     background: transparent;
+    white-space: nowrap;
 }
 
-.category-tabs a:hover {
+.category-tabs a:hover,
+.category-tabs-fluid a:hover {
     color: #0f172a;
     background: rgba(255, 255, 255, 0.9);
 }
 
-.category-tabs a.active {
+.category-tabs a.active,
+.category-tabs-fluid a.active {
     font-weight: 800 !important;
 }
 
-/* 媛蹂 ?≫곕? ?④낵 */
-.category-tabs a[data-cat="all"].active {
+/* 媛œ蹂„ ?≫‹곕? ?④낵 */
+.category-tabs a[data-cat="all"].active,
+.category-tabs-fluid a[data-cat="all"].active {
     color: #ffffff !important;
     background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     box-shadow: 0 3px 8px rgba(37, 99, 235, 0.2);
 }
 
-.category-tabs a[data-cat="color"].active {
+.category-tabs a[data-cat="color"].active,
+.category-tabs-fluid a[data-cat="color"].active {
     color: #ffffff !important;
     background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
     box-shadow: 0 3px 8px rgba(236, 72, 153, 0.2);
 }
 
-.category-tabs a[data-cat="mono"].active {
+.category-tabs a[data-cat="mono"].active,
+.category-tabs-fluid a[data-cat="mono"].active {
     color: #ffffff !important;
     background: linear-gradient(135deg, #4b5563 0%, #1f2937 100%);
     box-shadow: 0 3px 8px rgba(31, 41, 55, 0.2);
 }
 
-.category-tabs a[data-cat="inkjet"].active {
+.category-tabs a[data-cat="inkjet"].active,
+.category-tabs-fluid a[data-cat="inkjet"].active {
     color: #ffffff !important;
     background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
     box-shadow: 0 3px 8px rgba(20, 184, 166, 0.2);
 }
 
-.category-tabs a[data-cat="laser"].active {
+.category-tabs a[data-cat="laser"].active,
+.category-tabs-fluid a[data-cat="laser"].active {
     color: #ffffff !important;
     background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
     box-shadow: 0 3px 8px rgba(249, 115, 22, 0.2);
 }
 
-.category-tabs a.active i {
+.category-tabs a.active i,
+.category-tabs-fluid a.active i {
     color: inherit !important;
     transform: scale(1.15);
 }
 
-/* ???諛 ?? 媛? ?몄빻?由?濡??*/
+/* ?•??諛  ?œ?ˆ 媛œ?˜ ?몄빻?”由?濡œ??*/
 .controls-row-secondary {
     display: flex;
     justify-content: space-between;

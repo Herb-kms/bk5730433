@@ -60,14 +60,13 @@ export function initCommonInteractions() {
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // 초기 실행
 
-    // 4. 스크롤 시 부드럽게 따라다니는 퀵 메뉴
+    // 4. 스크롤 시 부드럽게 따라다니는 퀵 메뉴 및 수동 접기/펼치기 제어
     const quickBar = document.querySelector('.floating-quick-bar');
     if (quickBar) {
         const updateQuickBarPosition = () => {
             const scrollTop = window.scrollY || document.documentElement.scrollTop;
             let targetTop = scrollTop + (window.innerHeight / 2);
 
-            // 배너 영역(320px) 및 헤더 가림을 차단하기 위한 하단 마진 포함 한계값 계산
             const barHeight = quickBar.offsetHeight || 260;
             const minTop = 340 + (barHeight / 2);
 
@@ -81,5 +80,28 @@ export function initCommonInteractions() {
         window.addEventListener('resize', updateQuickBarPosition, { passive: true });
         updateQuickBarPosition();
         setTimeout(updateQuickBarPosition, 100);
+
+        // 접기/펼치기 토글 이벤트 글로벌 등록
+        window.toggleQuickMenu = function(e) {
+            if (e && e.stopPropagation) e.stopPropagation();
+            const card = document.querySelector('.quick-menu-card');
+            const toggleIcon = document.querySelector('.quick-toggle-btn i');
+            if (!card) return;
+
+            const isCollapsed = card.classList.toggle('is-collapsed');
+            if (isCollapsed) {
+                card.classList.remove('is-expanded');
+                if (toggleIcon) toggleIcon.className = 'fas fa-plus';
+            } else {
+                card.classList.add('is-expanded');
+                if (toggleIcon) toggleIcon.className = 'fas fa-minus';
+            }
+        };
+
+        const toggleBtn = document.querySelector('.quick-toggle-btn');
+        if (toggleBtn && !toggleBtn.dataset.bound) {
+            toggleBtn.dataset.bound = 'true';
+            toggleBtn.addEventListener('click', window.toggleQuickMenu);
+        }
     }
 }

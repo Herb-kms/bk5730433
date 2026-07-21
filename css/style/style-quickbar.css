@@ -60,12 +60,62 @@
 .quick-card-header {
     background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
     color: #ffffff;
-    padding: 12px 8px;
-    font-size: 0.9rem; /* ??댄 ?ш린 利媛 */
+    padding: 10px 12px;
+    font-size: 0.9rem;
     font-weight: 900;
     text-align: center;
     letter-spacing: 0.5px;
     user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.25s ease;
+}
+
+.quick-toggle-btn {
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    color: #ffffff;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    transition: all 0.2s ease;
+    padding: 0;
+    margin-left: 4px;
+}
+
+.quick-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.45);
+    transform: scale(1.1);
+}
+
+/* 수동 접기 / 1440px 이하 노트북 반응형 미니 버블 모드 */
+.quick-menu-card.is-collapsed {
+    width: 64px !important;
+    border-radius: 32px !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15) !important;
+    overflow: hidden;
+}
+
+.quick-menu-card.is-collapsed .quick-card-header {
+    padding: 12px 6px;
+    flex-direction: column;
+    gap: 4px;
+    border-radius: 32px;
+}
+
+.quick-menu-card.is-collapsed .quick-card-header .header-title-text {
+    font-size: 0.65rem;
+    letter-spacing: 0;
+}
+
+.quick-menu-card.is-collapsed .quick-card-body {
+    display: none !important;
 }
 
 .quick-card-body {
@@ -180,15 +230,48 @@
     color: #0f172a;
 }
 
-/* 諛?? ??댁? ?? */
-@media (max-width: 1200px) {
+/* 반응형 레이아웃 대책 */
+@media (max-width: 1440px) {
     .floating-quick-bar {
         right: 12px;
+    }
+    .quick-menu-card:not(.is-expanded) {
+        width: 64px !important;
+        border-radius: 32px !important;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+    }
+    .quick-menu-card:not(.is-expanded) .quick-card-header {
+        padding: 12px 6px;
+        flex-direction: column;
+        gap: 4px;
+        border-radius: 32px;
+    }
+    .quick-menu-card:not(.is-expanded) .quick-card-header .header-title-text {
+        font-size: 0.65rem;
+        letter-spacing: 0;
+    }
+    .quick-menu-card:not(.is-expanded) .quick-card-body {
+        display: none !important;
+    }
+    /* 호버 시 부드럽게 전체 팝오버 확장 */
+    .quick-menu-card:not(.is-expanded):hover {
+        width: 170px !important;
+        border-radius: 12px !important;
+    }
+    .quick-menu-card:not(.is-expanded):hover .quick-card-header {
+        padding: 10px 12px;
+        flex-direction: row;
+    }
+    .quick-menu-card:not(.is-expanded):hover .quick-card-header .header-title-text {
+        font-size: 0.9rem;
+    }
+    .quick-menu-card:not(.is-expanded):hover .quick-card-body {
+        display: flex !important;
     }
 }
 
 @media (max-width: 768px) {
     .floating-quick-bar {
-        display: none;
+        display: none !important;
     }
 }
