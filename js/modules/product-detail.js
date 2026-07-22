@@ -63,8 +63,10 @@ function renderProductDetails(p) {
     const mainImgNode = document.getElementById('detailMainImg') || document.getElementById('detailImg');
     if (mainImgNode) {
         mainImgNode.src = originalImgSrc;
-        mainImgNode.style.transform = `scale(${(p.image_zoom_1 !== undefined && p.image_zoom_1 !== null) ? p.image_zoom_1 / 100 : 1.3})`;
-        mainImgNode.style.padding = `${(p.image_padding_1 !== undefined && p.image_padding_1 !== null) ? p.image_padding_1 : 10}px`;
+        const zoomVal = (p.image_zoom_1 !== undefined && p.image_zoom_1 !== null) ? Math.max(p.image_zoom_1, 165) : 165;
+        const padVal = (p.image_padding_1 !== undefined && p.image_padding_1 !== null) ? p.image_padding_1 : 0;
+        mainImgNode.style.transform = `scale(${zoomVal / 100})`;
+        mainImgNode.style.padding = `${padVal}px`;
         mainImgNode.style.objectFit = 'contain';
         mainImgNode.onerror = function () {
             this.src = '/img/standing_color_copier.PNG';
@@ -261,14 +263,14 @@ function setupThumbnailGallery(p) {
 
     // [고도화] 각 data-type별 줌 및 패딩 수치 맵 정보 정의
     const zoomMap = {
-        'front': p.image_zoom_1 !== undefined ? p.image_zoom_1 : 130,
-        'side': p.image_zoom_2 !== undefined ? p.image_zoom_2 : 130,
-        'detail': p.image_zoom_3 !== undefined ? p.image_zoom_3 : 130
+        'front': p.image_zoom_1 !== undefined ? Math.max(p.image_zoom_1, 165) : 165,
+        'side': p.image_zoom_2 !== undefined ? Math.max(p.image_zoom_2, 165) : 165,
+        'detail': p.image_zoom_3 !== undefined ? Math.max(p.image_zoom_3, 165) : 165
     };
     const paddingMap = {
-        'front': p.image_padding_1 !== undefined ? p.image_padding_1 : 10,
-        'side': p.image_padding_2 !== undefined ? p.image_padding_2 : 10,
-        'detail': p.image_padding_3 !== undefined ? p.image_padding_3 : 10
+        'front': p.image_padding_1 !== undefined ? p.image_padding_1 : 0,
+        'side': p.image_padding_2 !== undefined ? p.image_padding_2 : 0,
+        'detail': p.image_padding_3 !== undefined ? p.image_padding_3 : 0
     };
 
     // 각 썸네일(측면, 상세)에 대해 실제 이미지 리소스가 서버상에 존재하는지 비동기 검사
@@ -276,26 +278,29 @@ function setupThumbnailGallery(p) {
         const type = btn.getAttribute('data-type');
         const imgSrc = imageMap[type];
 
+        let imgElem = btn.querySelector('img');
+        if (!imgElem) {
+            imgElem = document.createElement('img');
+            btn.appendChild(imgElem);
+        }
+
         if (type === 'front') {
-            // 정면(1번) 이미지는 항상 노출
-            btn.style.display = 'inline-block';
+            btn.style.display = 'inline-flex';
+            if (imgSrc) imgElem.src = imgSrc;
             return;
         }
 
-        // 경로 값이 아예 없으면 즉시 숨김
         if (!imgSrc) {
             btn.style.display = 'none';
             return;
         }
 
-        // Image 비동기 로더 객체 활용한 존재 유무 검증
         const tempImg = new Image();
         tempImg.onload = function () {
-            // 존재할 시 노출 보장
-            btn.style.display = 'inline-block';
+            btn.style.display = 'inline-flex';
+            imgElem.src = imgSrc;
         };
         tempImg.onerror = function () {
-            // 부재 시 깔끔하게 미노출
             btn.style.display = 'none';
         };
         tempImg.src = imgSrc;
@@ -317,8 +322,8 @@ function setupThumbnailGallery(p) {
             mainImg.src = newSrc;
 
             // [고도화] 호버된 단추 타입에 맞추어 실시간 줌 및 여백 개별 적용
-            const zoomVal = zoomMap[type] !== undefined ? zoomMap[type] : 130;
-            const paddingVal = paddingMap[type] !== undefined ? paddingMap[type] : 10;
+            const zoomVal = zoomMap[type] !== undefined ? zoomMap[type] : 165;
+            const paddingVal = paddingMap[type] !== undefined ? paddingMap[type] : 0;
             mainImg.style.transform = `scale(${zoomVal / 100})`;
             mainImg.style.padding = `${paddingVal}px`;
 

@@ -12,7 +12,7 @@ a.prod-card {
 .detail-breadcrumb {
     font-size: 0.9rem;
     color: #64748b;
-    margin-bottom: 25px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -41,36 +41,40 @@ a.prod-card {
 
 /* 상품 상세 페이지 전용 반응형 컨테이너 및 고정 외곽 여백 스타일 */
 .product-detail-page .container {
-    max-width: 1470px !important;
-    padding: 0 30px !important;
+    max-width: 1080px !important;
+    padding: 0 20px !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
 }
 
 .detail-main-layout {
     display: grid;
-    grid-template-columns: 520px 1fr;
-    gap: 36px;
-    margin-bottom: 40px;
-    align-items: start;
+    grid-template-columns: 420px 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+    align-items: stretch;
 }
 
 .detail-visual-column {
     background: #ffffff;
     border-radius: 20px;
     border: 1px solid #e2e8f0;
-    padding: 30px;
+    padding: 16px;
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     position: relative;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .main-image-box {
     width: 100%;
-    height: 600px;
+    height: 100%;
+    flex: 1;
+    min-height: 480px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,44 +95,59 @@ a.prod-card {
 }
 
 .thumbnail-selector {
-    display: flex;
+    display: flex !important;
     gap: 10px;
     width: 100%;
     justify-content: center;
-    margin-top: 5px;
+    align-items: center;
+    margin-top: 6px;
+    flex-shrink: 0;
 }
 
 .thumb-btn {
     cursor: pointer;
-    padding: 8px 18px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #64748b;
-    background: #f8fafc;
+    width: 54px;
+    height: 54px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     transition: all 0.25s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
 }
 
 .thumb-btn:hover {
-    border-color: #cbd5e1;
-    color: #1e293b;
-    background: #f1f5f9;
+    border-color: #94a3b8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
 }
 
 .thumb-btn.active {
-    border-color: #3b82f6;
-    color: #3b82f6;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2), 0 4px 12px rgba(37, 99, 235, 0.15);
     background: #eff6ff;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.thumb-btn.active img {
+    transform: scale(1.06);
 }
 
 .detail-info-column {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 18px;
 }
 
 .info-header {
@@ -452,9 +471,9 @@ a.prod-card {
     background: #ffffff;
     border-radius: 20px;
     border: 1px solid #e2e8f0;
-    padding: 40px;
+    padding: 24px 28px;
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.01);
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .specs-section-title {
@@ -524,9 +543,10 @@ a.prod-card {
    임대 조건 카드 & 요금 표 프리미엄 리뉴얼 스타일
    ======================================================== */
 .rental-card-wrapper {
-    margin-top: 20px;
+    margin-top: 16px;
+    max-width: 580px;
     background: #ffffff;
-    border-radius: 18px;
+    border-radius: 16px;
     border: 1px solid #e2e8f0;
     box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.03);
     overflow: hidden;
@@ -540,10 +560,10 @@ a.prod-card {
 
 .rental-card-header {
     background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%);
-    padding: 16px 24px;
+    padding: 13px 20px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     color: #ffffff;
 }
 
@@ -598,19 +618,20 @@ a.prod-card {
     background: #f8fafc;
     color: #475569;
     font-weight: 700;
-    padding: 13px 18px !important;
-    width: 34%;
+    padding: 10px 16px !important;
+    width: 135px;
     border-right: 1px solid #e2e8f0;
     vertical-align: middle;
     font-size: 0.9rem;
     letter-spacing: -0.01em;
+    white-space: nowrap;
 }
 
 .rental-value {
     background: #ffffff;
     color: #1e293b;
     font-weight: 600;
-    padding: 13px 18px !important;
+    padding: 10px 16px !important;
     font-size: 0.92rem;
     vertical-align: middle;
 }
@@ -630,7 +651,9 @@ a.prod-card {
     font-size: 0.9rem;
     font-weight: 700;
     border-right: 1px solid #e2e8f0;
-    padding: 13px 18px !important;
+    padding: 10px 16px !important;
+    width: 135px;
+    white-space: nowrap;
 }
 
 .rental-price-row .rental-value {
@@ -639,7 +662,7 @@ a.prod-card {
     font-size: 1.45rem;
     font-weight: 900;
     letter-spacing: -0.02em;
-    padding: 13px 18px !important;
+    padding: 10px 16px !important;
 }
 
 /* 미세 뱃지 & 태그 서식 */
@@ -697,10 +720,10 @@ a.prod-card {
 .rental-trust-banner {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
     border-top: 1px solid #fde68a;
-    padding: 13px 20px;
+    padding: 10px 16px;
     color: #92400e;
     font-size: 0.88rem;
     font-weight: 800;
@@ -709,6 +732,11 @@ a.prod-card {
 .rental-trust-banner i {
     font-size: 1.15rem;
     color: #d97706;
+}
+
+.detail-action-buttons-wrap {
+    max-width: 580px;
+    width: 100%;
 }
 
 @media (max-width: 1200px) {
@@ -864,7 +892,7 @@ a.prod-card {
 
 .detail-description-img-wrap img {
     max-width: 100%;
-    width: auto;
+    width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
