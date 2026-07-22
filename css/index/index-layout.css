@@ -1,4 +1,4 @@
-/* ============================================= index-layout.css 댁 ㅼ 곕쎌 ============================================= */
+/* ============================================= index-layout.css 메인 페이지 전체 레이아웃 구역 ============================================= */
 
 .hero-container-flex {
     display: flex;
@@ -16,7 +16,7 @@
     align-items: center;
     
     justify-content: flex-start;
-    /* ㅻ 쏀 ㅻ 곗 */
+    /* 서브 브랜드 섹션 패딩 */
 }
 
 .hero-content {
@@ -36,7 +36,7 @@
     padding-bottom: 0px;
     margin-top: 0px;
     margin-bottom: 40px;
-    /* 곌린 대 고 */
+    /* 렌탈/구매 제품 카테고리 헤더 */
     margin-left: auto !important;
     margin-right: auto !important;
 
@@ -50,7 +50,7 @@
     font-size: 1.15rem;
     font-weight: 800;
     color: #1d4ed8 !important;
-    /* 곌 쇰 쏀 곌꼍 ㅼ 몄 */
+    /* 슬라이더 배경 및 카드 그리드 */
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin-bottom: 14px;
@@ -94,7 +94,7 @@
     /* 곕쎌 대 */
     text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
 
-    /* 쇱곌 ㅽ 몃 */
+    /* 신제품 배너 스타일 */
     opacity: 1;
     transform: translateY(0);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;

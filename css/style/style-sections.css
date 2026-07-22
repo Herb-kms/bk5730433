@@ -79,7 +79,7 @@
     line-height: 1.6;
 }
 
-/* 몄(Contact) */
+/* 문의하기(Contact) 섹션 */
 .flex-contact {
     display: grid;
     grid-template-columns: 1fr 1.1fr;

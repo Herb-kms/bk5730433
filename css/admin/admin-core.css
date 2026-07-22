@@ -1,6 +1,6 @@
-/* ============================================= admin-core.css 곕낯 고 , 대 댁 ============================================= */
+/* ============================================= admin-core.css 관리자 핵심 폰트 및 공통 코어 스타일 ============================================= */
 
-/* 고곕 (Outfit & Noto Sans KR) */
+/* 폰트 설정 (Outfit & Noto Sans KR) */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 * {
@@ -14,12 +14,12 @@
 .admin-layout {
     display: flex;
     min-height: 100vh;
-    background: #f8fafc; /* 댄몃깃렇쇱대 */
+    background: #f8fafc; /* 연한 라이트 배경색 */
 }
 
 .admin-sidebar {
     width: 280px;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* 몄 ㅽ몃명 */
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* 다크 그라데이션 헤더 */
     color: white;
     padding: 40px 24px;
     flex-shrink: 0;
@@ -37,7 +37,7 @@
 }
 
 .admin-sidebar .logo span {
-    color: #3b82f6; /* 듭린 몃 */
+    color: #3b82f6; /* 포인트 파란색 */
 }
 
 .admin-sidebar .logo small {
@@ -83,6 +83,6 @@
 }
 
 .admin-nav-item.active {
-    background: #3b82f6; /* 깊 몃 곌린 */
+    background: #3b82f6; /* 파란색 버튼 배경 */
     color: white;
 }

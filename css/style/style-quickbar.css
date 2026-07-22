@@ -40,7 +40,7 @@
 
 /* ㅼ댄곕 HTML 곕 대 */
 .quick-menu-card {
-    width: 170px; /* 몄깃낵 고 */
+    width: 170px; /* 고정 가로 너비 */
     background: #ffffff;
     border: 1px solid #cbd5e1;
     border-radius: 12px;
@@ -132,14 +132,14 @@
     align-items: center;
     text-align: center;
     padding: 10px 6px;
-    background: #f8fafc; /* 고 깃렇쇱대 댁 몃 */
+    background: #f8fafc; /* 연한 배경색 지정 */
     border: 1px solid #e2e8f0; 
     border-radius: 8px;
     box-sizing: border-box;
 }
 
 .quick-card-section .section-label {
-    font-size: 0.8rem; /* 쇰꺼 고 */
+    font-size: 0.8rem; /* 라벨 폰트 크기 */
     font-weight: 800;
     color: #334155; 
     margin-bottom: 5px;
@@ -185,7 +185,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); /* 몄깆 몃쇰명ㅻ */
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); /* 오렌지 그라데이션 강조 */
     color: #ffffff !important;
     padding: 10px 8px; 
     border-radius: 8px;

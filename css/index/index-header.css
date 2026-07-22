@@ -46,7 +46,7 @@
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     background: rgba(15, 23, 42, 0.45) !important;
-    /* 댄 곕쇰 곌꼍 깆 댁 */
+    /* 메가메뉴 활성화 시 헤더 배경 스타일 */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition: all 0.3s ease;

@@ -319,7 +319,7 @@
     color: #0f172a;
 }
 
-/* 깊(댄 ㅽ */
+/* 체크박스 선택 활성화 스타일 */
 .filter-checkbox-label input[value="all"]:checked+.checkbox-btn {
     background: #f1f5f9;
     border-color: #475569;

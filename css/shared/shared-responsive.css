@@ -347,7 +347,7 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
     }
 }
 
-/* ======================================================== [(index.html) 닿 - 듭, & ======================================================== */
+/* ======================================================== (index.html) 메인 비주얼, 공지사항 & 푸터 반응형 ======================================================== */
 @media (max-width: 1024px) {
     .grid-active {
         grid-template-columns: repeat(3, 1fr) !important;
@@ -416,7 +416,7 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
         color: #0f172a !important;
     }
 
- /* 껐 몃곗댁 */
+ /* 모바일 햄버거 메뉴 레이아웃 */
     .hero-slider {
         height: auto !important;
         min-height: auto !important;
@@ -426,7 +426,7 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
     }
 
     .slide {
-        position: relative !important; /* absoluterelative */
+        position: relative !important; /* 모바일 풀스크린 오버레이 설정 */
         height: auto !important;
         opacity: 1 !important;
         z-index: 2 !important;
@@ -461,7 +461,7 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
         margin-right: auto;
     }
 
- /* 댄 곕쎌 듭 */
+ /* 모바일 푸터 레이아웃 */
     .hero-contact {
         background: none !important;
         border: none !important;
@@ -481,7 +481,7 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
         font-size: 1.25rem !important;
     }
 
- /* 3 Scroll-Snap) 깊 */
+ /* 카드 터치 스와이프 스크롤(Scroll-Snap) 설정 */
     .grid-active {
         display: flex !important;
         flex-wrap: nowrap !important;

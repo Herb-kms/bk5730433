@@ -1,4 +1,4 @@
-/* ============================================= index-showcase.css 곌린 쇱댁대 몃 ============================================= */
+/* ============================================= index-showcase.css 쇼케이스 및 추천 상품 쇼케이스 ============================================= */
 
 .hero-services-area {
     width: 100%;
@@ -25,7 +25,7 @@
     gap: 20px;
     width: auto;
     margin-left: auto;
-    /* ㅽ 대곗 */
+    /* 쇼케이스 타이틀 디자인 */
     margin-right: auto;
     align-items: end;
 }
@@ -35,7 +35,7 @@
     border: 1px solid rgba(255, 255, 255, 0.9);
     border-radius: 22px;
     padding: 70px 20px 22px 20px;
-    /* ㅻ 댁 padding-top 곗 */
+    /* 쇼케이스 상단 패딩 설정 */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,7 +46,7 @@
     transition: box-shadow 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
-    /* ㅻ 곌 대 쎄 쇰 대 */
+    /* 쇼케이스 서브헤딩 및 스펙 태그 */
 }
 
 /* 대 곕 ㅻ */
@@ -57,7 +57,7 @@
     left: -1px;
     right: -1px;
     padding: 13px 10px;
-    /* 닿린 갚쇰 곗 */
+    /* 스펙 설명 배지 디자인 */
     text-align: center;
     font-size: 1.3rem;
     font-weight: 900;
@@ -110,7 +110,7 @@
     overflow: hidden;
 }
 
-/* 곌린 룸같 ㅽ몃쇱댄( ) */
+/* 상품 카드 호버 애니메이션 */
 .showcase-img-wrap::before {
     content: '';
     position: absolute;
@@ -153,7 +153,7 @@
     display: block;
 }
 
-/* 고곕 곌린대 */
+/* 브랜드 태그 배지 */
 .copier-showcase-item:nth-child(3) .showcase-img-wrap img {
     height: 65%;
     max-height: 65%;
