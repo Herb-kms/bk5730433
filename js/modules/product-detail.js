@@ -63,7 +63,11 @@ function renderProductDetails(p) {
     const mainImgNode = document.getElementById('detailMainImg') || document.getElementById('detailImg');
     if (mainImgNode) {
         mainImgNode.src = originalImgSrc;
-        const zoomVal = (p.image_zoom_1 !== undefined && p.image_zoom_1 !== null) ? Math.max(p.image_zoom_1, 165) : 165;
+        const isSindohInit = (originalImgSrc && originalImgSrc.includes('sindoh')) || (p && (p.brand === 'sindoh' || (p.name && p.name.toUpperCase().includes('D450')) || (p.name && p.name.toUpperCase().includes('D470'))));
+        const isD450Init = (originalImgSrc && originalImgSrc.includes('D450')) || (p && p.name && p.name.toUpperCase().includes('D450'));
+        const isD470Init = (originalImgSrc && originalImgSrc.includes('D470')) || (p && p.name && p.name.toUpperCase().includes('D470'));
+        const defaultZoomVal = isD450Init ? 82 : (isD470Init ? 120 : (isSindohInit ? 95 : 140));
+        const zoomVal = (p.image_zoom_1 !== undefined && p.image_zoom_1 !== null && p.image_zoom_1 > 140) ? p.image_zoom_1 : defaultZoomVal;
         const padVal = (p.image_padding_1 !== undefined && p.image_padding_1 !== null) ? p.image_padding_1 : 0;
         mainImgNode.style.transform = `scale(${zoomVal / 100})`;
         mainImgNode.style.padding = `${padVal}px`;
@@ -261,11 +265,19 @@ function setupThumbnailGallery(p) {
         'detail': p.image_url_3
     };
 
-    // [고도화] 각 data-type별 줌 및 패딩 수치 맵 정보 정의
+    // [고도화] 각 data-type별 줌 및 패딩 수치 맵 정보 정의 (신도리코 D450/D470 기종별 확장 비율)
+    const isSindoh = (p && (p.brand === 'sindoh' || (p.name && p.name.toUpperCase().includes('D450')) || (p.name && p.name.toUpperCase().includes('D470'))));
+    const isD450 = p && p.name && p.name.toUpperCase().includes('D450');
+    const isD470 = p && p.name && p.name.toUpperCase().includes('D470');
+
+    const defaultFrontZoom = isD450 ? 82 : (isD470 ? 120 : (isSindoh ? 95 : 140));
+    const defaultSideZoom = isD450 ? 82 : (isD470 ? 88 : (isSindoh ? 85 : 140));
+    const defaultDetailZoom = isD450 ? 85 : (isD470 ? 98 : (isSindoh ? 90 : 140));
+
     const zoomMap = {
-        'front': p.image_zoom_1 !== undefined ? Math.max(p.image_zoom_1, 165) : 165,
-        'side': p.image_zoom_2 !== undefined ? Math.max(p.image_zoom_2, 165) : 165,
-        'detail': p.image_zoom_3 !== undefined ? Math.max(p.image_zoom_3, 165) : 165
+        'front': (p.image_zoom_1 !== undefined && p.image_zoom_1 !== null && p.image_zoom_1 > 140) ? p.image_zoom_1 : defaultFrontZoom,
+        'side': (p.image_zoom_2 !== undefined && p.image_zoom_2 !== null && p.image_zoom_2 > 140) ? p.image_zoom_2 : defaultSideZoom,
+        'detail': (p.image_zoom_3 !== undefined && p.image_zoom_3 !== null && p.image_zoom_3 > 140) ? p.image_zoom_3 : defaultDetailZoom
     };
     const paddingMap = {
         'front': p.image_padding_1 !== undefined ? p.image_padding_1 : 0,
@@ -322,7 +334,7 @@ function setupThumbnailGallery(p) {
             mainImg.src = newSrc;
 
             // [고도화] 호버된 단추 타입에 맞추어 실시간 줌 및 여백 개별 적용
-            const zoomVal = zoomMap[type] !== undefined ? zoomMap[type] : 165;
+            const zoomVal = zoomMap[type] !== undefined ? zoomMap[type] : (type === 'front' ? defaultFrontZoom : (type === 'side' ? defaultSideZoom : defaultDetailZoom));
             const paddingVal = paddingMap[type] !== undefined ? paddingMap[type] : 0;
             mainImg.style.transform = `scale(${zoomVal / 100})`;
             mainImg.style.padding = `${paddingVal}px`;

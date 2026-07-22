@@ -10,6 +10,7 @@ import { initReviewsPage, loadMainPageReviews } from './modules/reviews.js';
 import { initNoticePage } from './modules/notice.js';
 import { initAjaxNavigation, updateActiveMenuLinks } from './modules/navigation.js';
 import { initProductDetailPage } from './modules/product-detail.js';
+import { initIntroSplash } from './modules/intro-splash.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. 공통 모션 & 헤더 상태 초기화
@@ -33,7 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else if (path.includes('product-detail.html')) {
         await initProductDetailPage();
     } else if (path.endsWith('/') || path.includes('index.html')) {
-        // 메인 페이지 최신 후기 3개 노출
+        // 메인 페이지 인트로 스플래시 구동 & 최신 후기 노출
+        initIntroSplash();
         await loadMainPageReviews();
     }
 

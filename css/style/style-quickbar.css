@@ -185,25 +185,27 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); /* 오렌지 그라데이션 강조 */
-    color: #ffffff !important;
+    background: linear-gradient(135deg, #ffe000 0%, #facc15 100%);
+    color: #111827 !important;
     padding: 10px 8px; 
     border-radius: 8px;
     font-size: 0.88rem; 
-    font-weight: 800;
+    font-weight: 900;
     text-decoration: none !important;
-    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
+    box-shadow: 0 4px 14px rgba(250, 204, 21, 0.45);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .quick-inquiry-btn:hover {
-    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-    box-shadow: 0 6px 16px rgba(180, 83, 9, 0.35);
+    background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+    box-shadow: 0 6px 18px rgba(234, 179, 8, 0.55);
     transform: translateY(-1px);
+    color: #000000 !important;
 }
 
 .quick-inquiry-btn i {
     font-size: 0.95rem;
+    color: #111827;
 }
 
 /* 대 대 듯 TOP 대 */

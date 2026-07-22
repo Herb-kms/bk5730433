@@ -5,13 +5,64 @@
     top: 0;
     left: 0;
     z-index: 1000 !important;
-    /* ㅻ댁댁 ㅻ ㅼ */
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 15px 40px;
+    padding: 20px 40px;
     box-sizing: border-box;
+    transition: background 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+.hero-nav-bar-fluid.intro-running {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+}
+
+.hero-nav-bar-fluid.intro-running .logo.hero-logo {
+    color: #0f172a !important;
+    text-shadow: none !important;
+}
+
+.hero-nav-bar-fluid.intro-running .logo.hero-logo span {
+    color: #2563eb !important;
+    -webkit-text-fill-color: #2563eb !important;
+    text-shadow: none !important;
+}
+
+.hero-nav-bar-fluid.intro-running .hero-nav ul li a {
+    color: #1e293b !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
+}
+
+.hero-nav-bar-fluid.intro-running .user-profile-wrap {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.hero-nav-bar-fluid.intro-running .user-greeting-badge {
+    color: #0f172a !important;
+    text-shadow: none !important;
+}
+
+.hero-nav-bar-fluid.intro-running .my-info-link-btn {
+    color: #475569 !important;
+}
+
+.hero-nav-bar-fluid.intro-running .admin-logout-btn {
+    color: #dc2626 !important;
+    background: #fee2e2 !important;
+    border-color: #fca5a5 !important;
+}
+
+.hero-nav-bar-fluid.intro-running .admin-login-btn {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+    text-shadow: none !important;
 }
 
 .hero-nav-bar-fluid:hover {

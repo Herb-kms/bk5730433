@@ -48,10 +48,10 @@ export function initMegaMenu() {
                     <div class="megamenu-section-title">자주 찾는 서비스 / 문의</div>
                     <ul class="megamenu-links">
                         <li>
-                            <a href="tel:031-573-0433">
+                            <a href="tel:010-6593-0477">
                                 <div class="link-text-wrap">
                                     <span class="link-label">실시간 유선 상담</span>
-                                    <span class="link-desc">031-573-0433 | 신속 견적 안내</span>
+                                    <span class="link-desc">010-6593-0477 | 신속 견적 안내</span>
                                 </div>
                                 <i class="fas fa-chevron-right"></i>
                             </a>

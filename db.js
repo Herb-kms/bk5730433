@@ -405,10 +405,10 @@ if (DB_TYPE.toLowerCase() === 'mysql') {
             type: p[0], category: p[1], brand: p[2], name: p[3], price: p[4],
             image_url: p[5], image_url_2: p[6], image_url_3: p[7],
             badge: p[8], description: p[9], specs: p[10], naver_talk: p[11], kakao_talk: p[12], date: p[13],
-            image_zoom_card: 130, image_padding_card: 10,
-            image_zoom_1: 130, image_padding_1: 10,
-            image_zoom_2: 130, image_padding_2: 10,
-            image_zoom_3: 130, image_padding_3: 10
+            image_zoom_card: 120, image_padding_card: 0,
+            image_zoom_1: 120, image_padding_1: 0,
+            image_zoom_2: 120, image_padding_2: 0,
+            image_zoom_3: 120, image_padding_3: 0
         }));
 
         dbExport = {
