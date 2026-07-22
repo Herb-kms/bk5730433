@@ -1,11 +1,9 @@
 /* ========================================================
-   9. 반응형 레이아웃 스타일
+   공통 반응형 (Media Queries) 레이아웃 설정
    ======================================================== */
 
-/* ========================================================
-   1. 헤더 및 네비게이션 스타일
-   ======================================================== */
-.mobile-toggle-btn {
+/* 모바일 네비게이션 토글 버튼 */
+    .mobile-toggle-btn {
     display: none;
     background: none;
     border: none;
@@ -30,16 +28,20 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
     color: #0f172a;
 }
 
-/* ======================================================== [BREAKPOINT] 1200px (명몃 / ======================================================== */
+/* ========================================================
+   [BREAKPOINT] 1200px (노트북 / 데스크톱 반응형)
+   ======================================================== */
 @media (max-width: 1200px) {
- /* 몃4 3 */
+ 
     .card-grid {
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 20px;
     }
 }
 
-/* ======================================================== [BREAKPOINT] 1024px ( / 명몃) ======================================================== */
+/* ========================================================
+   [BREAKPOINT] 1024px (태블릿 가로 / 소형 노트북)
+   ======================================================== */
 @media (max-width: 1024px) {
  
     header.hero-nav-bar-fluid {
@@ -52,17 +54,17 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
         margin: 0 12px;
     }
 
- /* 명 몃 곗 */
+ 
     .detail-top-section {
         gap: 30px;
     }
 }
 
-/* ======================================================== [BREAKPOINT] 768px ( / - ======================================================== */
-@media (max-width: 991px) {
- /* ========================================================
-   1. 헤더 및 네비게이션 스타일
+/* ========================================================
+   [BREAKPOINT] 768px (모바일 일반)
    ======================================================== */
+@media (max-width: 991px) {
+ /* 모바일 네비게이션 토글 버튼 */
     .mobile-toggle-btn {
         display: flex;
         z-index: 10002 !important;
@@ -78,7 +80,7 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
  /* ========================================================
    2. 메가메뉴 레이아웃 스타일
    ======================================================== */
- /* 곗ㅽ깆쇱(header.hero-nav-bar-fluid .hero-nav)린쎈 !important */
+ 
     header.hero-nav-bar-fluid .hero-nav {
         position: fixed !important;
         top: -100% !important; 
@@ -146,8 +148,8 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
         z-index: 10000 !important;
         transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
         text-align: center !important;
-        bottom: auto !important; /* 곗ㅽ깆 bottom */
-        right: auto !important; /* 곗ㅽ깆 right */
+        bottom: auto !important; 
+        right: auto !important; 
     }
 
     header.hero-nav-bar-fluid .hero-auth .admin-login-btn {
@@ -193,17 +195,13 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
         z-index: 9998;
     }
 
- /* ========================================================
-   5. 모달 및 팝업 스타일
-   ======================================================== */
+ /* 카드 그리드 반응형 (2열 설정) */
     .card-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 16px;
     }
 
- /* ========================================================
-   6. 푸터 및 하단 정보 스타일
-   ======================================================== */
+ /* 제품 상세 페이지 상단 레이아웃 반응형 */
     .detail-top-section {
         grid-template-columns: 1fr !important;
         gap: 30px;
@@ -235,7 +233,9 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
     }
 }
 
-/* ======================================================== [BREAKPOINT] 480px (댄 ======================================================== */
+/* ========================================================
+   [BREAKPOINT] 480px (모바일 소형)
+   ======================================================== */
 @media (max-width: 480px) {
  /* ========================================================
    1. 헤더 및 네비게이션 스타일
@@ -341,7 +341,7 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
         font-size: 1.8rem;
     }
 
- /* 명 ㅻ몄 */
+ 
     .detail-img-area {
         height: 220px;
     }
@@ -384,7 +384,7 @@ header.hero-nav-bar-fluid.mega-active .mobile-toggle-btn {
         z-index: 10002 !important;
     }
 
- /* 곗 곗(Absolute) */
+ 
     header.hero-nav-bar-fluid .mobile-toggle-btn {
         position: absolute !important;
         right: 24px !important;

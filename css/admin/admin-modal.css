@@ -136,7 +136,6 @@
     font-weight: 700; 
 }
 
-/* 몃 (대) */
 .admin-modal .form-group {
     margin-bottom: 20px;
     display: flex;
@@ -295,7 +294,6 @@
     padding-right: 0;
 }
 
-/* 명댁 대 ㅽ 곗 */
 .detail-preview-card-pane {
     max-height: 64vh;
     overflow-y: auto;

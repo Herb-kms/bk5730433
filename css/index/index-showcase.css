@@ -81,7 +81,6 @@
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
 
-/* 몃 : 댁 몃 */
 .copier-showcase-item:hover {
     background-color: #ffffff;
     border-color: #ffffff;
@@ -229,7 +228,6 @@
     box-shadow: 0 4px 15px rgba(5, 150, 105, 0.35);
 }
 
-/* 몃 쇰 댁 ㅼ몃 */
 .copier-showcase-item:hover .overlay-click-btn {
     transform: scale(1.06);
     border-color: rgba(255, 255, 255, 0.9);
