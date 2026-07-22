@@ -665,6 +665,7 @@ function bindTabsAndImages(p) {
         richTextContainer.innerHTML = p.description || '<p style="color: #64748b; text-align: center; padding: 40px; font-weight: 600;">등록된 상세 소개글이 없습니다.</p>';
     }
 
+    const modelName = (p.name || '').trim();
     const modelLower = modelName.toLowerCase();
     const modelUpper = modelName.toUpperCase();
 
@@ -673,7 +674,6 @@ function bindTabsAndImages(p) {
     const descImg = document.getElementById('detailDescImg');
 
     const detailCandidates = [
-        p.detail_image_url,
         `제품설명이미지/${modelName}(제품설명).jpg`,
         `제품설명이미지/${modelName}(제품설명).png`,
         `제품설명이미지/${modelLower}(제품설명).jpg`,
@@ -685,7 +685,8 @@ function bindTabsAndImages(p) {
         `제품설명이미지/${modelLower}.jpg`,
         `제품설명이미지/${modelLower}.png`,
         `제품설명이미지/${modelUpper}.jpg`,
-        `제품설명이미지/${modelUpper}.png`
+        `제품설명이미지/${modelUpper}.png`,
+        p.detail_image_url
     ].filter(Boolean);
 
     if (descImg && descImgContainer) {
@@ -717,13 +718,13 @@ function bindTabsAndImages(p) {
     if (condTitleEl) condTitleEl.textContent = p.type === 'sales' ? '구매 조건표' : '임대 조건표';
 
     const conditionCandidates = [
-        p.condition_image_url,
         `제품설명이미지/${modelName}(조건표).png`,
         `제품설명이미지/${modelName}(조건표).jpg`,
         `제품설명이미지/${modelLower}(조건표).png`,
         `제품설명이미지/${modelLower}(조건표).jpg`,
         `제품설명이미지/${modelUpper}(조건표).png`,
         `제품설명이미지/${modelUpper}(조건표).jpg`,
+        p.condition_image_url,
         // 기본 디폴트 조건표 이미지 (c3322(조건표).png)
         `제품설명이미지/c3322(조건표).png`,
         `제품설명이미지/c3322(조건표).jpg`,
