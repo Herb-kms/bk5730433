@@ -87,13 +87,14 @@
                         <h2 id="detailTitle" class="info-title">기기명을 불러오는 중..</h2>
                     </div>
 
-                    <!-- 임대/판매 요금 조건 테이블 (우측 고정 노출) -->
-                    <div id="rentalConditionTableWrap" style="display:none; margin-top: 15px;">
-                        <h3 class="specs-section-title" style="margin-top: 0; font-size: 1.05rem; display:flex; align-items:center; gap:8px; background: linear-gradient(135deg, #1e40af, #2563eb); color: #fff; padding: 12px 16px; border-radius: 10px 10px 0 0; margin-bottom: 0;">
-                            <i class="fas fa-file-invoice-dollar"></i> 임대 요금 안내
-                        </h3>
-                        <div class="spec-table-container" style="border-radius: 0 0 10px 10px; border-top: none;">
-                            <table class="spec-table rental-info-table" style="border-collapse: collapse; width: 100%;">
+                    <!-- 임대 요금 조건 카드 (우측 고정 노출) -->
+                    <div id="rentalConditionTableWrap" class="rental-card-wrapper" style="display:none;">
+                        <div class="rental-card-header">
+                            <span class="rental-card-badge"><i class="fas fa-file-invoice-dollar"></i></span>
+                            <h3>임대 요금 안내</h3>
+                        </div>
+                        <div class="rental-card-body">
+                            <table class="rental-info-table">
                                 <tbody>
                                     <tr class="rental-price-row">
                                         <td class="rental-label">월임대료</td>
@@ -101,30 +102,45 @@
                                     </tr>
                                     <tr>
                                         <td class="rental-label">기본매수</td>
-                                        <td class="rental-value">흑백 1,000매 / 칼라 100매</td>
+                                        <td class="rental-value">
+                                            <span class="pill-tag mono">흑백 1,000매</span>
+                                            <span class="pill-separator">/</span>
+                                            <span class="pill-tag color">칼라 100매</span>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="rental-label">초과장당요금</td>
-                                        <td class="rental-value">흑백 10원 / 칼라 100원</td>
+                                        <td class="rental-value">
+                                            <span class="pill-tag mono">흑백 10원</span>
+                                            <span class="pill-separator">/</span>
+                                            <span class="pill-tag color">칼라 100원</span>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="rental-label">보증금</td>
-                                        <td class="rental-value">월임대료의 3개월분</td>
+                                        <td class="rental-value"><span class="highlight-text">월임대료의 3개월분</span></td>
                                     </tr>
                                     <tr>
                                         <td class="rental-label">계약기간</td>
-                                        <td class="rental-value">3년 (36개월)</td>
+                                        <td class="rental-value"><span class="highlight-text">3년 (36개월)</span></td>
                                     </tr>
                                     <tr>
                                         <td class="rental-label">제품간략설명</td>
-                                        <td class="rental-value" id="rentalProductSummary">복사 + 프린터 + 스캔 + 양면 + 팩스</td>
+                                        <td class="rental-value feature-tags" id="rentalProductSummary">
+                                            <span class="feat-chip">복사</span>
+                                            <span class="feat-chip">프린터</span>
+                                            <span class="feat-chip">스캔</span>
+                                            <span class="feat-chip">양면</span>
+                                            <span class="feat-chip">팩스</span>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p style="margin-top: 12px; font-size: 0.83rem; color: #1d4ed8; line-height: 1.7; font-weight: 700; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px 14px;">
-                            <i class="fas fa-check-circle" style="margin-right: 5px;"></i>저희 복사기마트는 <strong>정품토너 및 정품 부품만</strong>을 사용합니다!!
-                        </p>
+                        <div class="rental-trust-banner">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>저희 복사기마트는 <strong>정품토너 및 정품 부품만</strong>을 사용합니다!</span>
+                        </div>
                     </div>
                     <!-- 판매 제품용 스펙 테이블 -->
                     <div id="salesSpecTableWrap" style="display:none; margin-top: 15px;">
