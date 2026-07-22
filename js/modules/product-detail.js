@@ -665,9 +665,10 @@ function bindTabsAndImages(p) {
         richTextContainer.innerHTML = p.description || '<p style="color: #64748b; text-align: center; padding: 40px; font-weight: 600;">등록된 상세 소개글이 없습니다.</p>';
     }
 
-    const modelName = (p.name || '').toLowerCase().trim();
+    const modelLower = modelName.toLowerCase();
+    const modelUpper = modelName.toUpperCase();
 
-    // 2. 대형 상세 설명 이미지 매핑 (제품설명이미지 폴더 자동 감지 + '이미지 준비 중' 플레이스홀더 지원)
+    // 2. 대형 상세 설명 이미지 매핑 (모델명(제품설명).jpg 우선 지원 + 모델명.jpg 호환)
     const descImgContainer = document.getElementById('detailDescImgContainer');
     const descImg = document.getElementById('detailDescImg');
 
@@ -675,8 +676,16 @@ function bindTabsAndImages(p) {
         p.detail_image_url,
         `제품설명이미지/${modelName}(제품설명).jpg`,
         `제품설명이미지/${modelName}(제품설명).png`,
+        `제품설명이미지/${modelLower}(제품설명).jpg`,
+        `제품설명이미지/${modelLower}(제품설명).png`,
+        `제품설명이미지/${modelUpper}(제품설명).jpg`,
+        `제품설명이미지/${modelUpper}(제품설명).png`,
         `제품설명이미지/${modelName}.jpg`,
-        `제품설명이미지/${modelName}.png`
+        `제품설명이미지/${modelName}.png`,
+        `제품설명이미지/${modelLower}.jpg`,
+        `제품설명이미지/${modelLower}.png`,
+        `제품설명이미지/${modelUpper}.jpg`,
+        `제품설명이미지/${modelUpper}.png`
     ].filter(Boolean);
 
     if (descImg && descImgContainer) {
@@ -700,15 +709,12 @@ function bindTabsAndImages(p) {
         loadNextDetailImage();
     }
 
-    // 3. 임대/구매 조건표 이미지 매핑 (기종 전용 조건표 미존재 시 '조건표 준비 중' 플레이스홀더 표시)
+    // 3. 임대/구매 조건표 이미지 매핑 (기종 전용 조건표 미존재 시 c3322(조건표).png 기본 적용)
     const alwaysVisibleConditionCard = document.getElementById('alwaysVisibleConditionCard');
     const condImg = document.getElementById('detailCondImg');
     const conditionShortcutWrap = document.getElementById('conditionShortcutWrap');
     const condTitleEl = document.getElementById('conditionCardTitle');
     if (condTitleEl) condTitleEl.textContent = p.type === 'sales' ? '구매 조건표' : '임대 조건표';
-
-    const modelLower = modelName.toLowerCase();
-    const modelUpper = modelName.toUpperCase();
 
     const conditionCandidates = [
         p.condition_image_url,
@@ -718,12 +724,10 @@ function bindTabsAndImages(p) {
         `제품설명이미지/${modelLower}(조건표).jpg`,
         `제품설명이미지/${modelUpper}(조건표).png`,
         `제품설명이미지/${modelUpper}(조건표).jpg`,
-        `제품설명이미지/${modelName}.png`,
-        `제품설명이미지/${modelName}.jpg`,
-        `제품설명이미지/${modelLower}.png`,
-        `제품설명이미지/${modelLower}.jpg`,
-        `제품설명이미지/${modelUpper}.png`,
-        `제품설명이미지/${modelUpper}.jpg`
+        // 기본 디폴트 조건표 이미지 (c3322(조건표).png)
+        `제품설명이미지/c3322(조건표).png`,
+        `제품설명이미지/c3322(조건표).jpg`,
+        `제품설명이미지/C3322(조건표).png`
     ].filter(Boolean);
 
     if (condImg && alwaysVisibleConditionCard) {
@@ -733,7 +737,7 @@ function bindTabsAndImages(p) {
                 const srcUrl = conditionCandidates[condIndex++];
                 condImg.src = srcUrl.includes('?') ? srcUrl : `${srcUrl}?t=${Date.now()}`;
             } else {
-                // 해당 기종 전용 조건표가 없는 경우 '조건표 이미지 준비 중' 플레이스홀더 표시
+                // 해당 기종 전용 조건표 및 기본 조건표도 없는 경우 플레이스홀더 표시
                 condImg.src = CONDITION_PLACEHOLDER_IMAGE;
                 condImg.onerror = null;
             }
