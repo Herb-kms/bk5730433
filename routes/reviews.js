@@ -18,6 +18,7 @@ const upload = multer({
 
 // API: 후기 목록 조회
 router.get('/reviews', async (req, res) => {
+    res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
     try {
         const category = req.query.category;
         const rows = await reviewModel.getByCategory(category);

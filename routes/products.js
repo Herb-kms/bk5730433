@@ -30,6 +30,7 @@ const uploadFields = upload.fields([
 
 // API: 제품 목록 조회
 router.get('/products', async (req, res) => {
+    res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
     try {
         const { type, category } = req.query;
         const rows = await productModel.getAll({ type, category });
@@ -42,6 +43,7 @@ router.get('/products', async (req, res) => {
 
 // API: 단일 제품 상세 조회
 router.get('/products/:id', async (req, res) => {
+    res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
     try {
         const row = await productModel.getById(req.params.id);
         if (!row) return res.status(404).json({ error: '제품을 찾을 수 없습니다.' });

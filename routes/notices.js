@@ -53,6 +53,8 @@ const defaultNotices = [
 
 // API: 공지사항 목록 조회
 router.get('/notices', async (req, res) => {
+    // Vercel CDN Edge Caching: 1시간 동안 엣지에서 10ms 이내 초고속 응답
+    res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
     try {
         const rows = await noticeModel.getAll();
         if (Array.isArray(rows) && rows.length > 0) {

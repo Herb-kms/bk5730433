@@ -12,29 +12,49 @@ export async function loadAndRenderProducts(type) {
     currentCategory = urlParams.get('category') || urlParams.get('cat') || 'all';
     activeBrands = new Set(['all']);
 
-    cardGrid.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.7);">
-            <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 15px; color: #3b82f6;"></i>
-            <p style="font-size: 1.1rem; font-weight: 600;">제품 라인업을 불러오는 중입니다...</p>
-        </div>
-    `;
+    const cacheKey = `products_${type}`;
+    const cachedData = sessionStorage.getItem(cacheKey);
 
+    // 0ms SWR 즉시 노출: 캐시 데이터가 존재할 경우 기다림 없이 바로 화면에 팝핑
+    if (cachedData) {
+        try {
+            const cachedProducts = JSON.parse(cachedData);
+            if (Array.isArray(cachedProducts) && cachedProducts.length > 0) {
+                renderProductGrid(cardGrid, cachedProducts, type);
+            }
+        } catch (e) {}
+    } else {
+        cardGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.7);">
+                <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 15px; color: #3b82f6;"></i>
+                <p style="font-size: 1.1rem; font-weight: 600;">제품 라인업을 불러오는 중입니다...</p>
+            </div>
+        `;
+    }
 
     try {
         const response = await fetch(`/api/products?type=${type}`);
         if (!response.ok) throw new Error('API 로드 오류');
         const products = await response.json();
 
-        if (products.length === 0) {
+        if (Array.isArray(products) && products.length > 0) {
+            sessionStorage.setItem(cacheKey, JSON.stringify(products));
+            renderProductGrid(cardGrid, products, type);
+        } else if (!cachedData) {
             cardGrid.innerHTML = `
                 <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.7);">
                     <i class="fas fa-box-open" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
                     <p style="font-size: 1.1rem; font-weight: 600;">등록된 제품이 존재하지 않습니다.</p>
                 </div>
             `;
-            return;
         }
+    } catch (err) {
+        console.warn('API 연동 장애 - 캐시 데이터 유지:', err);
+    }
+}
 
+function renderProductGrid(cardGrid, products, type) {
+    try {
         cardGrid.innerHTML = products.map(p => {
             const priceText = p.price.toLocaleString() + (type === 'rental' ? ' 원 / 월' : ' 원');
             const detailBtnText = '상세보기';

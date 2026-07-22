@@ -18,6 +18,7 @@ const upload = multer({
 
 // API: 자료실 목록 조회
 router.get('/downloads', async (req, res) => {
+    res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
     try {
         const rows = await downloadModel.getAll();
         res.json(rows);
