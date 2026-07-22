@@ -2,6 +2,21 @@
    index-intro.css: 신도리코(Sindoh.com) 공식 1:1 미니멀 대형 타이포그래피 인트로 모듈
    ============================================= */
 
+/* 세션 방문 완료 상태일 때 F5 새로고침/재방문 시 인트로 깜빡임 및 잔상 100% 즉시 차단 */
+html.intro-seen #brandIntroSplash {
+    display: none !important;
+}
+
+html.intro-seen .hero-nav-bar-fluid.intro-running {
+    background: transparent !important;
+}
+
+html.intro-seen .stagger-item {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+}
+
 #brandIntroSplash {
     position: absolute;
     top: 90px;
