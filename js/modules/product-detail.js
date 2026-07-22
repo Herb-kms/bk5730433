@@ -94,7 +94,7 @@ function renderProductDetails(p) {
     const naverLink = document.getElementById('detailNaverLink');
     const kakaoLink = document.getElementById('detailKakaoLink');
     if (naverLink) naverLink.href = p.naver_talk || 'http://talk.naver.com/WCHMKR';
-    if (kakaoLink) kakaoLink.href = p.kakao_talk || 'https://open.kakao.com/o/sSzFO2O';
+    if (kakaoLink) kakaoLink.href = p.kakao_talk || 'https://pf.kakao.com/_puRxnX/chat';
 
     // 2. 실시간 견적서 계산기 초기 세팅
     setupQuotationSimulator(p);

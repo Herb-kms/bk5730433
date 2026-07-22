@@ -278,7 +278,7 @@ window.ADMIN_MODAL_TEMPLATES = `
                     </div>
                     <div class="form-group">
                         <label>카카오톡 링크</label>
-                        <input type="text" name="kakao_talk" placeholder="예: https://open.kakao.com/o/sSzFO2O">
+                        <input type="text" name="kakao_talk" placeholder="예: https://pf.kakao.com/_puRxnX/chat">
                     </div>
                     <div class="form-group">
                         <label>제품 사진 <span style="color:#64748b; font-weight:400; font-size:0.8rem;">(상세페이지 1번 사진 / 목록 카드에도 노출)</span></label>
@@ -553,7 +553,7 @@ window.ADMIN_MODAL_TEMPLATES = `
                     </div>
                     <div class="form-group">
                         <label>카카오톡 링크</label>
-                        <input type="text" name="kakao_talk" placeholder="예: https://open.kakao.com/o/sSzFO2O">
+                        <input type="text" name="kakao_talk" placeholder="예: https://pf.kakao.com/_puRxnX/chat">
                     </div>
                     <div class="form-group">
                         <label>제품 사진 <span style="color:#64748b; font-weight:400; font-size:0.8rem;">(상세페이지 1번 사진 / 목록 카드에도 노출)</span></label>
