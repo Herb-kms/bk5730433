@@ -1,7 +1,6 @@
-/* ???????????????????????????????
-   3. 移댄怨由?? (怨듯?援ъ“)
-   ? active ??? 媛 ??댁? CSS?? 媛蹂 ??
-   ??????????????????????????????? */
+/* ========================================================
+   3. 메인 히어로 / 필터 스타일
+   ======================================================== */
 .filter-panel-card {
     background: #ffffff;
     border: 1px solid #cbd5e1;
@@ -84,7 +83,6 @@
     font-weight: 800 !important;
 }
 
-/* 媛œ蹂„ ?≫‹곕? ?④낵 */
 .category-tabs a[data-cat="all"].active,
 .category-tabs-fluid a[data-cat="all"].active {
     color: #ffffff !important;
@@ -126,7 +124,6 @@
     transform: scale(1.15);
 }
 
-/* ?•??諛  ?œ?ˆ 媛œ?˜ ?몄빻?”由?濡œ??*/
 .controls-row-secondary {
     display: flex;
     justify-content: space-between;
@@ -154,7 +151,7 @@
     font-weight: 800;
 }
 
-/* 紐⑤???酉고ы?諛?? (max-width: 768px) */
+/* 고 (max-width: 768px) */
 @media (max-width: 768px) {
     .filter-panel-card {
         padding: 12px 16px;
@@ -224,10 +221,9 @@
     }
 }
 
-
-/* ???????????????????????????????
-   4. ???쨌 ???而⑦몃· ??
-   ??????????????????????????????? */
+/* ========================================================
+   4. 주요 콘텐츠 및 섹션 스타일
+   ======================================================== */
 .controls-row {
     display: flex;
     justify-content: space-between;
@@ -287,7 +283,6 @@
     user-select: none;
 }
 
-/* 釉??蹂 媛蹂 ?몃? ?④낵 */
 .filter-checkbox-label:hover input[value="samsung"]+.checkbox-btn {
     border-color: #3b82f6;
     background: #eff6ff;
@@ -324,7 +319,7 @@
     color: #0f172a;
 }
 
-/* 釉Œ?œ?œ蹂„ 媛œ蹂„ ?œ?깊™”(泥댄 ? ?ㅽƒ€??*/
+/* 깊(댄 ㅽ */
 .filter-checkbox-label input[value="all"]:checked+.checkbox-btn {
     background: #f1f5f9;
     border-color: #475569;

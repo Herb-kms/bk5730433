@@ -1,6 +1,4 @@
-/* =============================================
-   index-layout.css ? 硫??肄?痢 ??댁? 諛 ?ㅼ媛 ?곕쎌?
-   ============================================= */
+/* ============================================= index-layout.css 댁 ㅼ 곕쎌 ============================================= */
 
 .hero-container-flex {
     display: flex;
@@ -10,15 +8,15 @@
     z-index: 1;
     box-sizing: border-box;
     padding-top: 110px;
-    /* ?ㅻ 諛 ??? 異⑸?? 媛寃⑹ 二쇱?援щ???濡 ?щ갚 ?ъ“? */
+    /* ㅻ 쇱 갚 */
     padding-bottom: 20px;
     max-width: 100% !important;
     padding-left: 5%;
     padding-right: 5%;
     align-items: center;
-    /* 媛濡 媛?대????*/
+    
     justify-content: flex-start;
-    /* ??? ??濡 ??ы???ㅻ ??? ?踰쏀 ?ㅻ濡 議곗 */
+    /* ㅻ 쏀 ㅻ 곗 */
 }
 
 .hero-content {
@@ -30,19 +28,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* ??ㅽ?媛濡 媛?대????*/
+    
     text-align: center;
-    /* ??ㅽ??泥?媛?대????*/
+    
     padding-top: 0px;
-    /* 留??? ?ㅻ濡 ????⑤??嫄?*/
+    
     padding-bottom: 0px;
     margin-top: 0px;
     margin-bottom: 40px;
-    /* ?? 湲곌린 移대? 議고濡??媛寃?*/
+    /* 곌린 대 고 */
     margin-left: auto !important;
     margin-right: auto !important;
 
-    /* ???쇱?珥湲곌? */
+    
     opacity: 1;
     transform: translateY(0);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
@@ -52,7 +50,7 @@
     font-size: 1.15rem;
     font-weight: 800;
     color: #1d4ed8 !important;
-    /* 議곌? ? 吏? ????쇰? 蹂寃쏀??諛? ?? 諛곌꼍??? 留ㅼ??紐?寃 ?몄? */
+    /* 곌 쇰 쏀 곌꼍 ㅼ 몄 */
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin-bottom: 14px;
@@ -88,15 +86,15 @@
 
 .hero-contact {
     margin-top: 0px;
-    /* ?? 移대? 留吏?쇰? ??대誘濡 0px ?ㅼ */
+    /* 대 쇰 대 0px ㅼ */
     display: inline-flex;
     flex-direction: column;
     gap: 12px;
     align-items: center;
-    /* ?곕쎌? 媛濡 媛?대????*/
+    /* 곕쎌 대 */
     text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
 
-    /* ???쇱?珥湲곌? 諛 ?ㅽщ· 紐⑥ ?몃吏? */
+    /* 쇱곌 ㅽ 몃 */
     opacity: 1;
     transform: translateY(0);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
@@ -124,5 +122,5 @@
     color: #ffffff !important;
     display: inline-block;
     transform: scaleX(-1);
-    /* ??湲???댁? 諛⑺?醫??諛? (?ㅻⅨ履??濡 ?ν?濡 ??) */
+    /* 댁 (ㅻ ) */
 }

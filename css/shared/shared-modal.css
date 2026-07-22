@@ -1,5 +1,6 @@
-/* ???????????????????????????????
-   7. ??몃낫湲?紐⑤?   ??????????????????????????????? */
+/* ========================================================
+   7. 퀵바 및 플로팅 메뉴 스타일
+   ======================================================== */
 .detail-modal {
     position: fixed;
     top: 0;
@@ -62,7 +63,6 @@
     }
 }
 
-/* ?リ린 踰??*/
 .close-modal-btn {
     position: absolute;
     top: 24px;
@@ -88,7 +88,6 @@
     transform: rotate(90deg);
 }
 
-/* 紐⑤?????ㅽщ· 蹂몃Ц */
 .detail-modal-body {
     flex: 1;
     overflow-y: auto;
@@ -96,7 +95,7 @@
     box-sizing: border-box;
 }
 
-/* ???湲곌린 ?듭???댁? (2??援ъ? */
+/* 곌린 듭댁 (2 */
 .detail-top-section {
     display: grid;
     grid-template-columns: 1fr 1.1fr;
@@ -104,7 +103,6 @@
     margin-bottom: 45px;
 }
 
-/* 醫痢? 湲곌린 ??留 */
 .detail-img-area {
     background: #ffffff;
     border-radius: 20px;
@@ -124,7 +122,7 @@
     object-fit: contain;
 }
 
-/* ?곗륫: ??ㅽ?諛 ?듭?媛移 */
+/* 곗륫: ㅽ 듭 */
 .detail-info-area {
     display: flex;
     flex-direction: column;
@@ -161,7 +159,7 @@
     margin-bottom: 30px;
 }
 
-/* ????ㅽ & ?뱀μ 由ъㅽ?*/
+/* ㅽ & 뱀 ㅽ */
 .detail-bottom-section {
     border-top: 1.5px solid #f1f5f9;
     padding-top: 40px;
@@ -182,7 +180,7 @@
     color: #2563eb;
 }
 
-/* 3??諛곕 洹몃━? */
+/* 3곕 몃 */
 .feature-banner-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -233,7 +231,6 @@
     margin: 0;
 }
 
-/* ?ъ? ????*/
 .rental-plan-table {
     width: 100%;
     border-collapse: collapse;
@@ -267,7 +264,6 @@
     border-bottom: none;
 }
 
-/* ?≪ ??대???媛?멸린 */
 .detail-action-area {
     display: flex;
     gap: 12px;

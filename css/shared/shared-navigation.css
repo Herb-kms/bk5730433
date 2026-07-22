@@ -1,6 +1,6 @@
-/* ???????????????????????????????
-   10. 怨듯??듯??ㅻ ?ㅻ?寃?댁 (.hero-nav-bar-fluid)
-   ??????????????????????????????? */
+/* ========================================================
+   10. 서브페이지 통합 네비게이션
+   ======================================================== */
 header.hero-nav-bar-fluid {
     position: absolute !important;
     top: 0;
@@ -292,7 +292,6 @@ header.hero-nav-bar-fluid:hover .dropdown-menu {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-/* 濡洹몄??? ?濡? ???*/
 .user-profile-wrap {
     display: flex;
     align-items: center;
@@ -311,7 +310,6 @@ header.hero-nav-bar-fluid.mega-active .user-profile-wrap {
     border-color: rgba(15, 23, 42, 0.08);
 }
 
-/* ?? ?몄?諭吏 */
 .user-greeting-badge {
     color: #ffffff;
     font-size: 0.88rem;
@@ -328,7 +326,7 @@ header.hero-nav-bar-fluid.mega-active .user-greeting-badge {
     text-shadow: none;
 }
 
-/* ??蹂대 / ?蹂댁? 踰??*/
+/* 대 / 댁 */
 .my-info-link-btn {
     color: #cbd5e1 !important;
     text-decoration: none !important;
@@ -354,7 +352,6 @@ header.hero-nav-bar-fluid.mega-active .my-info-link-btn:hover {
     color: #2563eb !important;
 }
 
-/* 濡洹몄? 踰??*/
 .admin-logout-btn {
     background: rgba(239, 68, 68, 0.15);
     border: 1px solid rgba(239, 68, 68, 0.35);
@@ -388,8 +385,6 @@ header.hero-nav-bar-fluid.mega-active .admin-logout-btn:hover {
     border-color: #ef4444;
     color: #ffffff;
 }
-
-
 
 .dropdown-menu {
     display: none !important;

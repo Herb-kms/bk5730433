@@ -1,5 +1,6 @@
-/* ???????????????????????????????
-   1. ?ㅻ ?대?寃?댁 ?ㅽ??   ??????????????????????????????? */
+/* ========================================================
+   1. 헤더 및 네비게이션 스타일
+   ======================================================== */
 header {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -11,7 +12,7 @@ header {
     transition: all 0.3s ease;
 }
 
-/* === ??由ъ? ?ㅽ??3??GNB === */
+/* === 상단 GNB 네비게이션 === */
 .flex-header {
     display: flex;
     justify-content: space-between;
@@ -21,14 +22,12 @@ header {
     position: relative;
 }
 
-/* 醫痢? 硫??紐⑸? */
 .gnb-left {
     flex: 1;
     display: flex;
     align-items: center;
 }
 
-/* 以?: 濡怨 */
 .gnb-center {
     flex: 0 0 auto;
     display: flex;
@@ -37,7 +36,7 @@ header {
     padding: 0 40px;
 }
 
-/* ?곗륫: ??대???+ 濡洹몄?*/
+/* 곗륫: 대+ 몄 */
 .gnb-right {
     flex: 1;
     display: flex;
@@ -59,7 +58,7 @@ header {
     color: var(--primary);
 }
 
-/* 移댁뭅???ㅼ대? ???踰??*/
+/* 댁뭅ㅼ대 */
 .talk-btn {
     display: inline-flex;
     align-items: center;
@@ -149,7 +148,6 @@ header {
     width: 100%;
 }
 
-/* ???諛 ?ㅽ??*/
 .top-bar {
     background-color: #f3f4f6;
     color: #4b5563;

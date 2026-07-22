@@ -1,7 +1,5 @@
-/* =============================================
-   login.css ? 濡洹몄???媛? ??댁? ????ㅽ??   ============================================= */
+/* ============================================= login.css 몄 댁 ㅽ ============================================= */
 
-/* ?? ?泥?諛곌꼍 ????? */
 .login-section {
     min-height: 100vh;
     display: flex;
@@ -11,7 +9,6 @@
     padding: 20px;
 }
 
-/* ?? 濡洹몄?移대 ?? */
 .login-card {
     background: white;
     padding: 40px;
@@ -33,7 +30,6 @@
     margin-bottom: 30px;
 }
 
-/* ?? 濡洹몄????? */
 .login-form .form-group {
     text-align: left;
     margin-bottom: 20px;
@@ -80,7 +76,6 @@
     font-weight: 600;
 }
 
-/* ?? 濡洹몄???媛? ? ?? */
 .auth-tabs {
     display: flex;
     gap: 10px;
@@ -109,7 +104,6 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* ?? ???? ??硫?댁 ?? */
 .auth-area {
     display: none;
     animation: fadeIn 0.4s ease;

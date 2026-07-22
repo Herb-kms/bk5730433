@@ -1,8 +1,5 @@
-/* =============================================
-   reviews.css ? ?ㅼ? ?湲???댁? ????ㅽ??   (shared.css媛 癒쇱 濡??⑸??
-   ============================================= */
+/* ============================================= reviews.css ㅼ 댁 ㅽ (shared.css 쇱 ============================================= */
 
-/* ?? ?湲????踰???? */
 .review-filter {
     display: flex;
     gap: 10px;
@@ -26,7 +23,6 @@
     color: #ffffff;
 }
 
-/* ?? ?湲?移대 洹몃━? ?? */
 .review-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -82,9 +78,8 @@
     font-weight: 700;
 }
 
-/* ?? ?湲?移대 蹂몃Ц 諛 硫? ?? */
 .review-card-body {
-    padding: 16px; /* Reduced padding (?щ갚? ??怨) */
+    padding: 16px; /* Reduced padding (갚 ) */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -165,7 +160,6 @@
     color: #94a3b8;
 }
 
-/* ?? ?湲????紐⑤??? */
 .modal {
     display: none;
     position: fixed;
@@ -236,7 +230,6 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ?? 諛?? ?? */
 @media (max-width: 991px) {
     .review-grid { grid-template-columns: repeat(2, 1fr); }
 }

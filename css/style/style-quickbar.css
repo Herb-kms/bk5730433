@@ -1,6 +1,6 @@
-/* ???????????????????????????????
-   7. ?곗륫 ?濡? ?듬? & ??硫??移대
-   ??????????????????????????????? */
+/* ========================================================
+   7. 퀵바 및 플로팅 메뉴 스타일
+   ======================================================== */
 .floating-quick-bar {
     position: absolute;
     right: 24px;
@@ -38,9 +38,9 @@
     margin-bottom: 3px;
 }
 
-/* ?ㅼ댄곕? HTML 湲곕? ??硫??移대 ????*/
+/* ㅼ댄곕 HTML 곕 대 */
 .quick-menu-card {
-    width: 170px; /* ??몄깃낵 ???고??吏瑜????媛濡? ?? ???*/
+    width: 170px; /* 몄깃낵 고 */
     background: #ffffff;
     border: 1px solid #cbd5e1;
     border-radius: 12px;
@@ -132,16 +132,16 @@
     align-items: center;
     text-align: center;
     padding: 10px 6px;
-    background: #f8fafc; /* ?고 諛깃렇?쇱대濡 ?댁⑸Ъ 洹몃９? */
-    border: 1px solid #e2e8f0; /* ??由щ? 援ы 援щ? */
+    background: #f8fafc; /* 고 깃렇쇱대 댁 몃 */
+    border: 1px solid #e2e8f0; 
     border-radius: 8px;
     box-sizing: border-box;
 }
 
 .quick-card-section .section-label {
-    font-size: 0.8rem; /* ?쇰꺼 ?고??? */
+    font-size: 0.8rem; /* 쇰꺼 고 */
     font-weight: 800;
-    color: #334155; /* ?대???щ?댄몃? 紐? ?鍮 媛? */
+    color: #334155; 
     margin-bottom: 5px;
     display: flex;
     align-items: center;
@@ -154,9 +154,9 @@
 }
 
 .quick-card-section .phone-number-link {
-    font-size: 1.08rem; /* ??踰???고??? ?? */
+    font-size: 1.08rem; 
     font-weight: 900;
-    color: #b91c1c !important; /* 紐? ?鍮媛 ?? ???? ?? ?ъ?*/
+    color: #b91c1c !important; 
     text-decoration: none !important;
     transition: color 0.2s;
     letter-spacing: -0.3px;
@@ -167,16 +167,16 @@
 }
 
 .quick-card-section .phone-hours {
-    font-size: 0.68rem; /* ?고??? */
-    color: #64748b; /* 紐? 議곗 */
+    font-size: 0.68rem; 
+    color: #64748b; 
     font-weight: 700;
     margin-top: 2px;
 }
 
 .quick-card-section .fax-number {
-    font-size: 0.98rem; /* ?⑹ㅻ????고??? */
+    font-size: 0.98rem; 
     font-weight: 800;
-    color: #1e293b; /* ?대???щ?댄?*/
+    color: #1e293b; 
     letter-spacing: -0.2px;
 }
 
@@ -185,11 +185,11 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); /* ??몄깆??? 媛?? 洹몃쇰?명??濡???ㅻ吏 */
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); /* 몄깆 몃쇰명ㅻ */
     color: #ffffff !important;
-    padding: 10px 8px; /* ?⑤????*/
+    padding: 10px 8px; 
     border-radius: 8px;
-    font-size: 0.88rem; /* 湲瑗??? */
+    font-size: 0.88rem; 
     font-weight: 800;
     text-decoration: none !important;
     box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
@@ -206,15 +206,15 @@
     font-size: 0.95rem;
 }
 
-/* 移대 ?대?濡 ?듯⑸ TOP ?대 踰??*/
+/* 대 대 듯 TOP 대 */
 .quick-card-top-btn {
     width: 100%;
     background: #f1f5f9;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
     color: #334155;
-    padding: 8px 0; /* ?⑤??? */
-    font-size: 0.8rem; /* 湲瑗??? */
+    padding: 8px 0; 
+    font-size: 0.8rem; 
     font-weight: 800;
     cursor: pointer;
     display: flex;

@@ -1,6 +1,4 @@
-/* ==========================================================================
-   STYLE RULES FOR COPIERMART WEB APPLICATION ? CORE LAYOUT
-   ========================================================================== */
+/* ========================================================================== STYLE RULES FOR COPIERMART WEB APPLICATION CORE LAYOUT ========================================================================== */
 
 html {
     scrollbar-gutter: stable;
@@ -44,7 +42,6 @@ body {
     box-sizing: border-box;
 }
 
-/* ?濡? ?? ?곗???댁 */
 .floating-shape {
     position: absolute;
     border-radius: 50%;
@@ -69,7 +66,6 @@ body {
     left: -100px;
 }
 
-/* ?ㅽщ· 由щ? ??몃━??*/
 .reveal {
     opacity: 0;
     transform: translateY(30px);

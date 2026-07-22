@@ -1,12 +1,11 @@
-/* =============================================
-   index-header.css ? ???GNB 諛 濡洹몄?濡洹몄? ? 踰??   ============================================= */
+/* === 상단 GNB 네비게이션 === */
 
 .hero-nav-bar-fluid {
     position: absolute !important;
     top: 0;
     left: 0;
     z-index: 1000 !important;
-    /* ?ㅻ?寃?댁??臾댁“嫄??? ?ㅻ濡 ?ㅼ */
+    /* ㅻ댁댁 ㅻ ㅼ */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,7 +46,7 @@
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     background: rgba(15, 23, 42, 0.45) !important;
-    /* ???щ?댄?諛?щ? 湲곕??쇰? 諛? 諛곌꼍??? 諛깆 湲? ?鍮? 蹂댁?*/
+    /* 댄 곕쇰 곌꼍 깆 댁 */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition: all 0.3s ease;

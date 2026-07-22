@@ -1,14 +1,11 @@
-/* =============================================
-   myinfo.css ? ???蹂???댁? ????ㅽ??   ============================================= */
+/* ============================================= myinfo.css 댁 ㅽ ============================================= */
 
-/* ?? ??댁? ????? */
 .myinfo-wrapper {
     background:
         radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent),
         radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.05), transparent);
 }
 
-/* ?? 2????댁? ?? */
 .myinfo-layout {
     display: grid;
     grid-template-columns: 350px 1fr;
@@ -16,7 +13,7 @@
     align-items: start;
 }
 
-/* ?? ?쇱そ ?ъ대諛 ?濡? 移대 ?? */
+/* 쇱 대 대 */
 .profile-sidebar {
     background: #ffffff;
     border-radius: 24px;
@@ -34,7 +31,6 @@
     to   { opacity: 1; transform: translateX(0); }
 }
 
-/* ?諛? */
 .avatar-container {
     width: 120px;
     height: 120px;
@@ -76,7 +72,6 @@
     margin-bottom: 30px;
 }
 
-/* ?ъ대諛 硫??*/
 .sidebar-nav { text-align: left; border-top: 1px solid #f1f5f9; padding-top: 30px; }
 
 .sidebar-nav-item {
@@ -97,7 +92,6 @@
 
 .sidebar-nav-item i { font-size: 1.1rem; width: 20px; }
 
-/* 濡洹몄? */
 .logout-section { padding-top: 20px; border-top: 1px dashed #e2e8f0; margin-top: 10px; }
 
 .btn-logout-luxury {
@@ -120,7 +114,6 @@
     box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
 }
 
-/* ?? ?ㅻⅨ履?肄?痢 ?? ?? */
 .myinfo-content { animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
 
 @keyframes slideInUp {
@@ -149,7 +142,6 @@
 
 .content-card h3 i { color: #1e40af; }
 
-/* ?蹂?? */
 .info-row {
     display: grid;
     grid-template-columns: 150px 1fr;
@@ -170,7 +162,6 @@
     gap: 15px;
 }
 
-/* 踰??*/
 .btn-edit-small {
     padding: 8px 16px;
     border-radius: 8px;
@@ -199,13 +190,11 @@
 
 .btn-primary-small:hover { background: #3b82f6; transform: translateY(-1px); }
 
-/* 愿由ъ ???移대 */
 #adminMenuCard.content-card {
     border: 1px solid rgba(239, 68, 68, 0.1);
     background: linear-gradient(to right, #fff, #fff1f2);
 }
 
-/* ?? 諛?? ?? */
 @media (max-width: 991px) {
     .myinfo-layout { grid-template-columns: 1fr; }
     .profile-sidebar { position: static; padding: 30px 20px; }

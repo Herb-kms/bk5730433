@@ -1,21 +1,19 @@
-/* =============================================
-   index-showcase.css ? 湲곌린 ?쇱??댁?移대 紐⑸? 諛 ?몃吏?
-   ============================================= */
+/* ============================================= index-showcase.css 곌린 쇱댁대 몃 ============================================= */
 
 .hero-services-area {
     width: 100%;
     display: flex;
     justify-content: center;
-    /* 移대 媛濡 媛?대????*/
+    
     flex: 0 0 auto;
     margin-top: 0px;
-    /* ?? ??ㅽ?留吏?쇰? 梨? */
+    
     margin-bottom: 34px;
-    /* 移대? ?? ?곕쎌? ?ъ댁 媛寃?*/
+    /* 대 곕쎌 댁 */
     position: relative;
     z-index: 1;
 
-    /* ???쇱?珥湲곌? */
+    
     opacity: 1;
     transform: translateY(0);
     transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
@@ -27,18 +25,17 @@
     gap: 20px;
     width: auto;
     margin-left: auto;
-    /* 醫??留吏 ?ㅽ濡 媛濡 ?媛?대?諛곗? */
+    /* ㅽ 대곗 */
     margin-right: auto;
     align-items: end;
 }
 
-/* ?? ?? ?곗 移대 ?? */
 .copier-showcase-item {
     background-color: rgba(255, 255, 255, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.9);
     border-radius: 22px;
     padding: 70px 20px 22px 20px;
-    /* ?ㅻ ??댁 留異?padding-top ?諛 議곗 */
+    /* ㅻ 댁 padding-top 곗 */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,18 +46,18 @@
     transition: box-shadow 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
-    /* ?ㅻ? 紐⑥由??κ?湲곌? 移대 寃쎄? 諛?쇰? ? 踰?대?濡 ?由 */
+    /* ㅻ 곌 대 쎄 쇰 대 */
 }
 
-/* 移대 ???諛곕 ?ㅻ */
+/* 대 곕 ㅻ */
 .showcase-header {
     position: absolute;
     top: -1px;
-    /* ?곗 ??由??? ??濡 留?대??醫? 吏? */
+    
     left: -1px;
     right: -1px;
     padding: 13px 10px;
-    /* ???怨 蹂닿린 醫? ?щ갚?쇰? 議곗 */
+    /* 닿린 갚쇰 곗 */
     text-align: center;
     font-size: 1.3rem;
     font-weight: 900;
@@ -68,7 +65,7 @@
     letter-spacing: -0.5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     border-top-left-radius: 22px;
-    /* 移대 ?멸낸? 怨〓?怨??踰??湲고 */
+    /* 대 멸낸 고 */
     border-top-right-radius: 22px;
 }
 
@@ -84,7 +81,7 @@
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
 
-/* ?몃? ?: ?濡 ?댁? ?⑤ŉ 洹몃┝? 媛? */
+/* 몃 : 댁 몃 */
 .copier-showcase-item:hover {
     background-color: #ffffff;
     border-color: #ffffff;
@@ -114,7 +111,7 @@
     overflow: hidden;
 }
 
-/* 湲곌린 ?룸같寃???? ?ㅽы몃쇱댄?(?ъ? 遺媛) */
+/* 곌린 룸같 ㅽ몃쇱댄( ) */
 .showcase-img-wrap::before {
     content: '';
     position: absolute;
@@ -157,7 +154,7 @@
     display: block;
 }
 
-/* ??ъ ?由고곕 ?? 湲곌린?대濡 ?寃 */
+/* 고곕 곌린대 */
 .copier-showcase-item:nth-child(3) .showcase-img-wrap img {
     height: 65%;
     max-height: 65%;
@@ -217,7 +214,6 @@
     margin-top: 18px;
 }
 
-/* 踰??怨? ?? */
 .color-btn {
     background: #d32f2f;
     box-shadow: 0 4px 15px rgba(211, 47, 47, 0.35);
@@ -233,7 +229,7 @@
     box-shadow: 0 4px 15px rgba(5, 150, 105, 0.35);
 }
 
-/* ?몃? ? 踰?쇰 ?댁? 而ㅼ?硫?洹몃┝? 媛? */
+/* 몃 쇰 댁 ㅼ몃 */
 .copier-showcase-item:hover .overlay-click-btn {
     transform: scale(1.06);
     border-color: rgba(255, 255, 255, 0.9);
